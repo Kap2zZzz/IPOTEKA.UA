@@ -73,6 +73,10 @@
     <Content Include="App_Data\db_Ipoteka_log.ldf">
       <DependentUpon>db_Ipoteka.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\LocalDB.mdf" />
+    <Content Include="App_Data\LocalDB_log.ldf">
+      <DependentUpon>LocalDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\Admin.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\FAQ.css" />
@@ -88,6 +92,15 @@
     <Content Include="Image\def.png" />
     <Content Include="Image\doc2.png" />
     <Content Include="Image\graf.png" />
+    <Content Include="Image\img_1.png" />
+    <Content Include="Image\img_2.png" />
+    <Content Include="Image\img_3.png" />
+    <Content Include="Image\img_4.png" />
+    <Content Include="Image\img_5.png" />
+    <Content Include="Image\img_6.png" />
+    <Content Include="Image\img_7.png" />
+    <Content Include="Image\img_8.png" />
+    <Content Include="Image\img_9.png" />
     <Content Include="Views\Application\_PartialSuccess.cshtml" />
     <None Include="Properties\PublishProfiles\AzureWebApplication120170926042022 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />

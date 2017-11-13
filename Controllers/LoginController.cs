@@ -1,4 +1,5 @@
-﻿using IPOTEKA.UA.Models;
+﻿using IPOTEKA.UA.Code;
+using IPOTEKA.UA.Models;
 using IPOTEKA.UA.Repostory;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,16 @@ namespace IPOTEKA.UA.Controllers
 {
     public class LoginController : Controller
     {
+        MyDbContext _db = new MyDbContext();
         //
         // GET: /Login/
         [HttpGet]
         public ActionResult Index()
         {
+            if (_db.Users.Count() == 0)
+            {
+                MainHelp.CreateUserAdmin();
+            }
             ViewBag.Page = "Personal";
             return View();
         }

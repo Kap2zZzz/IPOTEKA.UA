@@ -13,6 +13,7 @@ namespace IPOTEKA.UA.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Page = "Ipoteka";
             return View();
         }
 

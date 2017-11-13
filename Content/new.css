@@ -681,6 +681,10 @@ li {
     .main-menu .active a {
         padding-bottom: 16px;
     }
+
+    ..dropdown-content {
+        margin-top: 18px;
+    }
 }
 
 @media (max-width:1366px) {
