@@ -1,0 +1,121 @@
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll.config
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.pdb
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Infrastructure.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\Newtonsoft.Json.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Net.Http.Formatting.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.WebHost.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\Newtonsoft.Json.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Net.Http.Formatting.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.WebHost.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.xml
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.csprojResolveAssemblyReference.cache
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.dll
+D:\ymmuzyka\My Documents\Visual Studio 2013\Projects\IPOTEKA.UA\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.pdb
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll.config
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.pdb
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Infrastructure.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Newtonsoft.Json.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Net.Http.Formatting.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.WebHost.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Newtonsoft.Json.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Net.Http.Formatting.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.WebHost.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.xml
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.csprojResolveAssemblyReference.cache
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.dll
+E:\Code project\IPOTEKA.UA\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.pdb
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll.config
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.pdb
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.SqlServer.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Infrastructure.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Newtonsoft.Json.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.SqlServer.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.pdb
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.csprojResolveAssemblyReference.cache
+E:\GitHub\IPOTEKA.UA\bin\IPOTEKA.UA.dll.config
+E:\GitHub\IPOTEKA.UA\bin\IPOTEKA.UA.dll
+E:\GitHub\IPOTEKA.UA\bin\IPOTEKA.UA.pdb
+E:\GitHub\IPOTEKA.UA\bin\Microsoft.CSharp.dll
+E:\GitHub\IPOTEKA.UA\bin\Microsoft.Web.Infrastructure.dll
+E:\GitHub\IPOTEKA.UA\bin\System.ComponentModel.DataAnnotations.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Configuration.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Data.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Data.Entity.dll
+E:\GitHub\IPOTEKA.UA\bin\System.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Net.Http.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Extensions.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Helpers.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Http.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Http.WebHost.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Razor.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Routing.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.WebPages.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Web.WebPages.Razor.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Xml.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Xml.Linq.dll
+E:\GitHub\IPOTEKA.UA\bin\System.Net.Http.Formatting.dll
+E:\GitHub\IPOTEKA.UA\bin\Newtonsoft.Json.dll
+E:\GitHub\IPOTEKA.UA\bin\EntityFramework.xml
+E:\GitHub\IPOTEKA.UA\bin\EntityFramework.SqlServer.xml
+E:\GitHub\IPOTEKA.UA\bin\Microsoft.Web.Infrastructure.xml
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Helpers.xml
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Http.xml
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Http.WebHost.xml
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Mvc.xml
+E:\GitHub\IPOTEKA.UA\bin\System.Web.Razor.xml
+E:\GitHub\IPOTEKA.UA\bin\System.Web.WebPages.xml
+E:\GitHub\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.xml
+E:\GitHub\IPOTEKA.UA\bin\System.Web.WebPages.Razor.xml
+E:\GitHub\IPOTEKA.UA\bin\System.Net.Http.Formatting.xml
+E:\GitHub\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.csprojResolveAssemblyReference.cache
+E:\GitHub\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.dll
+E:\GitHub\IPOTEKA.UA\obj\Debug\IPOTEKA.UA.pdb

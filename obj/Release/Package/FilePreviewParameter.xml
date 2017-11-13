@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="AzureWebApplication120170926042022" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\TFS\\IPOTEKA\.UA\\IPOTEKA\.UA\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\TFS\\IPOTEKA\.UA\\IPOTEKA\.UA\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="MyDbContext-Web.config Connection String" description="" value="Data Source=WS046273\SQLEXPRESS;Initial Catalog=IPOTEKA.UA; user id=mvc_user;pwd=kredobank123$;" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\TFS\\IPOTEKA\.UA\\IPOTEKA\.UA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MyDbContext']/@connectionString" />
+  </parameter>
+</parameters>

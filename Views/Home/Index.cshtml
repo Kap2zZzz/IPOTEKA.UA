@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "IPOTEKA.UA";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+
+<html>
+<body>
+    @*<div class="div-c1">
+            <label>
+                ІПОТЕКА.UA - швидкий спосіб отримати іпотеку!
+            </label>
+            <p>
+                <label>
+                    Залиште свою заявку, і з Вами зконтактується наш працівник, який допоможе Вам оформити кредит на іпотеку.
+                </label>
+            </p>
+            <img src="~/Image/3.jpg" />
+        </div>*@
+
+    <div style="text-align:center">
+        <label class="label_c2_h">Переваги нашого сервісу</label>
+        <table border="0" style="text-align:center">
+            <tr>
+                <td width="20%">
+                    <img src="~/Image/graf.png" />
+                </td>
+                <td width="20%">
+                    <img src="~/Image/calc.png" />
+                </td>
+                <td width="20%">
+                    <img src="~/Image/clock1.png" />
+                </td>
+                <td width="20%">
+                    <img src="~/Image/doc2.png" />
+                </td>
+                <td width="20%">
+                    <img src="~/Image/def.png" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <p class="p_e">Кращі пропозиції</p>
+                </td>
+                <td><p class="p_e">Зручний калькулято</p></td>
+                <td><p class="p_e">Швидкий розгляд</p></td>
+                <td><p class="p_e">Допомога з документами</p></td>
+                <td><p class="p_e">Безпека даних</p></td>
+            </tr>
+            <tr style="vertical-align: top;">
+                <td>
+                    <p class="p_e1">Ми аналізуємо і пропонуємо виключно найкращі пропозиції на ринку Іпотечного кредитування.</p>
+                    <p class="p_e1">@Html.ActionLink("Переглянути", "Index", "Partners")</p>
+                </td>
+                <td>
+                    <p class="p_e1">Калькулято - допоможе Вам розрахувати % ставку і платіж, за допомогою лише 2 параметрів.</p>
+                    <p class="p_e1">@Html.ActionLink("Спробувати", "Index", "Calculator")</p>
+                </td>
+                <td>
+                    <p class="p_e1">Ваша заявка буде розглянута протягом 60 хв, після чого з Вами звяжиться наш працівник і повідомить Вам деталі.</p>
+                    <p class="p_e1">@Html.ActionLink("Подати заявку", "Index", "Application")</p>
+                </td>
+                <td>
+                    <p class="p_e1">Наші працівники допоможуть Вам в оформленні усіх необхідних документів.</p>
+                </td>
+                <td>
+                    <p class="p_e1">Ми гарантуємо, що усі Ваші дані будуть захищені, і не будуть передаватись третім особам.</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<IPOTEKA.UA.Models.LoanModel>
+@{
+    ViewBag.Title = "Усі заявки";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+
+<html>
+<body>
+    <table class="tb-result" align="center" border="1">
+        <tr>
+            <th width="6%">Заявка №</th>
+            <th width="5%">Дата створення</th>
+            <th class="tb-th-left" width="9%">Прізвище</th>
+            <th class="tb-th-left" width="9%">Імя</th>
+            <th class="tb-th-left" width="10%">По батькові</th>
+            <th width="11%">Телефон</th>
+            <th width="10%">Продукт</th>
+            <th width="10%">Коментар</th>
+            <th width="10%">XML Файл</th>
+            <th width="10%" colspan="2">Операція</th>
+        </tr>
+        @foreach (IPOTEKA.UA.Models.LoanModel lm in Model)
+        {
+            <tr>
+                <td class="tb-td-center">@lm.ApplicationId</td>
+                <td class="tb-td-center">@lm.CreateDateTime</td>
+                <td>@lm.Sname</td>
+                <td>@lm.Name</td>
+                <td>@lm.Patronymic</td>
+                <td class="tb-td-center">@lm.PhoneNumber</td>
+                <td>@lm.ProductType</td>
+                <td>@lm.Comments</td>
+                <td class="tb-td-center">
+                    @Html.ActionLink("Завантажити", "DownloadFile", new { id = lm.ApplicationId }, new { @class = "link-t" })
+                </td>
+
+                <td class="tb-td-center">
+                    @Html.ActionLink("Редагувати", "Edit", null, new { @class = "link-t" })
+                </td>
+                <td class="tb-td-center">
+                    @Html.ActionLink("Видалити", "Delete", null, new { id = lm.ApplicationId }, new { @class = "link-t" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

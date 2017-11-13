@@ -1,0 +1,579 @@
+﻿@{
+    ViewBag.Title = "Калькулятор";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+<link href="~/Content/Slider.css" rel="stylesheet" />
+
+@using (Html.BeginForm("Calculator"))
+{
+
+    <div style="width:100%; margin:auto; margin-bottom:20px;">
+        <table border="0" width="80%" style="margin:auto">
+            <tr>
+                <td width="50%">
+                    <div id="slidecontainer" style="margin:auto; margin-bottom:50px;">
+                        <p>
+                            <label style="margin:auto; text-transform:uppercase">Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> @*<span id="outputTermin"></span>*@ місяців</label>
+                        </p>
+                        <input type="range" min="12" max="240" value="12" step="1" class="slider" id="Termin" name="slider_Termin">
+                    </div>
+
+                </td>
+                <td>
+                    <div id="slidecontainer" style="margin:auto; margin-bottom:50px;">
+
+                        <p>
+                            <label style="margin:auto; text-transform:uppercase">Бажана сума кредиту: <input type="text" id="outputSuma" class="calc suma"> грн. @*<span class="price" id="outputSuma"></span>*@</label>
+                        </p>
+                        <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="Suma">
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top">
+
+                    <div style="margin: auto; width: 80%; text-transform: uppercase;">
+                        <div style="margin-bottom:40px;">
+                            @*<label class="switch">
+                                <input type="checkbox">
+                                <span class="slider1"></span>
+                            </label>*@
+
+                            <input id="annuity" type="radio" name="scheme" value="annuity" checked="checked"> Ануїтетна
+                            <input id="classic" type="radio" name="scheme" value="classic"> Класична
+                        </div>
+                        <table style="-webkit-appearance: none; color: black; text-align: left;">
+                            <tr>
+                                <td>
+                                    Сума платежів:
+                                </td>
+                                <td>
+                                    <span id="SumaPlatezhiv"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Сума процентів:
+                                </td>
+                                <td>
+                                    <span id="SumaProcentiv"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Страховий платіж:
+                                </td>
+                                <td>
+                                    <span id="Strahovka"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Комісія за видачу:
+                                </td>
+                                <td>
+                                    <span id="KomisiyaZaVydachu"></span>
+                                </td>
+                            </tr>
+                            @*<tr>
+                    <td>
+                        Реальна відсоткова ставка:
+                    </td>
+                    <td>
+                        <span id="RealRate"></span>
+                    </td>
+                </tr>*@
+                        </table>
+                    </div>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div id="Schedule">
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+
+<script>
+    function Milliseconds(date) {
+        var number_of_leap_years = Math.floor((date.getFullYear() - 2001) / 4) + 1;
+        var number_of_normal_years = date.getFullYear() - 2000 - number_of_leap_years;
+        var number_of_days = 0;
+        for (var i = 0; i < date.getMonth() ; i++) {
+            var month = i + 1;
+            if (month == 2 && date.getFullYear() % 4 == 0)
+                number_of_days += 29;
+            else if (month == 2)
+                number_of_days += 28;
+            else if (month == 4 || month == 6 || month == 9 || month == 11)
+                number_of_days += 30;
+            else
+                number_of_days += 31;
+        }
+        number_of_days += date.getDate();
+        return number_of_leap_years * 366 * 86400000 + number_of_normal_years * 365 * 86400000 + number_of_days * 86400000 + date.getHours() * 3600000
+            + date.getMinutes() * 60000 + date.getSeconds() * 1000 + date.getMilliseconds();
+    }
+    function DifferenceBetweeenDates(date_start, date_finish) {
+        return Milliseconds(date_finish) - Milliseconds(date_start);
+    }
+    function MaskInt(InPut) {
+        var IsNegative = InPut < 0;
+        if (IsNegative) InPut = InPut * (-1);
+        var result = InPut.toString();
+        var CountZero = InPut.toString().length - 1;
+        var CountSpaces = Math.floor(CountZero / 3);
+        var index = 0;
+        for (var i = 0; i < CountSpaces; i++) {
+            index = (CountZero % 3) + 1 + i * 4;
+            result = result.substring(0, index) + " " + result.substring(index);
+        }
+        if (IsNegative)
+            return "-" + result;
+        else
+            return result;
+    }
+    function MaskDecimal(InPutD) {
+        var IsNegative = InPutD < 0;
+        if (IsNegative) InPutD = InPutD * (-1);
+        var result = Math.floor(InPutD).toString();
+        var CountZero = Math.floor(InPutD).toString().length - 1;
+        var CountSpaces = Math.floor(CountZero / 3);
+        var index = 0;
+        var DrobChastyna = parseFloat((InPutD - Math.floor(InPutD)).toFixed(2));
+        for (var i = 0; i < CountSpaces; i++) {
+            index = (CountZero % 3) + 1 + i * 4;
+            result = result.substring(0, index) + " " + result.substring(index);
+        }
+        if (DrobChastyna == 0)
+            result += ",00";
+        else if (DrobChastyna.toString().length == 3)
+            result += DrobChastyna.toString().substring(1).replace('.', ',') + "0";
+        else
+            result += DrobChastyna.toString().substring(1).replace('.', ',');
+        if (IsNegative)
+            return "-" + result;
+        else
+            return result;
+    }
+    function FormatNumberForDate(number) {
+        if (number < 10)
+            return "0" + number;
+        else
+            return number;
+    }
+    function FormatDate(date, style) {
+        if (style == 1)
+            return FormatNumberForDate(date.getDate()) + "." + FormatNumberForDate(date.getMonth() + 1) + "." + FormatNumberForDate(date.getFullYear());
+        else if (style == 2)
+            return FormatNumberForDate(date.getDate()) + "." + FormatNumberForDate(date.getMonth() + 1) + "." + FormatNumberForDate(date.getFullYear()) + " "
+                + FormatNumberForDate(date.getHours()) + ":" + FormatNumberForDate(date.getMinutes()) + ":" + FormatNumberForDate(date.getSeconds());
+        else
+            return FormatNumberForDate(date.getDate()) + "." + FormatNumberForDate(date.getMonth() + 1) + "." + FormatNumberForDate(date.getFullYear()) + " "
+                + FormatNumberForDate(date.getHours()) + ":" + FormatNumberForDate(date.getMinutes()) + ":" + FormatNumberForDate(date.getSeconds()) + "."
+                + FormatNumberForDate(date.getMilliseconds());
+
+    }
+    function AddDays(date, days) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days, date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+    }
+    function AddMonths(date, month) {
+        var addMonth = date.getMonth() + month;
+        var NormaladdMonth = (addMonth + 1) % 12;
+        if (NormaladdMonth == 2) {
+            if (date.getDate() > 29 && new Date(date.getFullYear(), addMonth).getFullYear() % 4 == 0)
+                return new Date(date.getFullYear(), addMonth, 29, date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+            else if (date.getDate() > 28)
+                return new Date(date.getFullYear(), addMonth, 28, date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+            else
+                return new Date(date.getFullYear(), addMonth, date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+        }
+        else if (NormaladdMonth == 4 || NormaladdMonth == 6 || NormaladdMonth == 9 || NormaladdMonth == 11)
+            if (date.getDate() > 30)
+                return new Date(date.getFullYear(), addMonth, 30, date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+            else
+                return new Date(date.getFullYear(), addMonth, date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+        else
+            return new Date(date.getFullYear(), addMonth, date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+    }
+    function TotalDays(date_start, date_finish) {
+        return Math.floor(DifferenceBetweeenDates(date_start, date_finish) / 86400000);
+    }
+    function IfIncreaseStrokKredytu(DataRozrahunku, DataPershogoPlatezhu) {
+        return TotalDays(AddMonths(DataPershogoPlatezhu, -1), DataRozrahunku) > 2;
+    }
+    function IfBodyIsZero(DataPo4atkuProc, DataPershogoPlatezhu) {
+        return TotalDays(DataPo4atkuProc, DataPershogoPlatezhu) <= 16;
+    }
+    function SumaProcWPeriodi(OstatokKredytu, Stawka, DataStart, DataEnd) {
+        var k = Math.floor(TotalDays(DataStart, DataEnd));
+        return (k * OstatokKredytu * Stawka) / 36000;
+    }
+    function AnnuitySchedule(SumaKredytu, StrokKredytu, ListStawok, Komisiya) {
+        var DataRozrahunku = new Date();
+        var DataPo4atkuProc = DataRozrahunku;
+        var DataPershogoPlatezhu = AddDays(DataRozrahunku, TotalDays(DataRozrahunku, AddMonths(DataRozrahunku, 1)) - DataRozrahunku.getDate() + 1);
+        var DataOplatyKredytu = AddDays(AddMonths(DataRozrahunku, StrokKredytu), -1);
+        //var Platizh = [];
+        var Schedule = new Array();
+        var i = 0;
+        var SumaKomisiyi = parseFloat((SumaKredytu * Komisiya / 100).toFixed(2));
+
+
+        var StawkaMax = 0;
+        for (var k = 0; k < ListStawok.length; k++) {
+            StawkaMax = Math.max(StawkaMax, ListStawok[k].Stawka);
+        }
+
+        if (IfIncreaseStrokKredytu(DataRozrahunku, DataPershogoPlatezhu))
+            StrokKredytu++;
+
+        var MinSumaAnuiteta = SumaKredytu / StrokKredytu + SumaKomisiyi;
+        var MaxSumaProcZaMisyac = SumaKredytu * 31 * StawkaMax / 36000;
+
+        var MaxSumaAnuiteta = MinSumaAnuiteta + MaxSumaProcZaMisyac;
+
+        var KinecObrahunku = false; var ChyTiloZero = false;
+        var count = 1;
+        while (true) {
+            //Platizh.length = 0;
+            Schedule.length = 0;
+            ChyTiloZero = IfBodyIsZero(DataPo4atkuProc, DataPershogoPlatezhu);
+            var DataStart = DataPo4atkuProc;
+            var DataEnd = DataPershogoPlatezhu;
+
+            var TiloFull = 0; var ProcentFull = 0; var WnesokFull = 0;
+            OstatokKredytu = SumaKredytu;
+            SumaAnuiteta = (MinSumaAnuiteta + MaxSumaAnuiteta) / 2;
+
+            i = 0; var s = 0;
+
+            var DataZminy = new Date(1900, 0);
+            while (true) {
+                Schedule.length += 1;
+                Schedule[i] = new Array(5);
+                DataZminy = AddMonths(DataRozrahunku, ListStawok[s].Period);
+                var ChyZminaStawky = DataStart <= DataZminy && DataEnd > DataZminy && ListStawok.length > s + 1;
+                //var Proc = 0;
+                if (ChyZminaStawky) {
+                    Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataZminy)
+                        + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1].Stawka, DataZminy, DataEnd);
+                    s++;
+                }
+                else
+                    Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataEnd);
+
+                if (KinecObrahunku)
+                    Schedule[i][2] = parseFloat(Schedule[i][2].toFixed(2));
+
+
+                if (SumaAnuiteta - SumaKomisiyi >= OstatokKredytu - (SumaAnuiteta - SumaKomisiyi) / 2 && (i + 1) == StrokKredytu) {
+                    Schedule[i][3] = OstatokKredytu;
+
+                }
+                else if (ChyTiloZero) {
+                    Schedule[i][3] = 0;
+
+                }
+                else {
+                    Schedule[i][3] = Math.min(OstatokKredytu, Math.max(SumaAnuiteta - Schedule[i][2] - SumaKomisiyi, 0));
+                }
+
+
+                Schedule[i][4] = OstatokKredytu - Schedule[i][3];
+                var OplataDateTime = DataEnd;
+                Schedule[i][0] = FormatDate(DataEnd, 1);
+                DataStart = DataEnd;
+                if (AddMonths(DataPershogoPlatezhu, (i + 1)) > DataOplatyKredytu)
+                    DataEnd = DataOplatyKredytu;
+                else
+                    DataEnd = AddMonths(DataPershogoPlatezhu, (i + 1));
+                OstatokKredytu = OstatokKredytu - Schedule[i][3];
+                if (OstatokKredytu == 0)
+                    Schedule[i][1] = Schedule[i][2] + Schedule[i][3] + SumaKomisiyi;
+                else if (ChyTiloZero) {
+                    Schedule[i][1] = parseFloat(Schedule[i][2].toFixed(2));
+                    ChyTiloZero = false;
+                }
+                else {
+                    Schedule[i][1] = SumaAnuiteta;
+                }
+                TiloFull = TiloFull + Schedule[i][3];
+                ProcentFull = ProcentFull + Schedule[i][2];
+                WnesokFull = WnesokFull + Schedule[i][1];
+
+                i++;
+
+                if (OstatokKredytu <= 0 || i > StrokKredytu) {
+                    if (KinecObrahunku) {
+                        Schedule.length += 1;
+                        Schedule[i] = new Array(5);
+                        Schedule[i][0] = "";
+                        Schedule[i][1] = WnesokFull;
+                        Schedule[i][2] = ProcentFull;
+                        Schedule[i][3] = TiloFull;
+                        Schedule[i][4] = "";
+                    }
+                    break;
+                }
+            }
+
+            if (KinecObrahunku) {
+                break;
+            }
+            else if ((MaxSumaAnuiteta - MinSumaAnuiteta) <= 0.001) {
+                MinSumaAnuiteta = parseFloat(SumaAnuiteta.toFixed(0));
+                MaxSumaAnuiteta = parseFloat(SumaAnuiteta.toFixed(0));
+                KinecObrahunku = true;
+
+            }
+            else if (i > StrokKredytu) {
+                MinSumaAnuiteta = SumaAnuiteta;
+            }
+            else if (i < StrokKredytu) {
+                MaxSumaAnuiteta = SumaAnuiteta;
+            }
+            else if (Schedule[i - 1][1] < SumaAnuiteta) {
+                MaxSumaAnuiteta = SumaAnuiteta;
+            }
+            else {
+                MinSumaAnuiteta = SumaAnuiteta;
+            }
+            count++;
+        }
+
+        return Schedule;
+    }
+    function ClassicSchedule(SumaKredytu, StrokKredytu, ListStawok) {
+        var DataRozrahunku = new Date();
+        var DataPo4atkuProc = DataRozrahunku;
+        var DataPershogoPlatezhu = AddDays(DataRozrahunku, TotalDays(DataRozrahunku, AddMonths(DataRozrahunku, 1)) - DataRozrahunku.getDate() + 1);
+        var DataOplatyKredytu = AddDays(AddMonths(DataRozrahunku, StrokKredytu), -1);
+        var Schedule = new Array();
+        //var Platizh = [];
+        var i = 0; var Tilo = 0;
+        var ChyTiloZero = false;
+        if (IfBodyIsZero(DataPo4atkuProc, DataPershogoPlatezhu)) {
+            ChyTiloZero = true;
+            Tilo = (SumaKredytu / StrokKredytu);
+        }
+        else if (IfIncreaseStrokKredytu(DataRozrahunku, DataPershogoPlatezhu)) {
+            Tilo = (SumaKredytu / (StrokKredytu + 1));
+        }
+        else {
+            Tilo = (SumaKredytu / StrokKredytu);
+        }
+        Tilo = parseFloat(Tilo.toFixed(2));
+        if (IfIncreaseStrokKredytu(DataRozrahunku, DataPershogoPlatezhu))
+            StrokKredytu = StrokKredytu + 1;
+
+        var DataStart = DataPo4atkuProc;
+        var DataEnd = DataPershogoPlatezhu;
+        var DataEndTilo = new Date(1900, 0);
+
+        var OstatokKredytu = SumaKredytu;
+        var TiloFull = 0; var ProcentFull = 0; var WnesokFull = 0;
+        var s = 0;
+        var DataZminy = new Date(1900, 0);
+
+        while (true) {
+
+            if (DataEnd.getDate() == 1)
+                DataEndTilo = AddDays(DataEnd, (-1));
+            else
+                DataEndTilo = DataEnd;
+
+            Schedule.length += 1;
+            Schedule[i] = new Array(5);
+
+            DataZminy = AddMonths(DataRozrahunku, ListStawok[s].Period);
+            var ChyZminaStawky = DataStart < DataZminy && DataEnd > DataZminy && ListStawok.count > s + 1;
+
+            if (DataEndTilo != DataEnd) {
+
+                if (ChyZminaStawky && DataEndTilo > DataZminy) {
+                    Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataZminy)
+                        + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1].Stawka, DataZminy, DataEndTilo)
+                        + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s + 1].Stawka, DataEndTilo, DataEnd);
+                    s++;
+                }
+                else if (ChyZminaStawky) {
+                    Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataZminy)
+                        + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s + 1].Stawka, DataZminy, DataEnd);
+                    s++;
+                }
+                else if (ChyTiloZero) {
+                    Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataEnd);
+                }
+
+                else {
+                    Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataEndTilo)
+                        + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s].Stawka, DataEndTilo, DataEnd);
+                }
+            }
+            else {
+
+                if (ChyZminaStawky) {
+                    Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataZminy)
+                        + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1].Stawka, DataZminy, DataEnd);
+                    s++;
+                }
+                else {
+                    Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataEnd);
+                }
+
+            }
+            Schedule[i][2] = parseFloat(Schedule[i][2].toFixed(2));
+
+            if (ChyTiloZero) {
+                Schedule[i][3] = 0;
+                ChyTiloZero = false;
+            }
+            else if (Tilo < OstatokKredytu - Tilo / 2)
+                Schedule[i][3] = Tilo;
+            else
+                Schedule[i][3] = OstatokKredytu;
+
+            Schedule[i][4] = OstatokKredytu - Schedule[i][3];
+            var OplataDateTime = DataEnd;
+            Schedule[i][0] = FormatDate(DataEnd, 1);
+            DataStart = DataEnd;
+            if (AddMonths(DataPershogoPlatezhu, (i + 1)) > DataOplatyKredytu)
+                DataEnd = DataOplatyKredytu;
+            else
+                DataEnd = AddMonths(DataPershogoPlatezhu, (i + 1));
+
+            OstatokKredytu = OstatokKredytu - Schedule[i][3];
+            Schedule[i][1] = parseFloat((Schedule[i][2] + Schedule[i][3]).toFixed(2));
+            TiloFull = TiloFull + Schedule[i][3];
+            ProcentFull = ProcentFull + Schedule[i][2];
+            WnesokFull = WnesokFull + Schedule[i][1];
+            i++;
+            if (OstatokKredytu <= 0 || i > StrokKredytu) {
+                Schedule.length += 1;
+                Schedule[i] = new Array(5);
+                Schedule[i][0] = "";
+                Schedule[i][1] = WnesokFull;
+                Schedule[i][2] = ProcentFull;
+                Schedule[i][3] = TiloFull;
+                Schedule[i][4] = "";
+                break;
+            }
+        }
+        return Schedule;
+    }
+    function GenerateTable(Schedule) {
+        var result = "<table class=\"schedule\">";
+        result += "<tr style = \"font-size:larger;\">";
+        result += "<td class = \"td_schedule\">№</td>";
+        result += "<td class = \"td_schedule\">Дата оплати до</td>";
+        result += "<td class = \"td_schedule\">Платіж</td>";
+        result += "<td class = \"td_schedule\">Проценти</td>";
+        result += "<td class = \"td_schedule\">Погашення тіла</td>";
+        result += "<td class = \"td_schedule\">Залишок</td>";
+        result += "</tr>";
+        for (var i = 0; i < Schedule.length - 1; i++) {
+            result += "<tr>";
+            result += "<td class = \"td_schedule\">" + (i + 1) + "</td>";
+            for (var j = 0; j < Schedule[i].length; j++) {
+                if (j >= 1)
+                    result += "<td class = \"td_schedule\">" + MaskDecimal(Schedule[i][j]) + "</td>";
+                else
+                    result += "<td class = \"td_schedule\">" + Schedule[i][j] + "</td>";
+            }
+            result += "</tr>";
+        }
+        result += "</table>";
+        return result;
+    }
+
+    var ListStawok = new Array({ Stawka: 17, Period: 12 }, { Stawka: 18, Period: 1000 });
+    var a;
+    var ProcentStrahowky = 0.6;
+    var ProcentKomisiyiZaVydachu = 0.99;
+
+    //outputTermin.innerHTML = MaskInt(Termin.value); // Display the default slider value
+    outputTermin.value = MaskInt(Termin.value); // Display the default slider value
+    outputSuma.value = MaskInt(Suma.value); // Display the default slider value
+
+    var SumaStrahovky = parseFloat((parseFloat(Suma.value) * ProcentStrahowky / 100).toFixed(2));
+    var SumaKomisiyiZaVydachu = parseFloat((parseFloat(Suma.value) * ProcentKomisiyiZaVydachu / 100).toFixed(2));
+    a = AnnuitySchedule(parseFloat(Suma.value), parseInt(Termin.value), ListStawok, 0);
+    SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
+    SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
+    Strahovka.innerHTML = MaskDecimal(SumaStrahovky);
+    KomisiyaZaVydachu.innerHTML = MaskDecimal(SumaKomisiyiZaVydachu);
+    Schedule.innerHTML = GenerateTable(a);
+    //var CalculatedRealRate = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 / parseFloat(Suma.value)).toFixed(2);
+    //RealRate.innerHTML = MaskDecimal(CalculatedRealRate);
+
+    outputTermin.onchange = function ()
+    {
+        Termin.value = (this).value;
+        Termin.oninput();
+    }
+
+    outputSuma.onchange = function () {
+        Suma.value = (this).value;
+        Suma.oninput();
+    }
+
+    Termin.oninput = function () {
+        outputTermin.value = MaskInt(this.value);
+        if (classic.checked)
+            a = ClassicSchedule(parseFloat(Suma.value), parseInt(this.value), ListStawok);
+        else
+            a = AnnuitySchedule(parseFloat(Suma.value), parseInt(this.value), ListStawok, 0);
+
+        SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
+        SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
+        Schedule.innerHTML = GenerateTable(a);
+    }
+
+    Suma.oninput = function () {
+        outputSuma.value = MaskInt(this.value);
+        SumaStrahovky = parseFloat((parseFloat(this.value) * ProcentStrahowky / 100).toFixed(2));
+        SumaKomisiyiZaVydachu = parseFloat((parseFloat(this.value) * ProcentKomisiyiZaVydachu / 100).toFixed(2));
+
+        if (classic.checked)
+            a = ClassicSchedule(parseFloat(this.value), parseInt(Termin.value), ListStawok);
+        else
+            a = AnnuitySchedule(parseFloat(this.value), parseInt(Termin.value), ListStawok, 0);
+        SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
+        SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
+        Strahovka.innerHTML = MaskDecimal(SumaStrahovky);
+        KomisiyaZaVydachu.innerHTML = MaskDecimal(SumaKomisiyiZaVydachu);
+        Schedule.innerHTML = GenerateTable(a);
+    }
+
+    annuity.onchange = function () {
+        a = AnnuitySchedule(parseFloat(Suma.value), parseInt(Termin.value), ListStawok, 0);
+        SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
+        SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
+        Schedule.innerHTML = GenerateTable(a);
+    }
+
+
+    classic.onchange = function () {
+        a = ClassicSchedule(parseFloat(Suma.value), parseInt(Termin.value), ListStawok);
+        SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
+        SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
+        Schedule.innerHTML = GenerateTable(a);
+    }
+
+
+    
+
+
+
+</script>

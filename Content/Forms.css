@@ -1,0 +1,21 @@
+﻿#tbProduct {
+    width: 100%;
+}
+
+    #tbProduct input[type="text"],
+    #tbProduct select {
+        width: -webkit-fill-available;
+        /*margin: 5px auto;*/
+        padding: 8px;
+    }
+
+    #tbProduct th {
+        font-family: Tahoma;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 0.9em;
+        background-color: #66a6c1;
+        color: white;
+        cursor: auto;
+        padding-left: 10px;
+    }

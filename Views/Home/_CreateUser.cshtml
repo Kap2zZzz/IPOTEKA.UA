@@ -1,0 +1,61 @@
+﻿@model IPOTEKA.UA.Models.mUser
+           @{
+               Layout = "~/Views/_BasicLayout.cshtml";
+               ViewBag.Title = "Створення нового користувача";
+           }
+
+@using (Html.BeginForm("_CreateUser", "Home", FormMethod.Post))
+{
+    <table class="tb-result" align="center" border="1">
+        <tr>
+            <th colspan="2">Створення нового користувача</th>
+        </tr>
+        <tr>
+            <td style="width:50%">
+                @Html.DisplayNameFor(model => model.PIB)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.PIB)
+                <div>
+                    @Html.ValidationMessageFor(model => model.PIB)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Login)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.Login)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Password)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Dic_role)
+            </td>
+            <td>
+                @Html.DropDownListFor(model => model.Role, Model.Dic_role)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Email)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.Email)
+            </td>
+        </tr>
+    </table>
+
+    <div style="text-align:right;">
+        <input type="submit" value="Зберегти" class="btn green" style="width:30%" />
+    </div>
+}

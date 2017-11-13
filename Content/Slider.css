@@ -1,0 +1,132 @@
+﻿#slidecontainer {
+    width: 80%; /* Width of the outside container*/
+}
+
+.slider {
+    -webkit-appearance: none; /* Override default CSS styles */
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #4291CE;
+    outline: none; /* Remove outline */
+    /*opacity: 0.7;*/ /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        width: 25px; /* Set a specific slider handle width */
+        height: 45px; /* Slider handle height */
+        background: #A0BFCB;
+        border: 2px solid #6cb1cc;
+        cursor: pointer; /* Cursor on hover */
+    }
+
+.td_schedule {
+    border: 1px solid #A0BFCB;
+    /*color: #7BB2DD;*/
+    color: #195686;
+    text-align: center;
+    /*font-weight: bold;*/
+    font-family: Tahoma;
+}
+
+.schedule {
+    margin: auto;
+    width: 90%;
+}
+
+    .schedule tr {
+        background: #eeeeee;
+    }
+
+        .schedule tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+}
+
+#schedule {
+    margin: auto;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.calc {
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    border-bottom: 2px solid #7bb2dd;
+    color: #7bb2dd;
+    font-weight: bold;
+    outline: none;
+    background-color: transparent;
+}
+
+    .calc.termin {
+        width: 50px;
+    }
+
+    .calc.suma {
+        width: 100px;
+    }
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    margin-left: 0px !important;
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 34px;
+}
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        display: none;
+    }
+
+/* The slider */
+.slider1 {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #76b0dd;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider1:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 40px;
+        left: 4px;
+        bottom: 4px;
+        background-color: #A0BFCB;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+input:checked + .slider1 {
+    background-color: #76b0dd;
+}
+
+input:focus + .slider1 {
+    box-shadow: 0 0 1px #76b0dd;
+}
+
+input:checked + .slider1:before {
+    -webkit-transform: translateX(50px);
+    -ms-transform: translateX(50px);
+    transform: translateX(50px);
+}

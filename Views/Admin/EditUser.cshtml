@@ -1,0 +1,79 @@
+﻿@model IPOTEKA.UA.Models.User
+@{
+    Layout = "~/Views/_BasicLayout.cshtml";
+    ViewBag.Title = "Створення нового користувача";
+}
+<link href="~/Content/Admin.css" rel="stylesheet" />
+
+@using (Html.BeginForm("EditUser", "Admin", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.UserId)
+    <div class="form-login" style="min-width:500px;">
+        <table class="tb-result">
+            <tr>
+                <th colspan="3">
+                    Створення нового користувача
+                </th>
+            </tr>
+            <tr>
+                <td style="width: 20%;">
+                    @Html.DisplayName("ПІБ")
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.PIB, new { placeholder = @Html.DisplayNameFor(m => m.PIB) })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.PIB)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Login)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Login, new { placeholder = @Html.DisplayNameFor(m => m.Login) })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Login)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Password)
+                </td>
+                <td>
+                    @Html.PasswordFor(model => model.Password, new { placeholder = @Html.DisplayNameFor(m => m.Password) })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Role)
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.Role, Model.Dic_role, "Роль")
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Role)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Email)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Email, new { placeholder = @Html.DisplayNameFor(m => m.Email) })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
+            <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
+            <input id="save" type="submit" name="button" value="Зберегти" class="btn Add" />
+        </div>
+    </div>
+}

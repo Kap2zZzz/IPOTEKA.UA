@@ -1,0 +1,66 @@
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll.config
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.pdb
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.SqlServer.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Infrastructure.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\Newtonsoft.Json.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.SqlServer.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.xml
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\obj\Release\IPOTEKA.UA.dll
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\obj\Release\IPOTEKA.UA.pdb
+D:\Code project\IPOTEKA.UA\IPOTEKA.UA\obj\Release\IPOTEKA.UA.csprojResolveAssemblyReference.cache
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll.config
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\IPOTEKA.UA.pdb
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.SqlServer.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.CSharp.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Infrastructure.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.ComponentModel.DataAnnotations.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Configuration.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Data.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Data.Entity.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Net.Http.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Extensions.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.WebHost.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Routing.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Xml.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Xml.Linq.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\Newtonsoft.Json.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\EntityFramework.SqlServer.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\Microsoft.Web.Infrastructure.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Helpers.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Http.WebHost.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Mvc.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.Razor.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Deployment.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\bin\System.Web.WebPages.Razor.xml
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\obj\Release\IPOTEKA.UA.dll
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\obj\Release\IPOTEKA.UA.pdb
+D:\TFS\IPOTEKA.UA\IPOTEKA.UA\obj\Release\IPOTEKA.UA.csprojResolveAssemblyReference.cache

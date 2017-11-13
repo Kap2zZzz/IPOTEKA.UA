@@ -1,0 +1,290 @@
+﻿@{
+    ViewBag.Title = "Банки";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+<div>
+    <label>
+        Банки з якими ми співпрацюємо:
+    </label>
+</div>
+<table border="0" width="100%">
+    <tr>
+        <td width="50%">
+            @* КРЕДОБАНК *@
+            <div class="div-bank-element">
+                <div style="width:100%; border-bottom: 1px solid #e5e5e5; overflow:auto">
+                    @*<div style="float:left; width:40%; margin-right: 10px;">
+                            <img src="~/Image/Kred2.png" />
+                        </div>*@
+                    <div>
+                        <label style="font-size:2em; font-weight:bold; color:#12a1d8">
+                            ПАТ "КРЕДОБАНК"
+                            @*Окремо звертаємо Вашу увагу, що ПАТ "КРЕДОБАНК" спільно з Державною спеціалізованою фінансовою установою “Державним фондом сприяння молодіжному житловому будівництву” приймає участь у державній програмі “Доступне житло” (компенсація державою 30% вартості будівництва (придбання) доступного житла).*@
+                        </label>
+                        @*<label style="font-size:1em;">
+                                ПАТ "КРЕДОБАНК" видає кредити на придбання, ремонт, реконструкцію нерухомості, а також на поточні потреби під заставу нерухомості, які задовольняють широкі потреби Позичальників.
+                            </label>*@
+                    </div>
+                </div>
+
+                <div class="div-param-h">
+                    <label>
+                        Умови кредитування:
+                    </label>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left; ">
+                        <label>Сума кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>до 85% вартості забезпечення</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style=" float:left;">
+                        <label>Строк кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>до 20 років</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Процентна ставка:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>від 16.90% річних</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Комісія за видачу кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>0.99% від суми кредиту</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Валюта:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>Гривня</label>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td>
+            @* ОЩАДБАНК *@
+            <div class="div-bank-element">
+                <div style="width:100%; border-bottom: 1px solid #e5e5e5; overflow:auto">
+                    @*<div style="float:left; width:40%; margin-right: 10px;">
+                            <img src="~/Image/ochad1.png" style="max-height:75px;" />
+                        </div>*@
+                    <div>
+                        <label style="font-size:2em; font-weight:bold; color:#12a1d8">
+                            ПАТ "ОЩАДБАНК"
+                            @*Окремо звертаємо Вашу увагу, що ПАТ "КРЕДОБАНК" спільно з Державною спеціалізованою фінансовою установою “Державним фондом сприяння молодіжному житловому будівництву” приймає участь у державній програмі “Доступне житло” (компенсація державою 30% вартості будівництва (придбання) доступного житла).*@
+                        </label>
+                    </div>
+                </div>
+
+                <div class="div-param-h">
+                    <label>
+                        Умови кредитування:
+                    </label>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left; ">
+                        <label>Сума кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>до 70% вартості забезпечення</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style=" float:left;">
+                        <label>Строк кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>до 20 років</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Процентна ставка:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>від 20.49% річних</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Комісія за видачу кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>1.5% від суми кредиту</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Валюта:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>Гривня</label>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @* ПРИВАТБАНК *@
+            <div class="div-bank-element">
+                <div style="border-bottom: 1px solid #e5e5e5;">
+                    @*<div style="float:left; width:40%; margin-right: 10px;">
+                            <img src="~/Image/Privatbank_logo.jpg" height="75px" />
+                        </div>*@
+                    <div>
+                        <label style="font-size:2em; font-weight:bold; color:#12a1d8">
+                            ПАТ "ПРИВАТБАНК"
+                            @*Окремо звертаємо Вашу увагу, що ПАТ "КРЕДОБАНК" спільно з Державною спеціалізованою фінансовою установою “Державним фондом сприяння молодіжному житловому будівництву” приймає участь у державній програмі “Доступне житло” (компенсація державою 30% вартості будівництва (придбання) доступного житла).*@
+                        </label>
+                    </div>
+                </div>
+
+                <div class="div-param-h">
+                    <label>
+                        Умови кредитування:
+                    </label>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left; ">
+                        <label>Початковий внесок:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>від 25%</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style=" float:left;">
+                        <label>Строк кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>до 20 років</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Процентна ставка:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>від 17.9% річних</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Комісія за видачу кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>0% від суми кредиту</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Валюта:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>Гривня</label>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="div-bank-element">
+                <div style="border-bottom: 1px solid #e5e5e5;">
+                    @*<div style="float:left; width:40%; margin-right: 10px;">
+                            <img src="~/Image/Privatbank_logo.jpg" height="75px" />
+                        </div>*@
+                    <div>
+                        <label style="font-size:2em; font-weight:bold; color:#12a1d8">
+                            ПАТ "ПРИВАТБАНК"
+                            @*Окремо звертаємо Вашу увагу, що ПАТ "КРЕДОБАНК" спільно з Державною спеціалізованою фінансовою установою “Державним фондом сприяння молодіжному житловому будівництву” приймає участь у державній програмі “Доступне житло” (компенсація державою 30% вартості будівництва (придбання) доступного житла).*@
+                        </label>
+                    </div>
+                </div>
+
+                <div class="div-param-h">
+                    <label>
+                        Умови кредитування:
+                    </label>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left; ">
+                        <label>Початковий внесок:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>від 25%</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style=" float:left;">
+                        <label>Строк кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>до 20 років</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Процентна ставка:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>від 17.9% річних</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Комісія за видачу кредиту:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>0% від суми кредиту</label>
+                    </div>
+                </div>
+
+                <div class="div-param">
+                    <div style="float:left;">
+                        <label>Валюта:</label>
+                    </div>
+                    <div style="float:right; width:50%">
+                        <label>Гривня</label>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+
+
+

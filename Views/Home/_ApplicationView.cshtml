@@ -1,0 +1,113 @@
+﻿@model IPOTEKA.UA.Models.LoanModel
+
+<table class="tb-result" align="center" border="1">
+    <tr>
+        <th colspan="2">Дані по заявці № @Model.ApplicationId</th>
+    </tr>
+    <tr>
+        <td style="width:50%">
+            @Html.DisplayNameFor(model => model.CreateDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CreateDateTime)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Sname)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Sname)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Patronymic)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Patronymic)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.IPN)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.IPN)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.ProductType)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ProductType)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Dohid)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Dohid)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Dovidka)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Dovidka)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.SmsCode)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.SmsCode)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Comments)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Comments)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Xml)
+        </td>
+        <td>
+            @Html.ActionLink("Завантажити", "DownloadFile", new { id = Model.ApplicationId }, new { @class = "" })
+        </td>
+    </tr>
+</table>
+
+<div style="text-align:left;">
+    <input type="submit" value="Видалити" class="btn red" style="width:30%" onclick="location.href='@Url.Action("Delete",new { id = Model.ApplicationId })'" />
+    @*<input type="submit" value="Редагувати" class="btn green" style="width:47%" />*@
+</div>
+
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.ApplicationId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

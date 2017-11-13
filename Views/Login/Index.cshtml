@@ -1,0 +1,49 @@
+﻿@model IPOTEKA.UA.Models.User
+@{
+    ViewBag.Title = "Авторизація";
+    Layout = "~/Views/_BasicLayout.cshtml";
+
+}
+<link href="~/Content/Admin.css" rel="stylesheet" />
+
+@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-login" }))
+{
+    <div>
+        <div style="margin: 5px auto;">
+            @Html.TextBoxFor(model => model.Login, new { placeholder = @Html.DisplayNameFor(m => m.Login) })
+            <div>
+                @Html.ValidationMessageFor(model => model.Login)
+            </div>
+        </div>
+
+        <div style="margin: 5px auto;">
+            @Html.PasswordFor(model => model.Password, new { placeholder = @Html.DisplayNameFor(m => m.Password) })
+            <div>
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div style="margin: 5px auto;">
+            @Html.CheckBoxFor(model => model.Remember) <a>Запамятати мене</a>  @*@Html.DisplayNameFor(model => model.Remember)*@
+        </div>
+    </div>
+
+
+    <div style="text-align:right;">
+        <input type="submit" class="btn Add" value="Увійти" />
+    </div>
+
+    @*<div>
+            <a>Login: agent</a>
+            <a>Password: agent</a>
+        </div>*@
+
+    @*<div>
+            <a>Login: admin</a>
+            <a>Password: admin</a>
+        </div>*@
+}
+
+
+
+

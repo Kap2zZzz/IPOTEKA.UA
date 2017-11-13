@@ -1,0 +1,81 @@
+﻿@model IPOTEKA.UA.Models.User
+@{
+    Layout = "~/Views/_BasicLayout.cshtml";
+    ViewBag.Title = "Дані користувача";
+}
+<link href="~/Content/Admin.css" rel="stylesheet" />
+
+<div style="width:60%; margin-left:20px">
+    <p style="margin:0px;">
+        <label>
+            Вітаю: <span>@ViewBag.PIB</span>
+        </label>
+    </p>
+    <p style="margin:0px;">
+        <label>
+            Роль: <span>@ViewBag.Role</span>
+        </label>
+    </p>
+    <p style="margin:0px; margin-left: 20px;">
+        @Html.ActionLink("[Вихід]", "Exit", "Admin", null, new { style = "text-decoration: none;" })
+    </p>
+</div>
+
+@using (Html.BeginForm("PreviewUser", "Admin", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.UserId)
+    <div class="form-login" style="min-width:500px;">
+        <table class="tb-result">
+            <tr>
+                <th colspan="3">
+                    Створення нового користувача
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayName("ПІБ")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.PIB)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Login)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Login, new { placeholder = @Html.DisplayNameFor(m => m.Login) })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Password, new { placeholder = @Html.DisplayNameFor(m => m.Password) })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Role)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Email, new { placeholder = @Html.DisplayNameFor(m => m.Email) })
+                </td>
+            </tr>
+        </table>
+        <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
+            <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
+            <input id="save" type="submit" name="button" value="Редагувати" class="btn Add" />
+        </div>
+    </div>
+
+}

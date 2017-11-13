@@ -1,0 +1,75 @@
+﻿@model IPOTEKA.UA.Models.Bank
+
+@{
+    ViewBag.Title = "CreateBank";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+<link href="~/Content/Forms.css" rel="stylesheet" />
+
+<h1>Додавання новго Банку</h1>
+
+@using (Html.BeginForm())
+{
+    @*@Html.AntiForgeryToken()*@
+    @Html.ValidationSummary(true)
+    @*@Model.Products*@
+
+    <fieldset>
+        <legend>Банк</legend>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name) })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <fieldset>
+            <legend>Продукти Банку</legend>
+            @if (Model.Products != null && Model.Products.Count > 0)
+            {
+                int j = 0;
+                <table id="tbProduct" border="0">
+                    <tr>
+                        <th>Назва продукту</th>
+                        <th>% ставка</th>
+                        <th>Комісія, %</th>
+                        <th>Макс. сума кредиту, грн.</th>
+                        <th>Макс. термі кредитування, міс.</th>
+                    </tr>
+                    @foreach (IPOTEKA.UA.Models.Product b in Model.Products)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DropDownListFor(model => model.Products[j].Name, Model.Products[j].Dic_product, "Тип продукту")
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => model.Products[j].Rate)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => model.Products[j].Commission)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => model.Products[j].MaxSumCred)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => model.Products[j].MaxTermCred)
+                            </td>
+                        </tr>
+                        j++;
+                    }
+                </table>
+
+            }
+            <p>
+                <input type="submit" name="button" value="+" style="" />
+            </p>
+        </fieldset>
+
+    </fieldset>
+    <p>
+        <input type="submit" value="Зберегти" />
+    </p>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

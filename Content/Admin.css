@@ -1,0 +1,163 @@
+﻿.form-login {
+    width: 250px;
+    margin: 20px auto;
+}
+
+    .form-login input[type="text"],
+    .form-login input[type=password], select {
+        width: -webkit-fill-available;
+        /*margin: 5px auto;*/
+        padding: 8px;
+    }
+
+    .form-login input[type=submit] {
+        border: none;
+        padding: 8px 15px 8px 15px;
+        color: #fff;
+        -webkit-border-radius: 3px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-size: 0.7em;
+        /*margin: 5px;
+        background: #66a6c1;*/
+    }
+
+/*.form-login input[type=submit]:hover {
+            background-color: #0078b5;
+        }*/
+
+.field-validation-error {
+    margin-left: 5px;
+    font-size: 1.3em;
+}
+
+.tb-result {
+    font-size: 0.75em;
+    font-family: Tahoma;
+    font-style: normal;
+    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+    border-collapse: collapse;
+    /*white-space:nowrap;*/
+    border-spacing: 0;
+    width: 100%;
+    /*color: #ffffff;*/
+    text-align: left;
+    /*margin-top: 20px;*/
+    margin-bottom: 5px;
+    /*height: 500px;*/
+}
+
+    .tb-result th {
+        font-family: Tahoma;
+        font-style: normal;
+        font-weight: 300;
+        padding-top: 11px;
+        font-size: 12px;
+        padding-bottom: 11px;
+        background-color: #66a6c1;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        cursor: auto;
+    }
+
+    .tb-result td {
+        /*text-align: left;*/
+    }
+
+    .tb-result tr {
+        /*height:30px;*/
+        background: #eeeeee;
+        /*cursor: pointer;*/
+    }
+
+        .tb-result tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        .tb-result tr:hover {
+            background: #b9deee;
+        }
+
+    .tb-result th, .tb-result td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+.btn {
+    border: none;
+    padding: 8px 15px 8px 15px; /*ORIGINAL*/
+    color: #fff;
+    -webkit-border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.7em;
+}
+
+    .btn.Add {
+        background-color: #00a569;
+    }
+
+        .btn.Add:hover {
+            background-color: #00c47d;
+        }
+
+    .btn.Back {
+        background-color: #d5d5d5;
+    }
+
+        .btn.Back:hover {
+            background-color: #bfbfbf;
+        }
+
+    .btn.Delete {
+        background-color: #c23232;
+    }
+
+        .btn.Delete:hover {
+            background-color: #e43b3b;
+        }
+
+
+
+
+
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin: 0px 40px;
+    width: 730px;
+}
+
+    /* Style the buttons inside the tab */
+    div.tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-top: none;
+    margin: 0px 40px;
+    width: 700px;
+    margin-bottom:20px;
+}

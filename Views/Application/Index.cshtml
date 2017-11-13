@@ -1,0 +1,58 @@
+﻿@model IPOTEKA.UA.Models.Application
+@{
+    //Layout = null;
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#PhoneNumber").mask("+380(99)-999-99-99"),
+        //$("#IPN").css("font-family: 'Arial'"),
+        $("#SmsCode").mask("999999"),
+        $("#IPN").mask("9999999999");
+    });
+</script>
+<body>
+
+    @{
+        ViewBag.Title = "Заявка";
+    }
+
+    @*<div style="text-align:center">
+            <h2>Заявка на іпотечний кредит в 3 кроки</h2>
+        </div>*@
+
+    @Html.HiddenFor(x => Model.ApplicationId)
+
+    <div class="div-wfl">
+        <div class="@(@ViewBag.Step >= 1 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
+            КРОК 1
+        </div>
+        <div class="@(@ViewBag.Step >= 2 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
+            КРОК 2
+        </div>
+        <div class="@(@ViewBag.Step >= 3 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
+            КРОК 3
+        </div>
+    </div>
+
+    <div style="padding-top: 15px; padding-bottom:15px; clear: both;">
+        @{
+            int e = ViewBag.Step;
+            switch (e)
+            {
+                case 1: @Html.Partial("_PartialEtap1", Model);
+                                                             break;
+                case 2: @Html.Partial("_PartialEtap2", Model);
+                                                             break;
+                case 3: @Html.Partial("_PartialEtap3", Model);
+                                                             break;
+                case 4: @Html.Partial("_PartialSuccess");
+                                                             break;
+            }
+
+        }
+    </div>
+</body>

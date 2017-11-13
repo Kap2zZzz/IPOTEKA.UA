@@ -1,0 +1,24 @@
+﻿@model IPOTEKA.UA.Models.Application
+<link href="~/Content/test.css" rel="stylesheet" />
+@using (Html.BeginForm("Index", "Application", new { step = @ViewBag.Step }, FormMethod.Post, new { @class = "form-style-8" }))
+{
+    @Html.HiddenFor(x => Model.ApplicationId)
+    @Html.HiddenFor(x => Model.CreateDateTime)
+    @Html.HiddenFor(x => Model.CreateUserId)
+    @Html.HiddenFor(x => Model.Sname)
+    @Html.HiddenFor(x => Model.Name)
+    @Html.HiddenFor(x => Model.Patronymic)
+    @Html.HiddenFor(x => Model.PhoneNumber)
+    @Html.HiddenFor(x => Model.SmsCode)
+    @Html.HiddenFor(x => Model.ProductType)
+    @Html.HiddenFor(x => Model.CreditSum)
+    @Html.HiddenFor(x => Model.Termin)
+    <div>
+        <div>
+            @Html.TextAreaFor(model => model.Comments, new { placeholder = @Html.DisplayNameFor(m => m.Comments) })
+        </div>
+    </div>
+    <div style="text-align:right;">
+        <input type="submit" value="Відправити" />
+    </div>
+}

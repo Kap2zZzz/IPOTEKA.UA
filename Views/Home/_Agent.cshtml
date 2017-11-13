@@ -1,0 +1,135 @@
+﻿@model IEnumerable<IPOTEKA.UA.Models.LoanModel>
+@*@{
+    ViewBag.Title = "Особистий кабінет";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+
+<div style="width:60%; margin-left:20px">
+    <p style="margin:0px;">
+        <label>
+            Вітаю: <span>@ViewBag.PIB</span>
+        </label>
+    </p>
+    <p style="margin:0px;">
+        <label>
+            Роль: <span>@ViewBag.Role</span>
+        </label>
+    </p>
+</div>*@
+@*<div>
+        <label>
+            Заявки створені мною:
+        </label>
+    </div>*@
+
+<div style="width:60%; margin:20px; clear:both; float:left">
+    <table id="tb-res" class="tb-result" align="center" border="1">
+        <tr>
+            <th width="5%">№</th>
+            <th width="14%">Дата створення</th>
+            <th width="20%" class="tb-th-left">ПІБ</th>
+            <th width="15%">Телефон</th>
+            <th width="24%">Продукт</th>
+            @*<th width="22%" colspan="4">Операція</th>*@
+        </tr>
+        @foreach (IPOTEKA.UA.Models.LoanModel lm in Model)
+        {
+            <tr id="tr-res">
+                <td class="tb-td-center">@lm.ApplicationId</td>
+                <td class="tb-td-center">@lm.CreateDateTime</td>
+                <td>@lm.Sname @lm.Name @lm.Patronymic</td>
+                <td class="tb-td-center">@lm.PhoneNumber</td>
+                <td>@lm.ProductType</td>
+
+                @*<td class="tb-td-center">
+                    <a href='@Url.Action("DownloadFile", new { id = lm.ApplicationId })'>
+                        <img src="~/Image/file1.png" title="Завантажити XML файл" style="cursor:pointer" />
+                    </a>*@
+                @*@Html.ActionLink("Завантажити", "DownloadFile", new { id = lm.ApplicationId }, new { @class = "link-t" })*@
+                @*</td>*@
+
+                @*<td class="tb-td-center">
+                    <a href='@Url.Action("Delete",new { id = lm.ApplicationId })'>
+                        <img src="~/Image/delete.png" title="Видалити заявку" style="cursor:pointer" />
+                    </a>*@
+                @*@Html.ActionLink("Видалити", "Delete", null, new { id = lm.ApplicationId }, new { @class = "link-t" })*@
+                @*</td>*@
+
+                @*<td class="tb-td-center">
+                    <a href='@Url.Action("Edit", new { id = lm.ApplicationId })'>
+                        <img src="~/Image/edit.png" title="Редагувати заявку" style="cursor:pointer" />
+                    </a>*@
+                @*@Html.ActionLink("Редагувати", "Edit", null, new { @class = "link-t" })*@
+                @*</td>*@
+
+                @*<td class="tb-td-center">
+                    <a href='@Url.Action("_ApplicationView", new { id = lm.ApplicationId })'>
+                        <img src="~/Image/view.png" title="Переглянути заявку" style="cursor:pointer" />
+                    </a>*@
+                @*@Html.ActionLink("Редагувати", "Edit", null, new { @class = "link-t" })*@
+                @*</td>*@
+
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div id="AppView" style="float:left; width:30%; overflow:auto; margin:20px;">
+    @*<div style="background:#66a6c1; padding:10px; color:#ffffff">
+            <label>
+                Дані по заявці:
+            </label>
+        </div>*@
+    @*@{
+            int? id = @ViewBag.appId;
+        }
+
+        @if (id != null)
+        {
+            @Html.Partial("_ApplicationView", @Model.FirstOrDefault(x => x.ApplicationId == id));
+        }*@
+
+</div>
+
+<script>
+    //function test() {
+    //    $('#AppView').html(null);
+    //    $('#AppView').hide();
+    //}
+
+    $("#tb-res #tr-res").click(function () {
+
+        var AppId = $(this).find('td:first').html();
+
+        var url = '@Url.Action("_ApplicationView")';
+
+        if ($(this).hasClass('tb-select')) {
+            $(this).removeClass();
+            $('#AppView').html(null);
+            $('#AppView').hide();
+        }
+        else {
+            $(this).addClass('tb-select').siblings().removeClass('tb-select');
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: { id: AppId },
+                dataType: "html",
+                success: function (partialView) {
+                    $('#AppView').html(partialView);
+                    $('#AppView').show();
+                }
+                //success: function () {
+                //    alert("success");
+                //}
+            });
+        }
+
+
+        //Url.Action("Personal", new { id = AppId})
+        //var value=$(this).find('td:first').html();
+        //alert(AppId);
+    });
+</script>

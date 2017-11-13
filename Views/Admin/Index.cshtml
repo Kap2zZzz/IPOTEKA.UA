@@ -1,0 +1,198 @@
+﻿@model Tuple<List<IPOTEKA.UA.Models.Application>, List<IPOTEKA.UA.Models.User>, List<IPOTEKA.UA.Models.Bank>>
+@{
+    ViewBag.Title = "Особистий кабінет Адміністратора";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<link href="~/Content/Admin.css" rel="stylesheet" />
+
+<div style="width:60%; margin-left:20px">
+    <p style="margin:0px;">
+        <label>
+            Вітаю: <span>@ViewBag.PIB</span>
+        </label>
+    </p>
+    <p style="margin:0px;">
+        <label>
+            Роль: <span>@ViewBag.Role</span>
+        </label>
+    </p>
+    <p style="margin:0px; margin-left: 20px;">
+        @Html.ActionLink("[Вихід]", "Exit", "Admin", null, new { style = "text-decoration: none;" })
+    </p>
+</div>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Users')">Користувачі</button>
+    <button class="tablinks" onclick="openTab(event, 'Applications')">Усі заявки</button>
+    <button class="tablinks" onclick="openTab(event, 'Banks')">Банки</button>
+</div>
+
+<div id="Users" style="clear:both;" class="tabcontent">
+    <table id="tb-res" class="tb-result" align="center" border="1">
+        <tr>
+            <th>ID</th>
+            <th class="tb-th-left">Login</th>
+            <th class="tb-th-left">ПІБ</th>
+            <th>Роль</th>
+            <th colspan="3">Операція</th>
+        </tr>
+
+        @foreach (IPOTEKA.UA.Models.User u in Model.Item2)
+        {
+            <tr id="tr-res">
+                <td class="tb-td-center">@u.UserId</td>
+                <td>@u.Login</td>
+                <td>@u.PIB</td>
+                <td class="tb-td-center">@u.Role</td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Видалити", "Delete", new {key = "User", id = u.UserId }) </td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Редагувати", "EditUser", new { id = u.UserId }) </td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Переглянути", "PreviewUser", new { id = u.UserId }) </td>
+                @*<td width="50px;" class="tb-td-center">@Html.Partial("PreviewUser", u) </td>*@
+            </tr>
+            @*<input type="button" value="Видалити" class="btn Delete" onclick="location.href = '@Url.Action("Delete", new {id = u.UserId })'" />*@
+
+        }
+    </table>
+    <div style="text-align:right;">
+        @*<input type="button" value="Видалити" class="btn Delete" onclick="location.href = '@Url.Action("Delete")'" />
+            <input type="button" value="Видалити" class="btn Delete" onclick="Delete()" />*@
+        <input type="button" value="Додати" class="btn Add" onclick="location.href='@Url.Action("CreateUser")'" />
+    </div>
+</div>
+
+<div id="Applications" style="clear:both;" class="tabcontent">
+    <table id="tb-res" class="tb-result" align="center" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Створив</th>
+            <th class="tb-th-left">ПІБ</th>
+            <th class="tb-th-left">Продукт</th>
+            <th>Моб. номер</th>
+            <th colspan="3">Операція</th>
+        </tr>
+
+        @foreach (IPOTEKA.UA.Models.Application m in Model.Item1)
+        {
+            <tr id="tr-res">
+                <td class="tb-td-center">@m.ApplicationId</td>
+                <td class="tb-td-center">@m.CreateUserId</td>
+                <td>@m.Sname @m.Name @m.Patronymic</td>
+                <td>@m.ProductType</td>
+                <td class="tb-td-center">@m.PhoneNumber</td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Видалити", "Delete", new { key = "Application", id = m.ApplicationId }) </td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Редагувати", "Edit", new { id = m.ApplicationId }) </td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Переглянути", "Preview", new { id = m.ApplicationId }) </td>
+            </tr>
+            @*<input type="button" value="Видалити" class="btn Delete" onclick="location.href = '@Url.Action("Delete", new {id = u.UserId })'" />*@
+
+        }
+    </table>
+    <div style="text-align:right;">
+        @*<input type="button" value="Видалити" class="btn Delete" onclick="location.href = '@Url.Action("Delete")'" />
+            <input type="button" value="Видалити" class="btn Delete" onclick="Delete()" />*@
+        @*<input type="button" value="Додати" class="btn Add" onclick="location.href='@Url.Action("CreateUser")'" />*@
+    </div>
+</div>
+
+<div id="Banks" style="clear:both;" class="tabcontent">
+    <table id="tb-res" class="tb-result" align="center" border="1">
+        <tr>
+            <th>ID</th>
+            <th class="tb-th-left">Назва</th>
+            <th colspan="3">Операція</th>
+        </tr>
+
+        @foreach (IPOTEKA.UA.Models.Bank b in Model.Item3)
+        {
+            <tr id="tr-res">
+                <td class="tb-td-center">@b.BankID</td>
+                <td>@b.Name</td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Видалити", "Delete", new { key = "Bank", id = b.BankID }) </td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Редагувати", "EditUser", new { id = b.BankID }) </td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Переглянути", "PreviewBank", new { id = b.BankID }) </td>
+                @*<td width="50px;" class="tb-td-center">@Html.Partial("PreviewUser", u) </td>*@
+            </tr>
+            @*<input type="button" value="Видалити" class="btn Delete" onclick="location.href = '@Url.Action("Delete", new {id = u.UserId })'" />*@
+
+        }
+    </table>
+    <div style="text-align:right;">
+        @*<input type="button" value="Видалити" class="btn Delete" onclick="location.href = '@Url.Action("Delete")'" />
+            <input type="button" value="Видалити" class="btn Delete" onclick="Delete()" />*@
+        <input type="button" value="Додати" class="btn Add" onclick="location.href='@Url.Action("CreateBank")'" />
+    </div>
+</div>
+
+@*<script>
+        var AppId = null;
+
+        function Delete() {
+            //if (AppId == null)
+            //{
+            //    alert('Зазначте елемент на списку');
+            //}
+            //else
+            //{
+            //    if (confirm("Ви дійсно бажаєте видалити даного користувача ?"))
+            //    {
+            var url = '@Url.Action("Delete","Admin")';
+            //alert('delete');
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: { id: AppId },
+                dataType: "html",
+                success: function (result) {
+                    window.location.href = result.Url
+                    // location.reload();
+                }
+
+            })
+            //}
+            //}
+        }
+
+        $("#tb-res #tr-res").click(function () {
+            AppId = $(this).find('td:first').html();
+            if ($(this).hasClass('tb-select')) {
+                $(this).removeClass();
+                AppId = null;
+            }
+            else {
+                $(this).addClass('tb-select').siblings().removeClass('tb-select');
+            }
+        });
+
+    </script>*@
+
+<script>
+
+    $(document).ready(function () {
+        //alert("reload");
+        var tablinks = document.getElementsByClassName("tablinks");
+        tablinks[0].className += " active";
+        document.getElementById("Users").style.display = "block";
+    });
+
+    function openTab(evt, Tab) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(Tab).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>

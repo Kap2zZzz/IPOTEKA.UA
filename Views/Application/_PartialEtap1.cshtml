@@ -1,0 +1,44 @@
+﻿@model IPOTEKA.UA.Models.Application
+<link href="~/Content/test.css" rel="stylesheet" />
+@using (Html.BeginForm("Index", "Application", new { step = @ViewBag.Step }, FormMethod.Post, new { @class = "form-style-8" }))
+{
+    <div>
+        <div>
+            @Html.TextBoxFor(model => model.Sname, new { placeholder = @Html.DisplayNameFor(m => m.Sname) })
+            <div>
+                @Html.ValidationMessageFor(model => model.Sname)
+            </div>
+        </div>
+
+        <div>
+            @Html.TextBoxFor(model => model.Name, new { placeholder = "Ім'я" })
+            <div>
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div>
+            @Html.TextBoxFor(model => model.Patronymic, new { placeholder = @Html.DisplayNameFor(m => m.Patronymic) })
+            <div>
+                @Html.ValidationMessageFor(model => model.Patronymic)
+            </div>
+        </div>
+
+        <div>
+            @Html.TextBoxFor(model => model.PhoneNumber, new { placeholder = @Html.DisplayNameFor(m => m.PhoneNumber) })
+            <div>
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align:right;">
+        <input type="submit" value="Продовжити" />
+    </div>
+
+
+    @*<div class="div-marge-label2">
+            <span>*</span> Поля, обов'язкові до заповнення.
+        </div>*@
+}

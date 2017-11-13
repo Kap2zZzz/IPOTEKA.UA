@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<link href="@Url.Content("~/Content/new.css")" rel="stylesheet" type="text/css" />
+<link href="~/Content/FAQ.css" rel="stylesheet" />
+
+<html>
+<head>
+    <meta name="viewport" content="maximum-scale=1.0 minimum-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <ul class="main-menu">
+                <li>
+                    <img src="~/Image/House.png" style="margin-top:-20px;" />
+                </li>
+                <li class="@(@ViewBag.Page == "About" ? "active" : null)">
+                    @Html.ActionLink("Про нас", "Index", "About")
+                </li>
+                <li class="@(@ViewBag.Page == "Ipoteka" ? "active dropdown" : "dropdown")">
+                    @Html.ActionLink("Іпотечне кредитування", "Index", "Ipoteka", null, new { @class = "dropbtn" })
+                    <div class="dropdown-content">
+                        @Html.ActionLink("Банки", "Index", "Banks")
+                        @Html.ActionLink("Калькулятор", "Index", "Calculator")
+                        @Html.ActionLink("Поширені питання", "Index", "FAQ")
+                    </div>
+                </li>
+
+                <li class="@(@ViewBag.Page == "Application" ? "active" : null)">
+                    @Html.ActionLink("Залишити заявку", "Index", "Application")
+                </li>
+                <li class="@(@ViewBag.Page == "Personal" ? "active" : null)">
+                    @Html.ActionLink("Особистий кабінет", "Index", "Personal")
+                </li>
+            </ul>
+        </div>
+        <div id="body">
+            @RenderBody()
+        </div>
+        <div id="footer">
+            <div style="width:80%; margin:auto">
+                <div style="float:left; padding: 20px;">
+                    @Html.ActionLink("Головна", "Index", "Home")
+                </div>
+                <div style="float:left; padding: 20px;">
+                    @Html.ActionLink("Про нас", "Index", "About")
+                </div>
+                <div style="padding: 20px; float:left;">
+                    @Html.ActionLink("Іпотечне кредитування", "Index", "Ipoteka")
+                    <div style="padding-top:10px">
+                        @Html.ActionLink("Банки", "Index", "Banks")
+                    </div>
+                    <div style ="padding-top:10px">
+                        @Html.ActionLink("Калькулятор", "Index", "Calculator")
+                    </div>
+                    <div style="padding-top:10px">
+                        @Html.ActionLink("Поширені питання", "Index", "FAQ")
+                    </div>
+                </div>
+                <div style="padding: 20px; float:left;">
+                    @Html.ActionLink("Залишити заявку", "Index", "Application")
+                </div>
+                <div style="padding: 20px; float:left;">
+                    @Html.ActionLink("Особистий кабінет", "Index", "Personal")
+                </div>
+            </div>
+
+            @*<div style="margin:15px;">
+                    @Html.ActionLink("Головна", "Index", "Home")
+                    @Html.ActionLink("Про нас", "Index", "About")
+                    @Html.ActionLink("Банки", "Index", "Banks")
+                    @Html.ActionLink("Калькулятор", "Index", "Calculator")
+                    @Html.ActionLink("Поширені питання", "Index", "FAQ")
+                    @Html.ActionLink("Залишити заявку", "Index", "Application")
+                    @Html.ActionLink("Особистий кабінет", "Index", "Personal")
+                </div>*@
+
+            @*<div>
+                    <p>© 2017 IPOTEKA.UA</p>
+                </div>*@
+
+            @*@Html.ActionLink("Усі заявки", "Results", null, new { @class = "Contact" == @ViewBag.Page ? "link-a" : "link-na" })*@
+        </div>
+    </div>
+</body>
+</html>
