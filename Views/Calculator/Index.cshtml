@@ -31,19 +31,26 @@
                 </td>
             </tr>
             <tr>
-                <td style="vertical-align:top">
+                <td>
+                    <div id="divParam">
 
-                    <div style="margin: auto; width: 80%; text-transform: uppercase;">
-                        <div style="margin-bottom:40px;">
-                            @*<label class="switch">
-                                <input type="checkbox">
-                                <span class="slider1"></span>
-                            </label>*@
+                        <table>
+                            <tr>
+                                <td>
+                                    Схема погашення:
+                                </td>
+                                <td>
+                                    <div>
+                                        @*<label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider1"></span>
+                                            </label>*@
 
-                            <input id="annuity" type="radio" name="scheme" value="annuity" checked="checked"> Ануїтетна
-                            <input id="classic" type="radio" name="scheme" value="classic"> Класична
-                        </div>
-                        <table style="-webkit-appearance: none; color: black; text-align: left;">
+                                        <input id="annuity" type="radio" name="scheme" value="annuity" checked="checked"> Ануїтетна
+                                        <input id="classic" type="radio" name="scheme" value="classic"> Класична
+                                    </div>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     Сума платежів:
@@ -77,20 +84,18 @@
                                 </td>
                             </tr>
                             @*<tr>
-                    <td>
-                        Реальна відсоткова ставка:
-                    </td>
-                    <td>
-                        <span id="RealRate"></span>
-                    </td>
-                </tr>*@
+                                    <td>
+                                        Реальна відсоткова ставка:
+                                    </td>
+                                    <td>
+                                        <span id="RealRate"></span>
+                                    </td>
+                                </tr>*@
                         </table>
                     </div>
 
                 </td>
-                <td>
-
-                </td>
+                <td></td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -473,23 +478,23 @@
         return Schedule;
     }
     function GenerateTable(Schedule) {
-        var result = "<table class=\"schedule\">";
-        result += "<tr style = \"font-size:larger;\">";
-        result += "<td class = \"td_schedule\">№</td>";
-        result += "<td class = \"td_schedule\">Дата оплати до</td>";
-        result += "<td class = \"td_schedule\">Платіж</td>";
-        result += "<td class = \"td_schedule\">Проценти</td>";
-        result += "<td class = \"td_schedule\">Погашення тіла</td>";
-        result += "<td class = \"td_schedule\">Залишок</td>";
+        var result = "<table>";
+        result += "<tr>";
+        result += "<th>№</th>";
+        result += "<th>Дата оплати до</th>";
+        result += "<th>Платіж</th>";
+        result += "<th>Проценти</th>";
+        result += "<th>Погашення тіла</th>";
+        result += "<th>Залишок</th>";
         result += "</tr>";
         for (var i = 0; i < Schedule.length - 1; i++) {
             result += "<tr>";
-            result += "<td class = \"td_schedule\">" + (i + 1) + "</td>";
+            result += "<td>" + (i + 1) + "</td>";
             for (var j = 0; j < Schedule[i].length; j++) {
                 if (j >= 1)
-                    result += "<td class = \"td_schedule\">" + MaskDecimal(Schedule[i][j]) + "</td>";
+                    result += "<td>" + MaskDecimal(Schedule[i][j]) + "</td>";
                 else
-                    result += "<td class = \"td_schedule\">" + Schedule[i][j] + "</td>";
+                    result += "<td>" + Schedule[i][j] + "</td>";
             }
             result += "</tr>";
         }
@@ -517,8 +522,7 @@
     //var CalculatedRealRate = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 / parseFloat(Suma.value)).toFixed(2);
     //RealRate.innerHTML = MaskDecimal(CalculatedRealRate);
 
-    outputTermin.onchange = function ()
-    {
+    outputTermin.onchange = function () {
         Termin.value = (this).value;
         Termin.oninput();
     }
@@ -572,7 +576,7 @@
     }
 
 
-    
+
 
 
 
