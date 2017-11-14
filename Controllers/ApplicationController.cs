@@ -84,8 +84,8 @@ namespace IPOTEKA.UA.Controllers
                         {
                             int e = step + 1;
                             ViewBag.Step = e;
-                            //lm.Xml = MainHelp.CreateXML(lm);
-                            //lm.XmlData = System.Text.Encoding.Default.GetBytes(lm.Xml);// MainHelp.CreateXML(lm)
+                            lm.Xml = MainHelp.CreateXML(lm);
+                            lm.XmlData = System.Text.Encoding.Default.GetBytes(lm.Xml);// MainHelp.CreateXML(lm)
                             _db.Entry(lm).State = System.Data.Entity.EntityState.Modified;
                             _db.SaveChanges();
                             _db.Dispose();

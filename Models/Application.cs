@@ -72,15 +72,15 @@ namespace IPOTEKA.UA.Models
 
         public byte[] XmlData { get; set; }
 
-        public Dictionary<int, string> dicProducts;
+        //public Dictionary<int, string> dicProducts;
 
-        public Dictionary<int, string> dicSchems;
+        //public Dictionary<int, string> dicSchems;
 
-        public Application()
-        {
-            dicProducts = MainHelp.dicProducts();
-            dicSchems = MainHelp.dicSchems();
-        }
+        //public Application()
+        //{
+        //    dicProducts = MainHelp.dicProducts();
+        //    dicSchems = MainHelp.dicSchems();
+        //}
 
         //public IEnumerable<SelectListItem> dicProducts = MainHelp.dicProducts();
 
