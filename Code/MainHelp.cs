@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace IPOTEKA.UA.Code
 {
@@ -24,80 +25,86 @@ namespace IPOTEKA.UA.Code
             }
         }
 
-        //public static bool IsValidEtap1(LoanModel lm)
-        //{
-        //    if ((lm.Patronymic == string.Empty) || (lm.Patronymic == null))
-        //    {
-        //        return false;
-        //    }
-        //    else if ((lm.Name == string.Empty) || (lm.Name == null))
-        //    {
-        //        return false;
-        //    }
-        //    else if ((lm.Sname == string.Empty) || (lm.Sname == null))
-        //    {
-        //        return false;
-        //    }
-        //    else if ((lm.PhoneNumber == string.Empty) || (lm.PhoneNumber == null))
-        //    {
-        //        return false;
-        //    }
-        //    //else if ((lm.ProductType == string.Empty) || (lm.ProductType == null))
-        //    //{
-        //    //    return false;
-        //    //}
-        //    else return true;
-        //}
-
-        public static List<KeyValuePair<string, string>> IsValidEtap1(Application lm)
+        public static Dictionary<int, string> dicSchems()
         {
-            List<KeyValuePair<string, string>> errorList = new List<KeyValuePair<string, string>>();
+            return new Dictionary<int, string>()
+            {
+                { 1, "Класична"},
+                { 2, "Ануїтетна"}
+            };
+        }
 
-            if ((lm.Patronymic == string.Empty) || (lm.Patronymic == null))
+        public static Dictionary<int, string> dicProducts()
+        {
+            return new Dictionary<int, string>()
             {
-                errorList.Add(new KeyValuePair<string, string>("Patronymic", "Поле: [По батькові] обовязкове для заповнення!"));
-            }
-            
-            if ((lm.Name == string.Empty) || (lm.Name == null))
-            {
-                errorList.Add(new KeyValuePair<string, string>("Name", "Поле: [Ім'я] обовязкове для заповнення!"));
-            }
-            
-            if ((lm.Sname == string.Empty) || (lm.Sname == null))
-            {
-                errorList.Add(new KeyValuePair<string, string>("Sname", "Поле: [Прізвище] обовязкове для заповнення!"));
-            }
-            
-            if ((lm.PhoneNumber == string.Empty) || (lm.PhoneNumber == null))
-            {
-                errorList.Add(new KeyValuePair<string, string>("PhoneNumber", "Поле: [Номер телефону] обовязкове для заповнення!"));
-            }
-
-            return errorList;
+                { 1, "Іпотечне кредитування. Первинний ринок"},
+                { 2, "Іпотечне кредитування. Вторинний ринок"},
+                { 3, "Поточні потреби"},
+                { 4, "Рефінансування"},
+                { 5, "Придбання земельних ділянок"}
+            };
         }
 
         public static List<KeyValuePair<string, string>> IsValidEtap2(Application lm)
         {
             List<KeyValuePair<string, string>> errorList = new List<KeyValuePair<string, string>>();
 
-            if ((lm.SmsCode == string.Empty) || (lm.SmsCode == null))
+            if ((lm.Sname == string.Empty) || (lm.Sname == null))
             {
-                errorList.Add(new KeyValuePair<string, string>("SmsCode", "Поле: [SMS код підтвердження] обовязкове для заповнення!"));
+                errorList.Add(new KeyValuePair<string, string>("Sname", "Поле: [Прізвище] обовязкове для заповнення!"));
             }
-            
-            if ((lm.ProductType == string.Empty) || (lm.ProductType == null))
+
+            if ((lm.Name == string.Empty) || (lm.Name == null))
+            {
+                errorList.Add(new KeyValuePair<string, string>("Name", "Поле: [Ім'я] обовязкове для заповнення!"));
+            }
+
+            if ((lm.PhoneNumber == string.Empty) || (lm.PhoneNumber == null))
+            {
+                errorList.Add(new KeyValuePair<string, string>("PhoneNumber", "Поле: [Номер телефону] обовязкове для заповнення!"));
+            }
+
+            //if ((lm.Email == string.Empty) || (lm.Email == null))
+            //{
+            //    errorList.Add(new KeyValuePair<string, string>("Email", "Поле: [Номер телефону] обовязкове для заповнення!"));
+            //}
+
+            if (lm.Zgoda == false)
+            {
+                errorList.Add(new KeyValuePair<string, string>("Zgoda", "Поле: [Згода] обовязкове для заповнення!"));
+            }
+
+            return errorList;
+        }
+
+        public static List<KeyValuePair<string, string>> IsValidEtap1(Application lm)
+        {
+            List<KeyValuePair<string, string>> errorList = new List<KeyValuePair<string, string>>();
+
+            if (lm.ProductType == null)
             {
                 errorList.Add(new KeyValuePair<string, string>("ProductType", "Поле: [Тип продукту] обовязкове для заповнення!"));
             }
-            
+
             if (lm.CreditSum == null)
             {
                 errorList.Add(new KeyValuePair<string, string>("CreditSum", "Поле: [Сума кредиту] обовязкове для заповнення!"));
             }
-            
+
             if (lm.Termin == null)
             {
                 errorList.Add(new KeyValuePair<string, string>("Termin", "Поле: [Термін кредитування] обовязкове для заповнення!"));
+            }
+
+            if (lm.Schema == null)
+            {
+                errorList.Add(new KeyValuePair<string, string>("Schema", "Поле: [Схема погашення] обовязкове для заповнення!"));
+            }
+
+            if ((lm.City == string.Empty) || (lm.City == null))
+            {
+                errorList.Add(new KeyValuePair<string, string>("City", "Поле: [Місто] обовязкове для заповнення!"));
             }
 
             return errorList;

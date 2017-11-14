@@ -33,9 +33,9 @@
         <div class="@(@ViewBag.Step >= 2 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
             КРОК 2
         </div>
-        <div class="@(@ViewBag.Step >= 3 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
+        @*<div class="@(@ViewBag.Step >= 3 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
             КРОК 3
-        </div>
+        </div>*@
     </div>
 
     <div style="padding-top: 15px; padding-bottom:15px; clear: both;">
@@ -47,9 +47,7 @@
                                                              break;
                 case 2: @Html.Partial("_PartialEtap2", Model);
                                                              break;
-                case 3: @Html.Partial("_PartialEtap3", Model);
-                                                             break;
-                case 4: @Html.Partial("_PartialSuccess");
+                case 3: @Html.Partial("_PartialSuccess");
                                                              break;
             }
 

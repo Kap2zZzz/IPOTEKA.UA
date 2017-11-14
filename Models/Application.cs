@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IPOTEKA.UA.Code;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace IPOTEKA.UA.Models
     public class Application
     {
         [Key]
+        [HiddenInput]
         public int ApplicationId { get; set; }
 
-        [Display(Name = "Дата створення")]
+        [HiddenInput]
         public DateTime CreateDateTime { get; set; }
 
+        [HiddenInput]
         public Int32? CreateUserId { get; set; }
 
         //[Required(ErrorMessage = "Поле обовязкове для заповнення!")]
@@ -27,20 +30,26 @@ namespace IPOTEKA.UA.Models
         public string Name { get; set; }
 
         //[Required(ErrorMessage = "Поле обовязкове для заповнення!")]
-        [Display(Name = "По батькові")]
-        public string Patronymic { get; set; }
+        //[Display(Name = "По батькові")]
+        //public string Patronymic { get; set; }
 
         //[Required(ErrorMessage = "Поле обовязкове для заповнення!")]
         [Display(Name = "Номер телефону")]
         public string PhoneNumber { get; set; }
+
+        [Display(Name = "Email адрес")]
+        public string Email { get; set; }
+
+        [Display(Name = "Місто")]
+        public string City { get; set; }
 
         //[Required(ErrorMessage = "Поле обовязкове для заповнення!")]
         [Display(Name = "Тип продукту")]
         public string ProductType { get; set; }
 
         //[Required(ErrorMessage = "Поле обовязкове для заповнення!")]
-        [Display(Name = "СМС код підтвердження")]
-        public string SmsCode { get; set; }
+        //[Display(Name = "СМС код підтвердження")]
+        //public string SmsCode { get; set; }
 
         //[Required(ErrorMessage = "Поле обовязкове для заповнення!")]
         [Display(Name = "Сума кредиту")]
@@ -50,26 +59,31 @@ namespace IPOTEKA.UA.Models
         [Display(Name = "Термін кредитування (місяців)")]
         public int? Termin { get; set; }
 
+        [Display(Name = "Схема погашення")]
+        public string Schema { get; set; }
+
         [Display(Name = "Коментар (за бажанням)")]
         public string Comments { get; set; }
+
+        [Display(Name = "Згода")]
+        public bool Zgoda { get; set; }
 
         public string Xml { get; set; }
 
         public byte[] XmlData { get; set; }
 
-        public IEnumerable<SelectListItem> Dic_product
+        public Dictionary<int, string> dicProducts;
+
+        public Dictionary<int, string> dicSchems;
+
+        public Application()
         {
-            get
-            {
-                return new[]
-                {
-                new SelectListItem { Value = "Іпотечне кредитування. Первинний ринок", Text = "Іпотечне кредитування. Первинний ринок" },
-                new SelectListItem { Value = "Іпотечне кредитування. Вторинний ринок", Text = "Іпотечне кредитування. Вторинний ринок" },
-                new SelectListItem { Value = "Інше", Text = "Інше" }
-                };
-            }
+            dicProducts = MainHelp.dicProducts();
+            dicSchems = MainHelp.dicSchems();
         }
 
+        //public IEnumerable<SelectListItem> dicProducts = MainHelp.dicProducts();
 
+        //public IEnumerable<SelectListItem> dicSchems = MainHelp.dicSchems();
     }
 }

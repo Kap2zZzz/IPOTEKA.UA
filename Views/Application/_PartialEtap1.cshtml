@@ -4,35 +4,80 @@
 {
     <div>
         <div>
-            @Html.TextBoxFor(model => model.Sname, new { placeholder = @Html.DisplayNameFor(m => m.Sname) })
+            @Html.DropDownListFor(model => model.ProductType, new SelectList(Model.dicProducts, "Key", "Value"), "Тип продукту", new { @class = "unselected" })
             <div>
-                @Html.ValidationMessageFor(model => model.Sname)
+                @Html.ValidationMessageFor(model => model.ProductType)
             </div>
         </div>
 
         <div>
-            @Html.TextBoxFor(model => model.Name, new { placeholder = "Ім'я" })
+            @Html.TextBoxFor(model => Model.CreditSum, new { placeholder = @Html.DisplayNameFor(m => m.CreditSum) })
             <div>
-                @Html.ValidationMessageFor(model => model.Name)
+                @Html.ValidationMessageFor(model => Model.CreditSum)
             </div>
         </div>
 
         <div>
-            @Html.TextBoxFor(model => model.Patronymic, new { placeholder = @Html.DisplayNameFor(m => m.Patronymic) })
+            @Html.TextBoxFor(model => Model.Termin, new { placeholder = @Html.DisplayNameFor(m => m.Termin) })
             <div>
-                @Html.ValidationMessageFor(model => model.Patronymic)
+                @Html.ValidationMessageFor(model => Model.Termin)
             </div>
         </div>
 
         <div>
-            @Html.TextBoxFor(model => model.PhoneNumber, new { placeholder = @Html.DisplayNameFor(m => m.PhoneNumber) })
+            @Html.DropDownListFor(model => model.Schema, new SelectList(Model.dicSchems, "Key", "Value"), "Схема погашення", new { @class = "unselected" })
             <div>
-                @Html.ValidationMessageFor(model => model.PhoneNumber)
+                @Html.ValidationMessageFor(model => model.Schema)
             </div>
         </div>
 
+        <div>
+            @Html.TextBoxFor(model => model.City, new { placeholder = @Html.DisplayNameFor(m => m.City) })
+            <div>
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+    @*<input type="checkbox" class="checkbox" id="checkbox" />
+        <label for="checkbox">Я переключаю чекбокс</label>*@
+
+
+    @*<div class="checkboxFour">
+            <input type="checkbox" value="1" id="checkboxFourInput" name="" />
+            <label for="checkboxFourInput"></label>
+        </div>*@
+
+
+
+    @*<div class="div-marge-label">
+            <span>*</span> @Html.LabelFor(model => model.ProductType, new { @class = "label" })
+        </div>
+
+        <div class="div-marge">
+            @Html.DropDownListFor(model => model.ProductType, Model.Dic_product, "[-----]", new { @class = "drop-down-list" })
+            <div>
+                @Html.ValidationMessageFor(model => model.ProductType)
+            </div>
+        </div>*@
+
+
+    @*<div class="div-marge-label">
+            @Html.LabelFor(model => model.Comments, new { @class = "label" })
+        </div>
+
+        <div class="div-marge">
+            @Html.TextAreaFor(model => model.Comments, new { @class = "textarea-box" })
+        </div>*@
     <div style="text-align:right;">
         <input type="submit" value="Продовжити" />
     </div>
@@ -42,3 +87,21 @@
             <span>*</span> Поля, обов'язкові до заповнення.
         </div>*@
 }
+
+<script>
+    $(document).ready(function () {
+        $('select').on('change', function () { //attach event handler to select's change event.
+            //use a more specific selector
+
+            $(this).toggleClass('unselected', $(this).val() === "");
+
+            //if ($(this).val() === "") { //checking to see which option has been picked
+
+            //    $(this).addClass('unselected');
+            //} else {                   // add or remove class accordingly
+            //    $(this).removeClass('unselected');
+            //}
+
+        });
+    });
+</script>

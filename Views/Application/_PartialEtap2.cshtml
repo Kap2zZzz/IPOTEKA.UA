@@ -3,82 +3,59 @@
 @using (Html.BeginForm("Index", "Application", new { step = @ViewBag.Step }, FormMethod.Post, new { @class = "form-style-8" }))
 {
     @Html.HiddenFor(x => Model.ApplicationId)
-    @Html.HiddenFor(x => Model.CreateDateTime)
     @Html.HiddenFor(x => Model.CreateUserId)
-    @Html.HiddenFor(x => Model.Sname)
-    @Html.HiddenFor(x => Model.Name)
-    @Html.HiddenFor(x => Model.Patronymic)
-    @Html.HiddenFor(x => Model.PhoneNumber)
+    @Html.HiddenFor(x => Model.CreateDateTime)
+    @Html.HiddenFor(x => Model.ProductType)
+    @Html.HiddenFor(x => Model.CreditSum)
+    @Html.HiddenFor(x => Model.Termin)
+    @Html.HiddenFor(x => Model.Schema)
+    @Html.HiddenFor(x => Model.City)
 
     <div>
         <div>
-            @Html.TextBoxFor(model => Model.SmsCode, new { placeholder = @Html.DisplayNameFor(m => m.SmsCode) })
+            @Html.TextBoxFor(model => model.Sname, new { placeholder = @Html.DisplayNameFor(m => m.Sname) })
             <div>
-                @Html.ValidationMessageFor(model => Model.SmsCode)
+                @Html.ValidationMessageFor(model => model.Sname)
             </div>
         </div>
 
         <div>
-            @Html.DropDownListFor(model => model.ProductType, Model.Dic_product, "Тип продукту", new { @class = "unselected" })
+            @Html.TextBoxFor(model => model.Name, new { placeholder = "Ім'я" })
             <div>
-                @Html.ValidationMessageFor(model => model.ProductType)
+                @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
 
         <div>
-            @Html.TextBoxFor(model => Model.CreditSum, new { placeholder = @Html.DisplayNameFor(m => m.CreditSum) })
+            @Html.TextBoxFor(model => model.PhoneNumber, new { placeholder = @Html.DisplayNameFor(m => m.PhoneNumber) })
             <div>
-                @Html.ValidationMessageFor(model => Model.CreditSum)
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
             </div>
         </div>
 
         <div>
-            @Html.TextBoxFor(model => Model.Termin, new { placeholder = @Html.DisplayNameFor(m => m.Termin) })
+            @Html.TextBoxFor(model => model.Email, new { placeholder = @Html.DisplayNameFor(m => m.Email) })
             <div>
-                @Html.ValidationMessageFor(model => Model.Termin)
+                @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
+
+        <div>
+            @Html.TextBoxFor(model => model.Comments, new { placeholder = @Html.DisplayNameFor(m => m.Comments) })
+            <div>
+                @Html.ValidationMessageFor(model => model.Comments)
+            </div>
+        </div>
+
+        <div>
+            @Html.CheckBoxFor(model => model.Zgoda, new { placeholder = @Html.DisplayNameFor(m => m.Email) })
+            <div>
+                @Html.ValidationMessageFor(model => model.Zgoda)
+            </div>
+        </div>
+
     </div>
 
-
-
-
-
-
-
-
-
-
-    @*<input type="checkbox" class="checkbox" id="checkbox" />
-        <label for="checkbox">Я переключаю чекбокс</label>*@
-
-
-    @*<div class="checkboxFour">
-            <input type="checkbox" value="1" id="checkboxFourInput" name="" />
-            <label for="checkboxFourInput"></label>
-        </div>*@
-
-
-
-    @*<div class="div-marge-label">
-            <span>*</span> @Html.LabelFor(model => model.ProductType, new { @class = "label" })
-        </div>
-
-        <div class="div-marge">
-            @Html.DropDownListFor(model => model.ProductType, Model.Dic_product, "[-----]", new { @class = "drop-down-list" })
-            <div>
-                @Html.ValidationMessageFor(model => model.ProductType)
-            </div>
-        </div>*@
-
-
-    @*<div class="div-marge-label">
-            @Html.LabelFor(model => model.Comments, new { @class = "label" })
-        </div>
-
-        <div class="div-marge">
-            @Html.TextAreaFor(model => model.Comments, new { @class = "textarea-box" })
-        </div>*@
     <div style="text-align:right;">
         <input type="submit" value="Продовжити" />
     </div>
@@ -88,21 +65,3 @@
             <span>*</span> Поля, обов'язкові до заповнення.
         </div>*@
 }
-
-<script>
-    $(document).ready(function () {
-        $('select').on('change', function () { //attach event handler to select's change event.
-            //use a more specific selector
-
-            $(this).toggleClass('unselected', $(this).val() === "");
-
-            //if ($(this).val() === "") { //checking to see which option has been picked
-
-            //    $(this).addClass('unselected');
-            //} else {                   // add or remove class accordingly
-            //    $(this).removeClass('unselected');
-            //}
-
-        });
-    });
-</script>
