@@ -160,10 +160,9 @@ li {
 .div-wfl-element {
     float: left;
     clear: none;
-    width: 32%;
+    width: 47%;
     text-align: center;
     border: 1px solid #e5e5e5;
-    margin-right: 1%;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 1.667em; /*40/24*/
@@ -637,6 +636,42 @@ li {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+#SuccessInfo {
+    margin: auto;
+    /*background: white;*/
+    box-shadow: 0px 2px 16px 2px #d4d4d4;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    font-size: 2.4em;
+}
+
+    #SuccessInfo table {
+        width: 100%;
+    }
+
+    #SuccessInfo p {
+        margin: 0px;
+        padding: 10px;
+    }
+
+    #SuccessInfo img {
+        padding: 5px;
+        vertical-align: middle;
+        margin: 0px;
+    }
+
+    #SuccessInfo td:first-child {
+        /*width: 100px;*/
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    #SuccessInfo td {
+        padding-top: 30px;
+    }
+
+
 
 @media (max-width:1600px) {
     body {

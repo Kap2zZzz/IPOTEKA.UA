@@ -1,15 +1,41 @@
-﻿<div style="width: 50%; margin: auto; text-align: center;">
-    <p style="color: #4291ce; font-size: 40px;">
-        Дякуємо що скористались нашим сервісом.
-    </p>
-    <p style ="color: #42ce5a; font-size: 40px;">
-        Заявку успішно відправлено!
-    </p>
-    <p style="color: #245ca2; font-size: 30px;">
-        Очікуйте на дзвінок менеджера протягом 15 хв.
-    </p>
-    <input type="button" value="ПОВЕРНУТИСЯ НА ГОЛОВНУ" class="btn blue" onclick="location.href = '@Url.Action("Index","Home")'" /> 
+﻿<div id="SuccessInfo">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Image/ok.png" />
+
+            </td>
+            <td>
+                <p style="color: #42ce5a;">
+                    Заявку успішно відправлено!
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="~/Image/callback.png" />
+            </td>
+            <td>
+                <p style="color: #245ca2;">
+                    Очікуйте на дзвінок менеджера протягом 30 хв.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="~/Image/like.png" />
+
+            </td>
+            <td>
+                <p style="color: #4291ce;">
+                    Дякуємо що скористались нашим сервісом.
+                </p>
+            </td>
+        </tr>
+    </table>
+
     @*<input type="button" value="Видалити" class="btn Delete" onclick="location.href = '@Url.Action("Delete", new {id = u.UserId })'" />*@
-
-
+</div>
+<div style="clear:both; margin-top:20px;">
+    <input type="button" value="ПОВЕРНУТИСЯ НА ГОЛОВНУ" class="btn blue" onclick="location.href = '@Url.Action("Index","Home")'" />
 </div>

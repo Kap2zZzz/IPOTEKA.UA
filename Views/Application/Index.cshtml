@@ -26,21 +26,26 @@
 
     @Html.HiddenFor(x => Model.ApplicationId)
 
-    <div class="div-wfl">
-        <div class="@(@ViewBag.Step >= 1 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
-            КРОК 1
-        </div>
-        <div class="@(@ViewBag.Step >= 2 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
-            КРОК 2
-        </div>
-        @*<div class="@(@ViewBag.Step >= 3 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
-            КРОК 3
-        </div>*@
-    </div>
+    @{
+        int e = ViewBag.Step;
+        if (e < 3)
+        {
+            <div class="div-wfl">
+                <div class="@(@ViewBag.Step >= 1 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
+                    Крок 1
+                </div>
+                <div class="@(@ViewBag.Step >= 2 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")" style="float: right !important">
+                    Крок 2
+                </div>
+                @*<div class="@(@ViewBag.Step >= 3 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
+                        КРОК 3
+                    </div>*@
+            </div>
+        }
+    }
 
     <div style="padding-top: 15px; padding-bottom:15px; clear: both;">
         @{
-            int e = ViewBag.Step;
             switch (e)
             {
                 case 1: @Html.Partial("_PartialEtap1", Model);
@@ -48,7 +53,7 @@
                 case 2: @Html.Partial("_PartialEtap2", Model);
                                                              break;
                 case 3: @Html.Partial("_PartialSuccess");
-                                                             break;
+                                                        break;
             }
 
         }

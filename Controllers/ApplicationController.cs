@@ -31,6 +31,8 @@ namespace IPOTEKA.UA.Controllers
         public ActionResult Index(Application lm, int step)
         {
             ViewBag.Page = "Application";
+            ViewBag.dicProducts = MainHelp.dicProducts();
+            ViewBag.dicSchems = MainHelp.dicSchems();
 
             switch (step)
             {
