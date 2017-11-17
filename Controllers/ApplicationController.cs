@@ -91,6 +91,7 @@ namespace IPOTEKA.UA.Controllers
                             _db.Entry(lm).State = System.Data.Entity.EntityState.Modified;
                             _db.SaveChanges();
                             _db.Dispose();
+                            SendMail.Send();
                             return View(lm);
                         }
                         else
@@ -106,21 +107,12 @@ namespace IPOTEKA.UA.Controllers
 
                 case 3:
                     {
-                        try
-                        {
-                            ViewBag.Step = step + 1;
-                            _db.Entry(lm).State = System.Data.Entity.EntityState.Modified;
-                            _db.SaveChanges();
-                            _db.Dispose();
-                            return View();
-                            //return View(lm);
-                        }
-                        catch (DbEntityValidationException ex)
-                        {
-                            ViewBag.Step = step;
-                            ModelState.AddModelError("", ex.EntityValidationErrors.ToString());
-                            return View(lm);
-                        }
+                        ViewBag.Step = step + 1;
+                        //_db.Entry(lm).State = System.Data.Entity.EntityState.Modified;
+                        //_db.SaveChanges();
+                        //_db.Dispose();
+                        return View();
+                        //return View(lm);
                     }
 
                 default: return View();

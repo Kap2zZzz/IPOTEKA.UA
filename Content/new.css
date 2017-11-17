@@ -605,7 +605,7 @@ li {
     background-color: #a0bfcb;
     /*min-width: 160px;*/
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    /*z-index: 1;*/
+    z-index: 2;
 }
 
     .dropdown-content a {
@@ -639,11 +639,12 @@ li {
 
 #SuccessInfo {
     margin: auto;
-    /*background: white;*/
+    width: 650px;
+    background: white;
     box-shadow: 0px 2px 16px 2px #d4d4d4;
     padding-top: 15px;
     padding-bottom: 25px;
-    font-size: 2.4em;
+    font-size: 1.5em;
 }
 
     #SuccessInfo table {
@@ -659,90 +660,114 @@ li {
         padding: 5px;
         vertical-align: middle;
         margin: 0px;
+        width: 50px;
+        margin-left: 30px;
     }
 
     #SuccessInfo td:first-child {
         /*width: 100px;*/
         text-align: center;
-        padding-top: 20px;
+        /*padding-top: 20px;*/
     }
 
     #SuccessInfo td {
-        padding-top: 30px;
+        padding-top: 20px;
     }
 
 #step1, #step2, #step3 {
     width: 200px;
-    background-color: #4291CE;
     /*background-color: #4291ce;*/
     float: left;
-    width: 25%;
+    /*width: 25%;*/
     text-align: center;
     border: 1px solid #d8d4d4;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 1.667em; /*40/24*/
-    margin: 20px;
+    margin: 10px 20px 10px 0px;
 }
 
-    #step1::after {
+    #step1::after, #step2::after {
         content: '';
         position: absolute;
         width: 42px;
         height: 42px;
-        background-color: #4291CE;
         transform: rotate(45deg);
-        left: 30%;
         margin-top: -2px;
+        /*background-color: white;*/
         z-index: 1;
         border-top: 1px solid #d8d4d4;
         border-right: 1px solid #d8d4d4;
     }
 
-    #step2::before {
-        content: '';
-        position: absolute;
-        width: 41px;
-        height: 41px;
-        transform: rotate(45deg);
-        left: 33%;
-        margin-left: -17px;
-        margin-top: -1px;
-        background-color: aliceblue;
-        border-top: 1px solid #d8d4d4;
-        border-right: 1px solid #d8d4d4;
+    #step1::after {
+        margin-left: 41px;
     }
 
     #step2::after {
-        content: '';
-        position: absolute;
-        width: 41px;
-        height: 41px;
-        background-color: white;
-        transform: rotate(45deg);
-        left: 53%;
-        margin-left: -18px;
-        margin-top: -1px;
-        z-index: 1;
-        background-color: white;
-        border-top: 1px solid #d8d4d4;
-        border-right: 1px solid #d8d4d4;
+        margin-left: 39px;
     }
 
-    #step3::before {
+    #step2::before, #step3::before {
         content: '';
         position: absolute;
         width: 42px;
         height: 42px;
-        background-color: white;
         transform: rotate(45deg);
-        left: 56%;
-        margin-left: -38px;
+        margin-left: -82px;
         margin-top: -2px;
         background-color: aliceblue;
         border-top: 1px solid #d8d4d4;
         border-right: 1px solid #d8d4d4;
     }
+
+.step-select {
+    background-color: #50945c;
+    color: white;
+}
+
+    .step-select::before, .step-select::after {
+        background-color: #50945c;
+    }
+
+.step-unselect {
+    background-color: white;
+}
+
+    .step-unselect::before, .step-unselect::after {
+        background-color: white;
+    }
+
+
+
+/*#step2::after {
+    content: '';
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background-color: white;
+    transform: rotate(45deg);
+    margin-left: 37px;
+    margin-top: -2px;
+    z-index: 1;
+    background-color: white;
+    border-top: 1px solid #d8d4d4;
+    border-right: 1px solid #d8d4d4;
+}*/
+
+/*#step3::before {
+    content: '';
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background-color: white;
+    transform: rotate(45deg);
+    margin-left: -80px;
+    margin-top: -2px;
+    background-color: aliceblue;
+    border-top: 1px solid #d8d4d4;
+    border-right: 1px solid #d8d4d4;
+}*/
 
 
 

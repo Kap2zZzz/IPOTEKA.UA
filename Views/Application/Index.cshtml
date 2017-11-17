@@ -28,27 +28,18 @@
 
     @{
         int e = ViewBag.Step;
-        if (e < 3)
+        if (e <= 3)
         {
-            <div id="step1">
-                Крок 1
-            </div>
-            <div id="step2" style="background-color:white !important; margin-left:0px;">
-                Крок 2
-            </div>
-            <div id="step3" style="background-color:white !important; margin-left:0px;">
-                Крок 3
-            </div>
-            <div class="div-wfl" style="clear:both;">
-                <div class="@(@ViewBag.Step >= 1 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
-                    Крок 1
+            <div style="width:650px; margin:auto;">
+                <div id="step1" class="@(@ViewBag.Step >= 1 ? "step-select" : "step-unselect")">
+                    Крок 1 @*<b>&#10112;</b>*@  
                 </div>
-                <div class="@(@ViewBag.Step >= 2 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")" style="float: right !important">
+                <div id="step2" class="@(@ViewBag.Step >= 2 ? "step-select" : "step-unselect")">
                     Крок 2
                 </div>
-                @*<div class="@(@ViewBag.Step >= 3 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
-                        КРОК 3
-                    </div>*@
+                <div id="step3" class="@(@ViewBag.Step >= 3 ? "step-select" : "step-unselect")" style="margin-right:0px;">
+                    Крок 3
+                </div>
             </div>
         }
     }

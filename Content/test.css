@@ -1,10 +1,10 @@
 ﻿.form-style-8 {
     font-family: 'Circe';
-    width: 55%;
+    width: 590px;
     padding: 30px;
-    /*background: #FFFFFF;*/
-    background: rgba(160, 191, 203, 0.21);
-    margin: 20px auto;
+    background: #FFFFFF;
+    /*background: rgba(160, 191, 203, 0.21);*/
+    margin: 0px auto;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
     -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
     -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
@@ -58,7 +58,8 @@
     }
 
         .form-style-8 textarea::-webkit-input-placeholder {
-            color: rgba(38, 121, 185, 0.45);
+            /*color: rgba(38, 121, 185, 0.45);*/
+            color: #808080;
         }
 
     .form-style-8 input[type="button"],
@@ -90,7 +91,8 @@
     color:green;
 }*/
     .form-style-8 input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-        color: rgba(38, 121, 185, 0.45);
+        /*color: rgba(38, 121, 185, 0.45);*/
+        color: #808080;
     }
 
 select {
@@ -98,12 +100,14 @@ select {
 }
 
     select.unselected:first-child {
-        color: rgba(38, 121, 185, 0.45);
+        /*color: rgba(38, 121, 185, 0.45);*/
+        color: #808080;
     }
 
     select option:first-child {
         /*display: none;*/
-        color: rgba(38, 121, 185, 0.45);
+        /*color: rgba(38, 121, 185, 0.45);*/
+        color: #808080;
     }
 
     select option {

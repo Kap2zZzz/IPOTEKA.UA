@@ -2,6 +2,11 @@
     width: 80%; /* Width of the outside container*/
 }
 
+    #slidecontainer p {
+        font-weight: bold;
+        font-size:1.2em;
+    }
+
 .slider {
     -webkit-appearance: none; /* Override default CSS styles */
     width: 100%; /* Full-width */
@@ -45,7 +50,7 @@
         }
 
 #divParam {
-    width: 80%;
+    width: 90%;
     margin: auto;
     margin-top: 10px;
 }
