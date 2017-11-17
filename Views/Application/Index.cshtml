@@ -30,7 +30,16 @@
         int e = ViewBag.Step;
         if (e < 3)
         {
-            <div class="div-wfl">
+            <div id="step1">
+                Крок 1
+            </div>
+            <div id="step2" style="background-color:white !important; margin-left:0px;">
+                Крок 2
+            </div>
+            <div id="step3" style="background-color:white !important; margin-left:0px;">
+                Крок 3
+            </div>
+            <div class="div-wfl" style="clear:both;">
                 <div class="@(@ViewBag.Step >= 1 ? "div-wfl-element wfl-successful" : "div-wfl-element wfl-active")">
                     Крок 1
                 </div>
