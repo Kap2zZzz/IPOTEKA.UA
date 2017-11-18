@@ -30,17 +30,13 @@ namespace IPOTEKA.UA.Controllers
         public ActionResult Index(User u)
         {
             ViewBag.Page = "Personal";
-            MyDbContext context = new MyDbContext();
-            //ViewBag.Preview = false;
 
-            if ((context.Users.Any(x => x.Login == u.Login)) && (context.Users.Any(x => x.Password == u.Password)))
+            if ((_db.Users.Any(x => x.Login == u.Login)) && (_db.Users.Any(x => x.Password == u.Password)))
             {
-                User _u = context.Users.FirstOrDefault(x => x.Login == u.Login);
+                User _u = _db.Users.FirstOrDefault(x => x.Login == u.Login);
                 //Roles.CreateRole(_u.Role);
                 //Roles.AddUserToRole(_u.Login, _u.Role);
-                FormsAuthentication.SetAuthCookie(_u.Login, false);
-
-                //MyDbContext context = new MyDbContext();
+                FormsAuthentication.SetAuthCookie(_u.Login, u.Remember);
 
                 if (_u.Role == "Admin")
                 {

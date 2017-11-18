@@ -12,14 +12,14 @@
         <div style="margin: 5px auto;">
             @Html.TextBoxFor(model => model.Login, new { placeholder = @Html.DisplayNameFor(m => m.Login) })
             <div>
-                @Html.ValidationMessageFor(model => model.Login)
+                @Html.ValidationMessageFor(model => model.Login, null, new {@id = "Validation" })
             </div>
         </div>
 
         <div style="margin: 5px auto;">
             @Html.PasswordFor(model => model.Password, new { placeholder = @Html.DisplayNameFor(m => m.Password) })
             <div>
-                @Html.ValidationMessageFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password, null, new { @id = "Validation" })
             </div>
         </div>
 

@@ -5,9 +5,15 @@
 
     .form-login input[type="text"],
     .form-login input[type=password], select {
-        width: -webkit-fill-available;
+        /*width: -webkit-fill-available;*/
+        width: 92%;
         /*margin: 5px auto;*/
         padding: 8px;
+    }
+
+    .form-login input[type="checkbox"] {
+        width: 15px;
+        height: 15px;
     }
 
     .form-login input[type=submit] {
@@ -26,9 +32,13 @@
             background-color: #0078b5;
         }*/
 
+#Validation {
+    font-size: 1.0em;
+}
+
 .field-validation-error {
     margin-left: 5px;
-    font-size: 1.3em;
+    font-size: 1.0em;
 }
 
 .tb-result {
@@ -159,5 +169,5 @@ div.tab {
     border-top: none;
     margin: 0px 40px;
     width: 700px;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }

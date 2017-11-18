@@ -28,7 +28,7 @@ namespace IPOTEKA.UA.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Application lm, int step)
+        public ActionResult Index(Application a, int step)
         {
             ViewBag.Page = "Application";
             ViewBag.dicProducts = MainHelp.dicProducts();
@@ -38,70 +38,70 @@ namespace IPOTEKA.UA.Controllers
             {
                 case 1:
                     {
-                        if (MainHelp.IsValidEtap1(lm).Count == 0)
+                        if (MainHelp.IsValidEtap1(a).Count == 0)
                         {
                             int e = step + 1;
                             ViewBag.Step = e;
                             ModelState.Clear();
                             try
                             {
-                                lm.CreateDateTime = DateTime.Now;
+                                a.CreateDateTime = DateTime.Now;
 
                                 if (User.Identity.IsAuthenticated)
                                 {
-                                    lm.CreateUserId = _db.Users.FirstOrDefault(x => x.Login == User.Identity.Name).UserId;
+                                    a.CreateUserId = _db.Users.FirstOrDefault(x => x.Login == User.Identity.Name).UserId;
                                 }
                                 else
                                 {
-                                    lm.CreateUserId = -1;
+                                    a.CreateUserId = -1;
                                 }
 
-                                _db.Applications.Add(lm);
+                                _db.Applications.Add(a);
                                 _db.SaveChanges();
                                 _db.Dispose();
 
-                                return View(lm);
+                                return View(a);
                             }
                             catch (DbEntityValidationException ex)
                             {
                                 ViewBag.Step = step;
                                 ModelState.AddModelError("", ex.EntityValidationErrors.ToString());
-                                return View(lm);
+                                return View(a);
                             }
                         }
                         else
                         {
                             ViewBag.Step = step;
-                            foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap1(lm))
+                            foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap1(a))
                             {
                                 ModelState.AddModelError(k.Key, k.Value);
                             }
-                            return View(lm);
+                            return View(a);
                         }
                     }
 
                 case 2:
                     {
-                        if (MainHelp.IsValidEtap2(lm).Count == 0)
+                        if (MainHelp.IsValidEtap2(a).Count == 0)
                         {
                             int e = step + 1;
                             ViewBag.Step = e;
-                            lm.Xml = MainHelp.CreateXML(lm);
-                            lm.XmlData = System.Text.Encoding.Default.GetBytes(lm.Xml);// MainHelp.CreateXML(lm)
-                            _db.Entry(lm).State = System.Data.Entity.EntityState.Modified;
+                            a.Xml = MainHelp.CreateXML(a);
+                            a.XmlData = System.Text.Encoding.Default.GetBytes(a.Xml);// MainHelp.CreateXML(lm)
+                            _db.Entry(a).State = System.Data.Entity.EntityState.Modified;
                             _db.SaveChanges();
                             _db.Dispose();
-                            SendMail.Send();
-                            return View(lm);
+                            SendMail.Send(a);
+                            return View(a);
                         }
                         else
                         {
                             ViewBag.Step = step;
-                            foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap2(lm))
+                            foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap2(a))
                             {
                                 ModelState.AddModelError(k.Key, k.Value);
                             }
-                            return View(lm);
+                            return View(a);
                         }
                     }
 

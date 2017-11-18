@@ -48,7 +48,7 @@
         </div>
 
         <div>
-            @Html.CheckBoxFor(model => model.Zgoda, new { placeholder = @Html.DisplayNameFor(m => m.Email) })
+            @Html.CheckBoxFor(model => model.Zgoda) <b> <a href="#">Згода</a> на обробку персональних даних</b>
             <div>
                 @Html.ValidationMessageFor(model => model.Zgoda)
             </div>

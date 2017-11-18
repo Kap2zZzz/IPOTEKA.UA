@@ -21,6 +21,30 @@
         margin: -30px -30px 30px -30px;
     }
 
+    .form-style-8 input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        vertical-align: top;
+    }
+
+    .form-style-8 b {
+        color: #3c3c3c;
+        font-size: 19px;
+    }
+
+    .form-style-8 a {
+        color: #4291CE;
+        text-decoration: none;
+    }
+
+        .form-style-8 a:hover {
+            color: #0064ff;
+            /* margin-top: 10px; */
+            border-bottom: 1px solid;
+        }
+
+
+
     .form-style-8 input[type="text"],
     .form-style-8 input[type="date"],
     .form-style-8 input[type="datetime"],
