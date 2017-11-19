@@ -15,9 +15,6 @@ namespace IPOTEKA.UA.Code
         {
             System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(Application));
 
-            //System.IO.StreamWriter file = new System.IO.StreamWriter(@"d:\SerializationOverview.xml");
-            //writer.Serialize(file, lm);
-
             using (StringWriter textWriter = new StringWriter())
             {
                 writer.Serialize(textWriter, lm);
@@ -143,6 +140,20 @@ namespace IPOTEKA.UA.Code
         //{
         //    return File();
         //    //return File(bytes, contentType, fileName);
+        //}
+
+        //public static File DownloadFile(int id)
+        //{
+        //    MyDbContext _db = new MyDbContext();
+        //    Application lm = _db.Applications.Find(id);
+        //    try
+        //    {
+        //        return File.WriteAllBytes("Foo.txt", lm.XmlData); // Requires System.IO
+        //    }
+        //    catch
+        //    {
+
+        //    }
         //}
     }
 }
