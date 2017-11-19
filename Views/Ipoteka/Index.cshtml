@@ -1,8 +1,92 @@
-﻿@{
+﻿@model IPOTEKA.UA.Models.Application
+<link href="~/Content/FormElements.css" rel="stylesheet" />
+<link href="~/Content/Slider.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+@{
     ViewBag.Title = "Іпотечне кредитування";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
+@using (Html.BeginForm("Index", "Ipoteka"))
+{
+    <table border="0" style="margin:auto; width:80%">
+        <tr>
+            <td colspan="2">
+                <div style="width:90%; margin:auto">
+                    @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту", new { @class = "unselected" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.ProductType)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="50%">
+                <div id="slidecontainer" style="margin:auto">
+                    <p>
+                        <label style=" margin:auto;">
+                            Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> @*<span id="outputTermin"></span>*@ місяців
+                        </label>
+                    </p>
+                    <input type="range" min="12" max="240" value="12" step="1" class="slider" id="Termin" name="Termin">
+                </div>
+            </td>
+            <td>
+                <div id="slidecontainer" style="margin:auto">
+                    <p>
+                        <label style=" margin:auto;">
+                            Бажана сума кредиту: <input type="number" id="outputSuma" class="calc suma"> грн. @*<span class="price" id="outputSuma"></span>*@
+                        </label>
+                    </p>
+                    <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="CreditSum">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div style="width:90%; margin:auto">
+                    <p style=" font-weight: bold; font-size: 1.2em;">
+                        Схема погашення:<label>
+                            @Html.RadioButton("Schema", "Класична", true)
+                            Класична
+                        </label>
+                        <label>
+                            @Html.RadioButton("Schema", "Ануїтетна")
+                            Ануїтетна
+                        </label>
+                    </p>
 
-<div>
-    <label>Рубрика, в якій Ви маєте можливість вибрати продукт який Вас цікавить, і подати одну заявку в декілька Банків.</label>
-</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div style="text-align:left; margin-left:5%">
+                    <input type="submit" value="Переглянути пропозиції" />
+                </div>
+            </td>
+        </tr>
+    </table>
+}
+
+@*<div>
+        <label>Рубрика, в якій Ви маєте можливість вибрати продукт який Вас цікавить, і подати одну заявку в декілька Банків.</label>
+    </div>*@
+
+<script>
+    $(document).ready(function () {
+        $('select').on('change', function () { //attach event handler to select's change event.
+            //use a more specific selector
+
+            $(this).toggleClass('unselected', $(this).val() === "");
+
+            //if ($(this).val() === "") { //checking to see which option has been picked
+
+            //    $(this).addClass('unselected');
+            //} else {                   // add or remove class accordingly
+            //    $(this).removeClass('unselected');
+            //}
+
+        });
+    });
+</script>

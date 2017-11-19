@@ -96,8 +96,10 @@
         /*-webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;*/
         /*box-shadow: inset 0px 1px 0px 0px #45D6D6;*/
         /*background-color: #2CBBBB;*/
-        background: #4291CE;
-        border: 1px solid #4291CE;
+        /*background: #4291CE;
+        border: 1px solid #4291CE;*/
+        background: #50945c;
+        border: 1px solid #50945c;
         display: inline-block;
         cursor: pointer;
         color: #FFFFFF;
@@ -112,7 +114,7 @@
         .form-style-8 input[type="submit"]:hover {
             /*background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);*/
             /*background-color: #34CACA;*/
-            background-color: #539fdb;
+            background-color: #3d944c;
         }
 
     /*input::placeholder {

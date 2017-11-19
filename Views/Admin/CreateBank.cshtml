@@ -37,7 +37,7 @@
                     {
                         <tr>
                             <td>
-                                @Html.DropDownListFor(model => model.Products[j].Name, Model.Products[j].Dic_product, "Тип продукту")
+                                @Html.DropDownListFor(model => model.Products[j].Name, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту")
                             </td>
                             <td>
                                 @Html.TextBoxFor(model => model.Products[j].Rate)

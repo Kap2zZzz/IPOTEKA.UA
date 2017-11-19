@@ -7,7 +7,6 @@ using IPOTEKA.UA.Models;
 using IPOTEKA.UA.Repostory;
 using IPOTEKA.UA.Code;
 using System.Web.Security;
-using IPOTEKA.UA.ViewModel;
 
 namespace IPOTEKA.UA.Controllers
 {
@@ -150,6 +149,8 @@ namespace IPOTEKA.UA.Controllers
             [HttpPost]
             public ActionResult CreateBank(Bank bd)
             {
+                ViewBag.dicProducts = MainHelp.dicProducts();
+
                 string buttonValue = Request["button"];
 
                 if (buttonValue == "+")

@@ -53,6 +53,7 @@ namespace IPOTEKA.UA.Models
 
         //[Required(ErrorMessage = "Поле обовязкове для заповнення!")]
         [Display(Name = "Сума кредиту")]
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
         public decimal? CreditSum { get; set; }
 
         //[Required(ErrorMessage = "Поле обовязкове для заповнення!")]
