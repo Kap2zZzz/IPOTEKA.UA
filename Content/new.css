@@ -38,6 +38,7 @@ body {
     font-family: 'Circe';
     font-size: 0.667em; /*16px / 24px = 0.667*/
     padding-bottom: 170px;
+    overflow: auto;
 }
 
     #body label {
@@ -279,9 +280,9 @@ a {
 img {
     /*width: 10px;
     height: 10px;*/
-    max-width: 100%;
+    /*max-width: 100%;
     vertical-align: central;
-    margin-top: 5px;
+    margin-top: 5px;*/
 }
 
 .tb-select {
@@ -737,6 +738,69 @@ li {
     .step-unselect::before, .step-unselect::after {
         background-color: white;
     }
+
+#Info img {
+    width: 40px;
+    height: 40px;
+    /* height: 10%; */
+    vertical-align: bottom;
+}
+
+#Info1, #Info2 {
+    margin-left: 50px;
+}
+
+    #Info1 img, #Info2 img {
+        width: 30px;
+        height: 30px;
+    }
+
+    #Info1 i, #Info2 i {
+        font-size: 25px;
+    }
+
+    #Info1 i {
+        color: #006990;
+    }
+
+    #Info2 i {
+        color: #006990;
+    }
+
+    #Info1 p, #Info2 p {
+        margin: 5px;
+        margin-left: 15px;
+    }
+
+#Info2 {
+    margin-bottom: 50px;
+}
+
+#OptionElement {
+    background: #ffffff;
+    box-shadow: 0px 0px 15px #b9b9b9;
+    width: 240px;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    float: left;
+    margin: 20px;
+    min-height: 280px;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes example {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 
 
 

@@ -1,73 +1,117 @@
 ﻿@{
-    ViewBag.Title = "IPOTEKA.UA";
+    ViewBag.Title = "Головна";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 
 <html>
 <body>
-    @*<div class="div-c1">
-            <label>
-                ІПОТЕКА.UA - швидкий спосіб отримати іпотеку!
-            </label>
-            <p>
-                <label>
-                    Залиште свою заявку, і з Вами зконтактується наш працівник, який допоможе Вам оформити кредит на іпотеку.
-                </label>
-            </p>
-            <img src="~/Image/3.jpg" />
+    @*<div style="text-align:center">
+            <label class="label_c2_h">Вітаємо Вас на сайті Іпотека-ua.com - Найкращий сервіс по іпотечному кредитуванню. Сервіс пропонує наступні функції:</label>
         </div>*@
+    <div style="width:850px; margin:auto">
+        <div id="OptionElement">
+            <div>
+                <img src="~/Image/img_5.png" />
+            </div>
+            <div>
+                <p class="p_e">Кращі пропозиції</p>
+            </div>
+            <div style="padding:5px;">
+                <p class="p_e1">
+                    Ми аналізуємо і пропонуємо виключно найкращі пропозиції на ринку Іпотечного кредитування.
+                </p>
+            </div>
+            <div>
+                <p class="p_e1">@Html.ActionLink("Переглянути", "Index", "Banks")</p>
+            </div>
+        </div>
 
-    <div style="text-align:center">
-        <label class="label_c2_h">Переваги нашого сервісу</label>
-        <table border="0" style="text-align:center">
-            <tr>
-                <td width="20%">
-                    <img src="~/Image/img_5.png" />
-                </td>
-                <td width="20%">
-                    <img src="~/Image/img_2.png" />
-                </td>
-                <td width="20%">
-                    <img src="~/Image/img_4.png" />
-                </td>
-                <td width="20%">
-                    <img src="~/Image/img_7.png" />
-                </td>
-                <td width="20%">
-                    <img src="~/Image/img_6.png" />
-                </td>
+        <div id="OptionElement" style="animation-delay: 0.5s;">
+            <div>
+                <img src="~/Image/img_2.png" />
+            </div>
+            <div>
+                <p class="p_e">Зручний калькулятор</p>
+            </div>
+            <div style="padding:5px;">
+                <p class="p_e1">
+                    Допоможе Вам розрахувати % ставку і платіж, за допомогою лише 2 параметрів.
+                </p>
+            </div>
+            <div>
+                <p class="p_e1">@Html.ActionLink("Спробувати", "Index", "Calculator")</p>
+            </div>
+        </div>
 
-            </tr>
-            <tr>
-                <td>
-                    <p class="p_e">Кращі пропозиції</p>
-                </td>
-                <td><p class="p_e">Зручний калькулято</p></td>
-                <td><p class="p_e">Швидкий розгляд</p></td>
-                <td><p class="p_e">Допомога з документами</p></td>
-                <td><p class="p_e">Безпека даних</p></td>
-            </tr>
-            <tr style="vertical-align: top;">
-                <td>
-                    <p class="p_e1">Ми аналізуємо і пропонуємо виключно найкращі пропозиції на ринку Іпотечного кредитування.</p>
-                    <p class="p_e1">@Html.ActionLink("Переглянути", "Index", "Banks")</p>
-                </td>
-                <td>
-                    <p class="p_e1">Калькулято - допоможе Вам розрахувати % ставку і платіж, за допомогою лише 2 параметрів.</p>
-                    <p class="p_e1">@Html.ActionLink("Спробувати", "Index", "Calculator")</p>
-                </td>
-                <td>
-                    <p class="p_e1">Ваша заявка буде розглянута протягом 60 хв, після чого з Вами звяжиться наш працівник і повідомить Вам деталі.</p>
-                    <p class="p_e1">@Html.ActionLink("Подати заявку", "Index", "Application")</p>
-                </td>
-                <td>
-                    <p class="p_e1">Наші працівники допоможуть Вам в оформленні усіх необхідних документів.</p>
-                </td>
-                <td>
-                    <p class="p_e1">Ми гарантуємо, що усі Ваші дані будуть захищені, і не будуть передаватись третім особам.</p>
-                </td>
-            </tr>
-        </table>
+        <div id="OptionElement" style="animation-delay: 1s;">
+            <div>
+                <img src="~/Image/img_flow.png" />
+            </div>
+            <div>
+                <p class="p_e">1 заявка = N банків</p>
+            </div>
+            <div style="padding:5px;">
+                <p class="p_e1">
+                    Оберіть продукт, суму та термі і подайте заявку в декілька Банків одночасно.
+                </p>
+            </div>
+            <div>
+                <p class="p_e1">@Html.ActionLink("Обрати продукт", "Index", "Ipoteka")</p>
+            </div>
+        </div>
+
+        <div id="OptionElement" style="clear: both; animation-delay: 1.5s;">
+            <div>
+                <img src="~/Image/img_4.png" />
+            </div>
+            <div>
+                <p class="p_e">Швидкий розгляд</p>
+            </div>
+            <div style="padding:5px;">
+                <p class="p_e1">
+                    Ваша заявка буде розглянута протягом 60 хв, після чого Вам повідомлять усі деталі.
+                </p>
+            </div>
+            <div>
+                <p class="p_e1">@Html.ActionLink("Подати заявку", "Index", "Application")</p>
+            </div>
+        </div>
+
+        <div id="OptionElement" style="animation-delay: 2s;">
+            <div>
+                <img src="~/Image/img_7.png" />
+            </div>
+            <div>
+                <p class="p_e">Допомога з документами</p>
+            </div>
+            <div style="padding:5px;">
+                <p class="p_e1">
+                    Наші працівники допоможуть Вам в оформленні усіх необхідних документів.
+                </p>
+            </div>
+            <div>
+            </div>
+        </div>
+
+        <div id="OptionElement" style="animation-delay: 2.5s;">
+            <div>
+                <img src="~/Image/img_6.png" />
+            </div>
+            <div>
+                <p class="p_e">Безпека даних</p>
+            </div>
+            <div style="padding:5px;">
+                <p class="p_e1">
+                    Ми гарантуємо, що усі Ваші дані будуть захищені, і не будуть передаватись третім особам.
+                </p>
+            </div>
+            <div>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
+<style>
+
+</style>
