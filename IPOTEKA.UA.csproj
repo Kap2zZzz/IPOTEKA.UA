@@ -106,6 +106,17 @@
     <Content Include="Image\img_7.png" />
     <Content Include="Image\img_8.png" />
     <Content Include="Image\img_9.png" />
+    <Content Include="Image\img_add-property.png" />
+    <Content Include="Image\img_cash-in-hand.png" />
+    <Content Include="Image\img_checkuser.png" />
+    <Content Include="Image\img_contact.png" />
+    <Content Include="Image\img_flow.png" />
+    <Content Include="Image\img_handshake.png" />
+    <Content Include="Image\img_info.png" />
+    <Content Include="Image\img_no_cash.png" />
+    <Content Include="Image\img_search.png" />
+    <Content Include="Image\img_star.png" />
+    <Content Include="Image\img_submit-resume.png" />
     <Content Include="Image\like.png" />
     <Content Include="Image\ok.png" />
     <Content Include="Views\Application\_PartialSuccess.cshtml" />
