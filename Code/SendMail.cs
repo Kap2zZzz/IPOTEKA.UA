@@ -44,7 +44,6 @@ namespace IPOTEKA.UA.Code
 
                 smtp.Send(message);
             }
-
             //message.Attachments.Add(attach);
         }
     }
