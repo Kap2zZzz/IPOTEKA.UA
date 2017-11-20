@@ -44,6 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Code\MainHelp.cs" />
+    <Compile Include="Code\SendMail.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
@@ -63,7 +64,9 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repostory\MyDbContext.cs" />
-    <Compile Include="ViewModel\BankData.cs" />
+    <Compile Include="ViewModel\IpotekaData.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -80,6 +83,7 @@
     <Content Include="Content\Admin.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\FAQ.css" />
+    <Content Include="Content\FormElements.css" />
     <Content Include="Content\Forms.css" />
     <Content Include="Content\new.css" />
     <Content Include="Content\Slider.css" />
@@ -88,6 +92,7 @@
     <Content Include="Font\Circe-Regular.ttf" />
     <Content Include="Font\Circe-Light.ttf" />
     <Content Include="Image\calc.png" />
+    <Content Include="Image\callback.png" />
     <Content Include="Image\clock1.png" />
     <Content Include="Image\def.png" />
     <Content Include="Image\doc2.png" />
@@ -101,6 +106,8 @@
     <Content Include="Image\img_7.png" />
     <Content Include="Image\img_8.png" />
     <Content Include="Image\img_9.png" />
+    <Content Include="Image\like.png" />
+    <Content Include="Image\ok.png" />
     <Content Include="Views\Application\_PartialSuccess.cshtml" />
     <None Include="Properties\PublishProfiles\AzureWebApplication120170926042022 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
@@ -156,8 +163,8 @@
     <Content Include="Views\Banks\Index.cshtml" />
     <Content Include="Views\Calculator\Index.cshtml" />
     <Content Include="Views\Application\Index.cshtml" />
-    <Content Include="Views\Application\_PartialEtap1.cshtml" />
     <Content Include="Views\Application\_PartialEtap2.cshtml" />
+    <Content Include="Views\Application\_PartialEtap1.cshtml" />
     <Content Include="Views\Application\_PartialEtap3.cshtml" />
     <Content Include="Views\FAQ\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
@@ -167,9 +174,6 @@
     <Content Include="Views\Admin\CreateBank.cshtml" />
     <Content Include="Views\Ipoteka\Index.cshtml" />
     <Content Include="Views\Admin\PreviewBank.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -259,6 +263,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
