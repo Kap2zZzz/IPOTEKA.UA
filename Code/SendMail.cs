@@ -41,6 +41,7 @@ namespace IPOTEKA.UA.Code
                 message.Attachments.Add(attach);
                 message.Subject = subject;
                 message.Body = body;
+
                 smtp.Send(message);
             }
             //message.Attachments.Add(attach);
