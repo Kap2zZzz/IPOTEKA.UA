@@ -75,10 +75,6 @@
         color: #2679b9;
     }
 
-        .form-style-8 input[type="text"]:focus, .form-style-8 select:focus, .form-style-8 textarea:focus {
-            border-bottom: 1px solid #004ba9;
-        }
-
     .form-style-8 textarea {
         resize: none;
         overflow: hidden;
