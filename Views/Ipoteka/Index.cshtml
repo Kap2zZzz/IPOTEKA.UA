@@ -7,7 +7,7 @@
     ViewBag.Title = "Іпотечне кредитування";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
-@using (Html.BeginForm("Index", "Ipoteka"))
+@using (Html.BeginForm("Index", "Ipoteka", FormMethod.Post, new { Id = "IpotekaForm" }))
 {
     <table border="0" style="margin:auto; width:80%">
         <tr>
@@ -67,6 +67,37 @@
             </td>
         </tr>
     </table>
+
+    <table id="Proposition" style="width:72%;" border="0" cellspacing="0" cellpadding="1">
+        <tr>
+            <th>Банк</th>
+            <th>% стака</th>
+            <th>Реальна % ставка</th>
+            <th>Комісія за видачу</th>
+            <th>Місячний платіж</th>
+        </tr>
+        <tr>
+            <td>ПАТ Кредобанк</td>
+            <td>17,49</td>
+            <td>19,29</td>
+            <td>0,9</td>
+            <td>7560</td>
+        </tr>
+        <tr>
+            <td>ПАТ Ощадбанк</td>
+            <td>17,49</td>
+            <td>19,29</td>
+            <td>1,5</td>
+            <td>7560</td>
+        </tr>
+        <tr>
+            <td>ПАТ ПриватБанк</td>
+            <td>17,49</td>
+            <td>19,29</td>
+            <td>1,5</td>
+            <td>7560</td>
+        </tr>
+    </table>
 }
 
 @*<div>
@@ -89,4 +120,30 @@
 
         });
     });
+
+    outputTermin.value = Termin.value; // Display the default slider value
+    outputSuma.value = CreditSum.value; // Display the default slider value
+
+    Termin.oninput = function () {
+        outputTermin.value = this.value;
+    }
+
+    CreditSum.oninput = function () {
+        outputSuma.value = this.value;
+    }
+
+    outputTermin.onchange = function () {
+        Termin.value = (this).value;
+        Termin.oninput();
+    }
+
+    outputSuma.onchange = function () {
+        CreditSum.value = (this).value;
+        CreditSum.oninput();
+    }
+
+    //$('#IpotekaForm').submit(function (evt) {
+    //    evt.preventDefault();
+    //});
+
 </script>

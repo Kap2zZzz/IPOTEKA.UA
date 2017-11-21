@@ -802,6 +802,42 @@ li {
     }
 }
 
+#Proposition {
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /*border-collapse: collapse;*/
+    box-shadow: 0px 0px 15px #b9b9b9;
+    padding: 20px;
+    background: white;
+}
+
+    #Proposition th {
+        font-family: Tahoma;
+        /*font-style: normal;
+        font-weight: 300;*/
+        padding-top: 11px;
+        /*font-size: 12px;*/
+        padding-bottom: 11px;
+        /*background-color: #66a6c1;*/
+        background-color: #006990;
+        color: white;
+        /*text-transform: uppercase;*/
+        text-align: center;
+        font-size: 0.8em;
+    }
+
+    #Proposition td {
+        text-align: center;
+        border-bottom: 3px solid #006990;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        font-family: Tahoma;
+        font-size: 1.2em;
+        /*background: white;*/
+    }
+
+
 
 
 /*#step2::after {
