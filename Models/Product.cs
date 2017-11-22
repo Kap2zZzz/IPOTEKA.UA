@@ -15,7 +15,7 @@ namespace IPOTEKA.UA.Models
         public int ProductID { get; set; }
 
         [Display(Name = "Назва продукту")]
-        public Dictionary<int, string> Name { get; set; }
+        public string Name { get; set; }
 
         [Display(Name = "% ставка")]
         public decimal Rate { get; set; }
@@ -30,10 +30,5 @@ namespace IPOTEKA.UA.Models
         public int MaxTermCred { get; set; }
 
         public virtual Bank Rel { get; set; }
-
-        public Product()
-        {
-            Name = MainHelp.dicProducts();
-        }
     }
 }

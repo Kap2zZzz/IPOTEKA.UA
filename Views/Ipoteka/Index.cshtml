@@ -38,14 +38,14 @@
                             Бажана сума кредиту: <input type="number" id="outputSuma" class="calc suma"> грн. @*<span class="price" id="outputSuma"></span>*@
                         </label>
                     </p>
-                    <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="CreditSum">
+                    <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="CreditSum", name="CreditSum">
                 </div>
             </td>
         </tr>
         <tr>
             <td colspan="2">
                 <div style="width:90%; margin:auto">
-                    <p style=" font-weight: bold; font-size: 1.2em;">
+                    <p style="font-weight: bold; font-size: 1.2em;">
                         Схема погашення:<label>
                             @Html.RadioButton("Schema", "Класична", true)
                             Класична
