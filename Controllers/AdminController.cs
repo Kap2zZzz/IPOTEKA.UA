@@ -36,171 +36,207 @@ namespace IPOTEKA.UA.Controllers
 
         #region Користувачі
 
-            #region Створення користувач
+        #region Створення користувач
 
-            [HttpGet]
-            public ActionResult CreateUser()
+        [HttpGet]
+        public ActionResult CreateUser()
+        {
+            ViewBag.Page = "Personal";
+            return View(new User());
+        }
+
+        [HttpPost]
+        public ActionResult CreateUser(User u)
+        {
+            ViewBag.Page = "Personal";
+            string buttonValue = Request["button"];
+            if (buttonValue == "Назад")
             {
-                ViewBag.Page = "Personal";
-                return View(new User());
+                return RedirectToAction("Index");
             }
-
-            [HttpPost]
-            public ActionResult CreateUser(User u)
+            else
             {
-                ViewBag.Page = "Personal";
-                string buttonValue = Request["button"];
-                if (buttonValue == "Назад")
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    if (ModelState.IsValid)
-                    {
-                        if (Create(u))
-                        {
-                            return RedirectToAction("Index");
-                        }
-                        else
-                        {
-                            return View(u);
-                        }
-                        //MainHelp.AddUser(u);
-
-                    }
-                    else
-                    {
-                        //ModelState.AddModelError("PIB", "sadsadsadsadsadsa");
-                        return View(u);
-                    }
-                    //return RedirectToAction("Index");
-                }
-            }
-
-            #endregion
-
-            #region Редагування користувача
-
-            [HttpGet]
-            public ActionResult EditUser(int id)
-            {
-                return View(_db.Users.Find(id));
-            }
-
-            [HttpPost]
-            public ActionResult EditUser(User u)
-            {
-                string buttonValue = Request["button"];
-                if (buttonValue == "Назад")
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    if (Save(u))
+                    if (Create(u))
                     {
                         return RedirectToAction("Index");
                     }
-                    return View(u);
-                }
-            }
+                    else
+                    {
+                        return View(u);
+                    }
+                    //MainHelp.AddUser(u);
 
-            #endregion
-
-            #region Перегляд користувача
-
-            [HttpGet]
-            public ActionResult PreviewUser(int id)
-            {
-                ViewBag.Page = "Personal";
-                return View(_db.Users.Find(id));
-            }
-
-            [HttpPost]
-            public ActionResult PreviewUser(User u)
-            {
-                string buttonValue = Request["button"];
-                if (buttonValue == "Назад")
-                {
-                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    return RedirectToAction("EditUser", new { id = u.UserId });
+                    //ModelState.AddModelError("PIB", "sadsadsadsadsadsa");
+                    return View(u);
                 }
+                //return RedirectToAction("Index");
             }
+        }
 
-            #endregion
+        #endregion
+
+        #region Редагування користувача
+
+        [HttpGet]
+        public ActionResult EditUser(int id)
+        {
+            return View(_db.Users.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult EditUser(User u)
+        {
+            string buttonValue = Request["button"];
+            if (buttonValue == "Назад")
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if (Save(u))
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(u);
+            }
+        }
+
+        #endregion
+
+        #region Перегляд користувача
+
+        [HttpGet]
+        public ActionResult PreviewUser(int id)
+        {
+            ViewBag.Page = "Personal";
+            return View(_db.Users.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult PreviewUser(User u)
+        {
+            string buttonValue = Request["button"];
+            if (buttonValue == "Назад")
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("EditUser", new { id = u.UserId });
+            }
+        }
+
+        #endregion
 
         #endregion
 
         #region Банки
 
-            #region Створення Банку
+        #region Створення Банку
 
-            [HttpGet]
-            public ActionResult CreateBank()
+        [HttpGet]
+        public ActionResult CreateBank()
+        {
+            var ViewModel = new Bank();
+            return View(ViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CreateBank(Bank bd)
+        {
+            ViewBag.dicProducts = MainHelp.dicProducts();
+
+            string buttonValue = Request["button"];
+
+            if (buttonValue == "+")
             {
-                var ViewModel = new Bank();
-                return View(ViewModel);
+                if (bd.Products == null)
+                {
+                    bd.Products = new List<Product>();
+                }
+                bd.Products.Add(new Product());
+                return View(bd);
             }
-
-            [HttpPost]
-            public ActionResult CreateBank(Bank bd)
+            else if (buttonValue == "Зберегти")
             {
-                ViewBag.dicProducts = MainHelp.dicProducts();
-
-                string buttonValue = Request["button"];
-
-                if (buttonValue == "+")
-                {
-                    if (bd.Products == null)
-                    {
-                        bd.Products = new List<Product>();
-                    }
-                    bd.Products.Add(new Product());
-                    return View(bd);
-                }
-                else
-                {
-                    _db.Banks.Add(bd);
-                    _db.SaveChanges();
-                    _db.Dispose();
-                }
+                _db.Banks.Add(bd);
+                _db.SaveChanges();
+                _db.Dispose();
                 return RedirectToAction("Index");
-
-                //if (ModelState.IsValid)
-                //{
-                //    if (Create(bd.Bank))
-                //    {
-                //        return RedirectToAction("Index");
-                //    }
-                //    else
-                //    {
-                //        return View(bd.Bank);
-                //    }
-                //}
-                //else
-                //{
-                //    return View(bd.Bank);
-                //}
             }
-            #endregion
-
-            #region Перегляд Банку
-
-            [HttpGet]
-            public ActionResult PreviewBank(int id)
+            else
             {
-                return View(_db.Banks.Find(id));
+                return RedirectToAction("Index");
             }
 
-            #endregion
+            //if (ModelState.IsValid)
+            //{
+            //    if (Create(bd.Bank))
+            //    {
+            //        return RedirectToAction("Index");
+            //    }
+            //    else
+            //    {
+            //        return View(bd.Bank);
+            //    }
+            //}
+            //else
+            //{
+            //    return View(bd.Bank);
+            //}
+        }
+        #endregion
+
+        #region Редагування Банку
+        [HttpGet]
+        public ActionResult EditBank(int id)
+        {
+            ViewBag.Page = "Personal";
+            ViewBag.dicProducts = MainHelp.dicProducts();
+            return View(_db.Banks.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult EditBank(Bank b)
+        {
+            return View();
+        }
+        #endregion
+
+        #region Перегляд Банку
+
+        [HttpGet]
+        public ActionResult PreviewBank(int id)
+        {
+            ViewBag.Page = "Personal";
+            return View(_db.Banks.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult PreviewBank(Bank b)
+        {
+            ViewBag.Page = "Personal";
+            string buttonValue = Request["button"];
+            if (buttonValue == "Назад")
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("EditBank", new { id = b.BankID });
+            }
+        }
 
         #endregion
 
-            [HttpGet]
+        #endregion
+
+        [HttpGet]
         public ActionResult Exit()
         {
             FormsAuthentication.SignOut();
@@ -245,12 +281,6 @@ namespace IPOTEKA.UA.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-
-
-
-
 
         private bool Create(User u)
         {

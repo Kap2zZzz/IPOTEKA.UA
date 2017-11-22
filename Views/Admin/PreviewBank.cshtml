@@ -6,59 +6,50 @@
 }
 <link href="~/Content/Forms.css" rel="stylesheet" />
 
-<h1>Додавання новго Банку</h1>
+<h1>@Html.DisplayFor(model => model.Name)</h1>
 
 @using (Html.BeginForm())
 {
-    <fieldset>
-        <legend>Банк</legend>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name) })
-        </div>
-        <fieldset>
-            <legend>Продукти Банку</legend>
-            @if (Model.Products != null && Model.Products.Count > 0)
-            {
-                int j = 0;
-                <table id="tbProduct" border="0">
-                    <tr>
-                        <th>Назва продукту</th>
-                        <th>% ставка</th>
-                        <th>Комісія, %</th>
-                        <th>Макс. сума кредиту, грн.</th>
-                        <th>Макс. термі кредитування, міс.</th>
-                    </tr>
-                    @foreach (IPOTEKA.UA.Models.Product b in Model.Products)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(model => model.Products[j].Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Products[j].Rate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Products[j].Commission)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Products[j].MaxSumCred)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Products[j].MaxTermCred)
-                            </td>
-                        </tr>
-                        j++;
-                    }
-                </table>
+    @Html.HiddenFor(model => model.BankID)
+    <p><b>Продукти банку:</b></p>
 
+    if (Model.Products != null && Model.Products.Count > 0)
+    {
+        int j = 0;
+        <table id="tbProduct" border="0">
+            <tr>
+                <th>Назва продукту</th>
+                <th>Cтавка, %</th>
+                <th>Комісія, %</th>
+                <th>Макс. сума кред., грн.</th>
+                <th>Макс. термі кред., міс.</th>
+            </tr>
+            @foreach (IPOTEKA.UA.Models.Product b in Model.Products)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Products[j].Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Products[j].Rate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Products[j].Commission)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Products[j].MaxSumCred)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Products[j].MaxTermCred)
+                    </td>
+                </tr>
+                j++;
             }
-        </fieldset>
-    </fieldset>
-    <p>
-        <input type="submit" value="Назад" />
-    </p>
-    <p>
-        <input type="submit" value="Редагувати" />
-    </p>
+        </table>
+    }
+    <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
+        <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
+        <input id="save" type="submit" name="button" value="Редагувати" class="btn Add" />
+    </div>
 }
 

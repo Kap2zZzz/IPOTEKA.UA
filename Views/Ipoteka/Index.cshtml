@@ -73,16 +73,17 @@
         <table id="Proposition" style="width:72%;" border="0" cellspacing="0" cellpadding="1">
             <tr>
                 <th>Банк</th>
-                <th>% стака</th>
-                <th>Реальна % ставка</th>
+                <th>Ставка, %</th>
+                <th>Реальна ставка, %</th>
+                <th>Ефективна ставка, %</th>
                 <th>Комісія за видачу</th>
                 <th>Місячний платіж</th>
             </tr>
             @if (ViewBag.Res.Count == 0)
             {
                 <tr>
-                    <td colspan="5">
-                        Пропозиції відсутні. Спробуйте вибрати інакший продукт.
+                    <td colspan="6">
+                        Пропозиції за продуктом <b>@Model.ProductType</b> відсутні. Спробуйте змінити продукт.
                     </td>
                 </tr>
             }
@@ -92,6 +93,7 @@
                     <td>@d.Bank</td>
                     <td>@d.Rate</td>
                     <td>@d.RealRate</td>
+                    <td>@d.EffectiveRate</td>
                     <td>@d.Commission</td>
                     <td>@d.MMP</td>
                 </tr>

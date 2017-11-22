@@ -29,7 +29,7 @@
 </div>
 
 <div id="Users" style="clear:both;" class="tabcontent">
-    <table id="tb-res" class="tb-result" align="center" border="1">
+    <table id="tb-res" class="tb-result" align="center" border="0">
         <tr>
             <th>ID</th>
             <th class="tb-th-left">Login</th>
@@ -62,7 +62,7 @@
 </div>
 
 <div id="Applications" style="clear:both;" class="tabcontent">
-    <table id="tb-res" class="tb-result" align="center" border="1">
+    <table id="tb-res" class="tb-result" align="center" border="0">
         <tr>
             <th>ID</th>
             <th>Створив</th>
@@ -96,7 +96,7 @@
 </div>
 
 <div id="Banks" style="clear:both;" class="tabcontent">
-    <table id="tb-res" class="tb-result" align="center" border="1">
+    <table id="tb-res" class="tb-result" align="center" border="0">
         <tr>
             <th>ID</th>
             <th class="tb-th-left">Назва</th>
@@ -109,7 +109,7 @@
                 <td class="tb-td-center">@b.BankID</td>
                 <td>@b.Name</td>
                 <td width="50px;" class="tb-td-center">@Html.ActionLink("Видалити", "Delete", new { key = "Bank", id = b.BankID }) </td>
-                <td width="50px;" class="tb-td-center">@Html.ActionLink("Редагувати", "EditUser", new { id = b.BankID }) </td>
+                <td width="50px;" class="tb-td-center">@Html.ActionLink("Редагувати", "EditBank", new { id = b.BankID }) </td>
                 <td width="50px;" class="tb-td-center">@Html.ActionLink("Переглянути", "PreviewBank", new { id = b.BankID }) </td>
                 @*<td width="50px;" class="tb-td-center">@Html.Partial("PreviewUser", u) </td>*@
             </tr>

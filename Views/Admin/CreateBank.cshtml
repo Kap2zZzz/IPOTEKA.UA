@@ -6,7 +6,10 @@
 }
 <link href="~/Content/Forms.css" rel="stylesheet" />
 
-<h1>Додавання новго Банку</h1>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name) })
+    @Html.ValidationMessageFor(model => model.Name)
+</div>
 
 @using (Html.BeginForm())
 {
@@ -14,62 +17,49 @@
     @Html.ValidationSummary(true)
     @*@Model.Products*@
 
-    <fieldset>
-        <legend>Банк</legend>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name) })
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-        <fieldset>
-            <legend>Продукти Банку</legend>
-            @if (Model.Products != null && Model.Products.Count > 0)
+    <p><b>Продукти Банку</b></p>
+
+    if (Model.Products != null && Model.Products.Count > 0)
+    {
+        int j = 0;
+        <table id="tbProduct" border="0">
+            <tr>
+                <th>Назва продукту</th>
+                <th width="15%">% ставка</th>
+                <th width="15%">Комісія, %</th>
+                <th>Макс. сума кредиту, грн.</th>
+                <th>Макс. термі кредитування, міс.</th>
+            </tr>
+            @foreach (IPOTEKA.UA.Models.Product b in Model.Products)
             {
-                int j = 0;
-                <table id="tbProduct" border="0">
-                    <tr>
-                        <th>Назва продукту</th>
-                        <th>% ставка</th>
-                        <th>Комісія, %</th>
-                        <th>Макс. сума кредиту, грн.</th>
-                        <th>Макс. термі кредитування, міс.</th>
-                    </tr>
-                    @foreach (IPOTEKA.UA.Models.Product b in Model.Products)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DropDownListFor(model => model.Products[j].Name, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту")
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.Products[j].Rate)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.Products[j].Commission)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.Products[j].MaxSumCred)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.Products[j].MaxTermCred)
-                            </td>
-                        </tr>
-                        j++;
-                    }
-                </table>
-
+                <tr>
+                    <td>
+                        @Html.DropDownListFor(model => model.Products[j].Name, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Products[j].Rate)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Products[j].Commission)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Products[j].MaxSumCred)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Products[j].MaxTermCred)
+                    </td>
+                </tr>
+                j++;
             }
-            <p>
-                <input type="submit" name="button" value="+" style="" />
-            </p>
-        </fieldset>
-
-    </fieldset>
-    <p>
-        <input type="submit" value="Зберегти" />
+        </table>
+    }
+    <p style="margin: 0; margin-top: 10px">
+        <input type="submit" name="button" value="+" style="" />
     </p>
+
+    <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
+        <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
+        <input id="save" type="submit" name="button" value="Зберегти" class="btn Add" />
+    </div>
 }
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
