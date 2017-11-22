@@ -8,7 +8,11 @@ namespace IPOTEKA.UA.ViewModel
 {
     public class IpotekaData
     {
-        public Application Application { get; set; }
-        public Product Product { get; set; }
+        public string Bank;
+        public string Rate;
+        public string RealRate;
+        public string EffectiveRate;
+        public string MMP;
+        public string Commission;
     }
 }

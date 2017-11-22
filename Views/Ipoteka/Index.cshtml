@@ -38,7 +38,7 @@
                             Бажана сума кредиту: <input type="number" id="outputSuma" class="calc suma"> грн. @*<span class="price" id="outputSuma"></span>*@
                         </label>
                     </p>
-                    <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="CreditSum", name="CreditSum">
+                    <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="CreditSum" , name="CreditSum">
                 </div>
             </td>
         </tr>
@@ -76,27 +76,34 @@
             <th>Комісія за видачу</th>
             <th>Місячний платіж</th>
         </tr>
-        <tr>
-            <td>ПАТ Кредобанк</td>
-            <td>17,49</td>
-            <td>19,29</td>
-            <td>0,9</td>
-            <td>7560</td>
-        </tr>
-        <tr>
-            <td>ПАТ Ощадбанк</td>
-            <td>17,49</td>
-            <td>19,29</td>
-            <td>1,5</td>
-            <td>7560</td>
-        </tr>
-        <tr>
-            <td>ПАТ ПриватБанк</td>
-            <td>17,49</td>
-            <td>19,29</td>
-            <td>1,5</td>
-            <td>7560</td>
-        </tr>
+        @if (ViewBag.Res != null)
+        {
+            foreach (IPOTEKA.UA.ViewModel.IpotekaData d in ViewBag.Res)
+            {
+                <tr>
+                    <td>@d.Bank</td>
+                    <td>@d.Rate</td>
+                    <td>@d.RealRate</td>
+                    <td>@d.Commission</td>
+                    <td>@d.MMP</td>
+                </tr>
+            }
+        }
+
+        @*<tr>
+                <td>ПАТ Ощадбанк</td>
+                <td>17,49</td>
+                <td>19,29</td>
+                <td>1,5</td>
+                <td>7560</td>
+            </tr>
+            <tr>
+                <td>ПАТ ПриватБанк</td>
+                <td>17,49</td>
+                <td>19,29</td>
+                <td>1,5</td>
+                <td>7560</td>
+            </tr>*@
     </table>
 }
 
