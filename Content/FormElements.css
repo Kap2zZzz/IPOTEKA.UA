@@ -70,6 +70,10 @@ input[type="text"]::-webkit-input-placeholder {
     color: #808080;
 }
 
+.unselect {
+    color: #808080;
+}
+
 select {
     color: #2679b9;
 }

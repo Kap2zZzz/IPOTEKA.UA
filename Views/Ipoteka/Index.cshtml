@@ -13,7 +13,7 @@
         <tr>
             <td colspan="2">
                 <div style="width:90%; margin:auto">
-                    @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту", new { @class = "unselected" })
+                    @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту")  @*new { @class = "unselected" }*@
                     <div>
                         @Html.ValidationMessageFor(model => model.ProductType)
                     </div>
@@ -28,7 +28,7 @@
                             Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> @*<span id="outputTermin"></span>*@ місяців
                         </label>
                     </p>
-                    <input type="range" min="12" max="240" value="12" step="1" class="slider" id="Termin" name="Termin">
+                    <input type="range" min="12" max="240" value="@Model.Termin" step="1" class="slider" id="Termin" name="Termin">
                 </div>
             </td>
             <td>
@@ -38,7 +38,7 @@
                             Бажана сума кредиту: <input type="number" id="outputSuma" class="calc suma"> грн. @*<span class="price" id="outputSuma"></span>*@
                         </label>
                     </p>
-                    <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="CreditSum" , name="CreditSum">
+                    <input type="range" min="100000" max="3000000" value="@Model.CreditSum" step="1" class="slider" id="CreditSum" , name="CreditSum">
                 </div>
             </td>
         </tr>
@@ -68,17 +68,25 @@
         </tr>
     </table>
 
-    <table id="Proposition" style="width:72%;" border="0" cellspacing="0" cellpadding="1">
-        <tr>
-            <th>Банк</th>
-            <th>% стака</th>
-            <th>Реальна % ставка</th>
-            <th>Комісія за видачу</th>
-            <th>Місячний платіж</th>
-        </tr>
-        @if (ViewBag.Res != null)
-        {
-            foreach (IPOTEKA.UA.ViewModel.IpotekaData d in ViewBag.Res)
+    if (ViewBag.Res != null)
+    {
+        <table id="Proposition" style="width:72%;" border="0" cellspacing="0" cellpadding="1">
+            <tr>
+                <th>Банк</th>
+                <th>% стака</th>
+                <th>Реальна % ставка</th>
+                <th>Комісія за видачу</th>
+                <th>Місячний платіж</th>
+            </tr>
+            @if (ViewBag.Res.Count == 0)
+            {
+                <tr>
+                    <td colspan="5">
+                        Пропозиції відсутні. Спробуйте вибрати інакший продукт.
+                    </td>
+                </tr>
+            }
+            @foreach (IPOTEKA.UA.ViewModel.IpotekaData d in ViewBag.Res)
             {
                 <tr>
                     <td>@d.Bank</td>
@@ -88,23 +96,8 @@
                     <td>@d.MMP</td>
                 </tr>
             }
-        }
-
-        @*<tr>
-                <td>ПАТ Ощадбанк</td>
-                <td>17,49</td>
-                <td>19,29</td>
-                <td>1,5</td>
-                <td>7560</td>
-            </tr>
-            <tr>
-                <td>ПАТ ПриватБанк</td>
-                <td>17,49</td>
-                <td>19,29</td>
-                <td>1,5</td>
-                <td>7560</td>
-            </tr>*@
-    </table>
+        </table>
+    }
 }
 
 @*<div>
@@ -112,19 +105,15 @@
     </div>*@
 
 <script>
+
+    if (ProductType.value == "") {
+        ProductType.className = "unselect";
+    }
+
     $(document).ready(function () {
         $('select').on('change', function () { //attach event handler to select's change event.
             //use a more specific selector
-
-            $(this).toggleClass('unselected', $(this).val() === "");
-
-            //if ($(this).val() === "") { //checking to see which option has been picked
-
-            //    $(this).addClass('unselected');
-            //} else {                   // add or remove class accordingly
-            //    $(this).removeClass('unselected');
-            //}
-
+            $(this).toggleClass('unselect', $(this).val() === "");
         });
     });
 
