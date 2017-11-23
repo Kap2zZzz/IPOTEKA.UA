@@ -14,11 +14,12 @@
         background: #4D4D4D;
         text-transform: uppercase;
         font-family: 'Circe';
-        color: #797979;
+        /*color: #797979;*/
         font-size: 18px;
         font-weight: 100;
         padding: 20px;
-        margin: -30px -30px 30px -30px;
+        /*margin: -30px -30px 30px -30px;*/
+        margin: 0px;
     }
 
     .form-style-8 input[type="checkbox"] {
@@ -75,51 +76,55 @@
         color: #2679b9;
     }
 
-    .form-style-8 textarea {
-        resize: none;
-        overflow: hidden;
-        color: #2679b9;
-    }
+input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+    border-bottom: 2px solid #004ba9;
+}
 
-        .form-style-8 textarea::-webkit-input-placeholder {
-            /*color: rgba(38, 121, 185, 0.45);*/
-            color: #808080;
-        }
+.form-style-8 textarea {
+    resize: none;
+    overflow: hidden;
+    color: #2679b9;
+}
 
-    .form-style-8 input[type="button"],
-    .form-style-8 input[type="submit"] {
-        /*-moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;*/
-        /*-webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;*/
-        /*box-shadow: inset 0px 1px 0px 0px #45D6D6;*/
-        /*background-color: #2CBBBB;*/
-        /*background: #4291CE;
-        border: 1px solid #4291CE;*/
-        background: #50945c;
-        border: 1px solid #50945c;
-        display: inline-block;
-        cursor: pointer;
-        color: #FFFFFF;
-        font-family: 'Circe', sans-serif;
-        font-size: 14px;
-        padding: 8px 18px;
-        text-decoration: none;
-        text-transform: uppercase;
-    }
-
-        .form-style-8 input[type="button"]:hover,
-        .form-style-8 input[type="submit"]:hover {
-            /*background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);*/
-            /*background-color: #34CACA;*/
-            background-color: #3d944c;
-        }
-
-    /*input::placeholder {
-    color:green;
-}*/
-    .form-style-8 input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    .form-style-8 textarea::-webkit-input-placeholder {
         /*color: rgba(38, 121, 185, 0.45);*/
         color: #808080;
     }
+
+.form-style-8 input[type="button"],
+.form-style-8 input[type="submit"] {
+    /*-moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;*/
+    /*-webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;*/
+    /*box-shadow: inset 0px 1px 0px 0px #45D6D6;*/
+    /*background-color: #2CBBBB;*/
+    /*background: #4291CE;
+        border: 1px solid #4291CE;*/
+    background: #50945c;
+    border: 1px solid #50945c;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Circe', sans-serif;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+    .form-style-8 input[type="button"]:hover,
+    .form-style-8 input[type="submit"]:hover {
+        /*background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);*/
+        /*background-color: #34CACA;*/
+        background-color: #3d944c;
+    }
+
+/*input::placeholder {
+    color:green;
+}*/
+.form-style-8 input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    /*color: rgba(38, 121, 185, 0.45);*/
+    color: #808080;
+}
 
 select {
     color: #2679b9;
@@ -147,3 +152,50 @@ select {
     background: #e88888 !important;
 }
 /*border: 2px solid #f00 !important;*/
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 30px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    font-size: 14px;
+    font-family: Arial;
+    line-height: 1.45;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 600px;
+    height: 85%;
+    overflow: auto;
+}
+
+    .modal-content p {
+        padding: 0px 20px;
+        /*text-align: justify;*/
+    }
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }

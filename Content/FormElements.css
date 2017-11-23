@@ -26,8 +26,9 @@ select {
     color: #2679b9;
 }
 
-    input[type="text"]:focus, select:focus, textarea:focus {
-        border-bottom: 1px solid #004ba9;
+    input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+                         /*dashed*/
+        border-bottom: 2px solid #004ba9;
     }
 
 input[type="checkbox"], input[type="radio"] {
