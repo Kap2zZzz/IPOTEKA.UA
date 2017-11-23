@@ -18,19 +18,22 @@ namespace IPOTEKA.UA.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Page = "Personal";
-            User u = new User();
-            u = _db.Users.FirstOrDefault(x => x.Login == User.Identity.Name);
+            using (_db)
+            {
+                ViewBag.Page = "Personal";
+                User u = new User();
+                u = _db.Users.FirstOrDefault(x => x.Login == User.Identity.Name);
 
-            ViewBag.Role = u.Role;
-            ViewBag.PIB = u.PIB;
-            List<Application> l1 = _db.Applications.ToList();
-            List<User> l2 = _db.Users.ToList();
-            List<Bank> l3 = _db.Banks.ToList();
+                ViewBag.Role = u.Role;
+                ViewBag.PIB = u.PIB;
+                List<Application> l1 = _db.Applications.ToList();
+                List<User> l2 = _db.Users.ToList();
+                List<Bank> l3 = _db.Banks.ToList();
 
-            var t = new Tuple<List<Application>, List<User>, List<Bank>>(l1, l2, l3);
+                var t = new Tuple<List<Application>, List<User>, List<Bank>>(l1, l2, l3);
 
-            return View(t);
+                return View(t);
+            }
 
         }
 
@@ -66,8 +69,6 @@ namespace IPOTEKA.UA.Controllers
                     {
                         return View(u);
                     }
-                    //MainHelp.AddUser(u);
-
                 }
                 else
                 {
@@ -85,6 +86,7 @@ namespace IPOTEKA.UA.Controllers
         [HttpGet]
         public ActionResult EditUser(int id)
         {
+            ViewBag.Page = "Personal";
             return View(_db.Users.Find(id));
         }
 
@@ -166,13 +168,14 @@ namespace IPOTEKA.UA.Controllers
             {
                 _db.Banks.Add(bd);
                 _db.SaveChanges();
-                _db.Dispose();
+
                 return RedirectToAction("Index");
             }
             else
             {
                 return RedirectToAction("Index");
             }
+
 
             //if (ModelState.IsValid)
             //{
@@ -204,7 +207,31 @@ namespace IPOTEKA.UA.Controllers
         [HttpPost]
         public ActionResult EditBank(Bank b)
         {
-            return View();
+            ViewBag.dicProducts = MainHelp.dicProducts();
+
+            string buttonValue = Request["button"];
+
+            if (buttonValue == "+")
+            {
+                if (b.Products == null)
+                {
+                    b.Products = new List<Product>();
+                }
+                b.Products.Add(new Product());
+                return View(b);
+            }
+            else if (buttonValue == "Зберегти")
+            {
+                if (Save(b))
+                {
+                    return RedirectToAction("PreviewBank", new { id = b.BankID });
+                }
+                return View(b);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
         #endregion
 
@@ -246,36 +273,36 @@ namespace IPOTEKA.UA.Controllers
         [HttpGet]
         public ActionResult Delete(string key, int? id)
         {
-            if (key == "User")
+            using (_db)
             {
-                User u = _db.Users.Find(id);
-                if (u != null)
+                if (key == "User")
                 {
-                    _db.Users.Remove(u);
-                    _db.SaveChanges();
-                    _db.Dispose();
+                    User u = _db.Users.Find(id);
+                    if (u != null)
+                    {
+                        _db.Users.Remove(u);
+                        _db.SaveChanges();
+                    }
                 }
-            }
 
-            if (key == "Application")
-            {
-                Application a = _db.Applications.Find(id);
-                if (a != null)
+                if (key == "Application")
                 {
-                    _db.Applications.Remove(a);
-                    _db.SaveChanges();
-                    _db.Dispose();
+                    Application a = _db.Applications.Find(id);
+                    if (a != null)
+                    {
+                        _db.Applications.Remove(a);
+                        _db.SaveChanges();
+                    }
                 }
-            }
 
-            if (key == "Bank")
-            {
-                Bank b = _db.Banks.Find(id);
-                if (b != null)
+                if (key == "Bank")
                 {
-                    _db.Banks.Remove(b);
-                    _db.SaveChanges();
-                    _db.Dispose();
+                    Bank b = _db.Banks.Find(id);
+                    if (b != null)
+                    {
+                        _db.Banks.Remove(b);
+                        _db.SaveChanges();
+                    }
                 }
             }
 
@@ -284,17 +311,20 @@ namespace IPOTEKA.UA.Controllers
 
         private bool Create(User u)
         {
-            if (_db.Users.FirstOrDefault(x => x.Login == u.Login) != null)
+            using (_db)
             {
-                ModelState.AddModelError("Login", "Увага!, Логін: " + u.Login + " вже існує в системі");
-                return false;
-            }
-            else
-            {
-                _db.Users.Add(u);
-                _db.SaveChanges();
-                _db.Dispose();
-                return true;
+                if (_db.Users.FirstOrDefault(x => x.Login == u.Login) != null)
+                {
+                    ModelState.AddModelError("Login", "Увага!, Логін: " + u.Login + " вже існує в системі");
+                    return false;
+                }
+                else
+                {
+                    _db.Users.Add(u);
+                    _db.SaveChanges();
+
+                    return true;
+                }
             }
         }
 
@@ -310,15 +340,42 @@ namespace IPOTEKA.UA.Controllers
 
         private bool Save(User u)
         {
-            if (_db.Users.FirstOrDefault(x => x.Login == u.Login) != null)
+            using (_db)
             {
-                ModelState.AddModelError("Login", "Увага!, Логін: " + u.Login + " вже існує в системі");
-                return false;
+                if (_db.Users.FirstOrDefault(x => x.Login == u.Login) != null)
+                {
+                    ModelState.AddModelError("Login", "Увага!, Логін: " + u.Login + " вже існує в системі");
+                    return false;
+                }
+                else
+                {
+                    _db.Entry(u).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
+
+                    return true;
+                }
             }
-            else
+        }
+
+        private bool Save(Bank b)
+        {
+            using (_db)
             {
-                _db.Entry(u).State = System.Data.Entity.EntityState.Modified;
+                _db.Entry(b).State = System.Data.Entity.EntityState.Modified;
+                foreach (var p in b.Products)
+                {
+                    if (p.ProductID > 0)
+                    {
+                        _db.Entry(p).State = System.Data.Entity.EntityState.Modified;
+                    }
+                    else
+                    {
+                        _db.Products.Add(p);
+                    }
+                }
+
                 _db.SaveChanges();
+
                 return true;
             }
         }

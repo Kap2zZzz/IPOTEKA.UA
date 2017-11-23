@@ -1,21 +1,21 @@
 ﻿@model IPOTEKA.UA.Models.Bank
 
 @{
-    ViewBag.Title = "CreateBank";
+    ViewBag.Title = Model.Name + " [Редагування]";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <link href="~/Content/Forms.css" rel="stylesheet" />
 
-<div class="editor-field">
-    @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name) })
-    @Html.ValidationMessageFor(model => model.Name)
-</div>
-
 @using (Html.BeginForm())
 {
-    @*@Html.AntiForgeryToken()*@
+    @Html.HiddenFor(model => model.BankID)
+
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name) })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
     @Html.ValidationSummary(true)
-    @*@Model.Products*@
 
     <p><b>Продукти Банку</b></p>
 
@@ -32,6 +32,7 @@
             </tr>
             @foreach (IPOTEKA.UA.Models.Product b in Model.Products)
             {
+                @Html.HiddenFor(model => model.Products[j].ProductID)
                 <tr>
                     <td>
                         @Html.DropDownListFor(model => model.Products[j].Name, new SelectList(ViewBag.dicProducts, "Value", "Value", Model.Products[j].Name), "Тип продукту")

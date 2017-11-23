@@ -776,16 +776,21 @@ li {
     margin-bottom: 50px;
 }
 
+#Elements {
+    width: 950px;
+    margin: auto;
+}
+
 #OptionElement {
     background: #ffffff;
     box-shadow: 0px 0px 15px #b9b9b9;
-    width: 240px;
+    width: 270px;
     text-align: center;
     padding-bottom: 10px;
     padding-top: 10px;
     float: left;
-    margin: 20px;
-    min-height: 280px;
+    margin: 10px 20px 20px 20px;
+    min-height: 300px;
     animation-name: example;
     animation-duration: 1s;
     animation-fill-mode: forwards;
@@ -869,8 +874,6 @@ li {
     border-right: 1px solid #d8d4d4;
 }*/
 
-
-
 @media (max-width:1600px) {
     body {
         font-size: 1.375em; /*22/16*/
@@ -916,8 +919,17 @@ li {
         padding-bottom: 16px;
     }
 
-    ..dropdown-content {
+    .dropdown-content {
         margin-top: 18px;
+    }
+
+    #OptionElement {
+        width: 240px;
+        min-height: 280px;
+    }
+
+    #Elements {
+        width: 850px;
     }
 }
 
