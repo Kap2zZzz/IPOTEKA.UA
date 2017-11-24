@@ -4,7 +4,7 @@
 {
     <div>
         <div>
-            @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту", new { @class = "unselected" })
+            @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту"@*, new { @class = "unselected" }*@)
             <div>
                 @Html.ValidationMessageFor(model => model.ProductType)
             </div>
@@ -25,7 +25,7 @@
         </div>
 
         <div>
-            @Html.DropDownListFor(model => model.Schema, new SelectList(ViewBag.dicSchems, "Value", "Value"), "Схема погашення", new { @class = "unselected" })
+            @Html.DropDownListFor(model => model.Schema, new SelectList(ViewBag.dicSchems, "Value", "Value"), "Схема погашення"@*, new { @class = "unselected" }*@)
             <div>
                 @Html.ValidationMessageFor(model => model.Schema)
             </div>
@@ -45,6 +45,15 @@
 }
 
 <script>
+
+    if (ProductType.value == "") {
+        ProductType.className = "unselect";
+    }
+
+    if (Schema.value == "") {
+        Schema.className = "unselect";
+    }
+
     $(document).ready(function () {
         $('select').on('change', function () { //attach event handler to select's change event.
             //use a more specific selector

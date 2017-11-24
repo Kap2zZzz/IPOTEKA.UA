@@ -27,17 +27,20 @@
     @Html.HiddenFor(x => Model.ApplicationId)
 
     @{
-        int e = ViewBag.Step;
-        if (e <= 3)
+        int s = (int)TempData["Step"];
+        {
+            TempData["Step"] = TempData["Step"];
+        }
+        if (s <= 3)
         {
             <div style="width:650px; margin:auto;">
-                <div id="step1" class="@(@ViewBag.Step >= 1 ? "step-select" : "step-unselect")">
-                    Крок 1 @*<b>&#10112;</b>*@  
+                <div id="step1" class="@(s >= 1 ? "step-select" : "step-unselect")">
+                    Крок 1 @*<b>&#10112;</b>*@
                 </div>
-                <div id="step2" class="@(@ViewBag.Step >= 2 ? "step-select" : "step-unselect")">
+                <div id="step2" class="@(s >= 2 ? "step-select" : "step-unselect")">
                     Крок 2
                 </div>
-                <div id="step3" class="@(@ViewBag.Step >= 3 ? "step-select" : "step-unselect")" style="margin-right:0px;">
+                <div id="step3" class="@(s >= 3 ? "step-select" : "step-unselect")" style="margin-right:0px;">
                     Крок 3
                 </div>
             </div>
@@ -46,14 +49,14 @@
 
     <div style="padding-top: 15px; padding-bottom:15px; clear: both;">
         @{
-            switch (e)
+            switch (s)
             {
                 case 1: @Html.Partial("_PartialEtap1", Model);
-                                                             break;
+                    break;
                 case 2: @Html.Partial("_PartialEtap2", Model);
-                                                             break;
+                    break;
                 case 3: @Html.Partial("_PartialSuccess");
-                                                        break;
+                    break;
             }
 
         }

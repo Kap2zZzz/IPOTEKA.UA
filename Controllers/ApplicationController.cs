@@ -20,28 +20,34 @@ namespace IPOTEKA.UA.Controllers
         public ActionResult Index()
         {
             var model = new Application();
+            var temp = TempData["NewApplication"] as Application;
+
+            if (temp != null)
+            {
+                model = temp;
+            }
             ViewBag.Page = "Application";
             ViewBag.dicProducts = MainHelp.dicProducts();
             ViewBag.dicSchems = MainHelp.dicSchems();
-            ViewBag.Step = 1;
+            TempData["Step"] = 1;
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Index(Application a, int step)
+        public ActionResult Index(Application a)
         {
             ViewBag.Page = "Application";
+            int s = (int)TempData["Step"];
             ViewBag.dicProducts = MainHelp.dicProducts();
             ViewBag.dicSchems = MainHelp.dicSchems();
 
-            switch (step)
+            switch (s)
             {
                 case 1:
                     {
                         if (MainHelp.IsValidEtap1(a).Count == 0)
                         {
-                            int e = step + 1;
-                            ViewBag.Step = e;
+                            TempData["Step"] = s + 1;
                             ModelState.Clear();
                             try
                             {
@@ -64,14 +70,14 @@ namespace IPOTEKA.UA.Controllers
                             }
                             catch (DbEntityValidationException ex)
                             {
-                                ViewBag.Step = step;
+                                TempData["Step"] = s;
                                 ModelState.AddModelError("", ex.EntityValidationErrors.ToString());
                                 return View(a);
                             }
                         }
                         else
                         {
-                            ViewBag.Step = step;
+                            TempData["Step"] = s;
                             foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap1(a))
                             {
                                 ModelState.AddModelError(k.Key, k.Value);
@@ -84,8 +90,7 @@ namespace IPOTEKA.UA.Controllers
                     {
                         if (MainHelp.IsValidEtap2(a).Count == 0)
                         {
-                            int e = step + 1;
-                            ViewBag.Step = e;
+                            TempData["Step"] = s + 1;
                             a.Xml = MainHelp.CreateXML(a);
                             a.XmlData = System.Text.Encoding.Default.GetBytes(a.Xml);// MainHelp.CreateXML(lm)
                             _db.Entry(a).State = System.Data.Entity.EntityState.Modified;
@@ -96,7 +101,7 @@ namespace IPOTEKA.UA.Controllers
                         }
                         else
                         {
-                            ViewBag.Step = step;
+                            TempData["Step"] = s;
                             foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap2(a))
                             {
                                 ModelState.AddModelError(k.Key, k.Value);
@@ -107,7 +112,7 @@ namespace IPOTEKA.UA.Controllers
 
                 case 3:
                     {
-                        ViewBag.Step = step + 1;
+                        TempData["Step"] = s + 1;
                         //_db.Entry(lm).State = System.Data.Entity.EntityState.Modified;
                         //_db.SaveChanges();
                         //_db.Dispose();

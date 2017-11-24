@@ -31,37 +31,51 @@ namespace IPOTEKA.UA.Controllers
         public ActionResult Index(int Termin, decimal CreditSum, string ProductType, string Schema, Application a)
         {
             ViewBag.Page = "Ipoteka";
+
             ViewBag.dicProducts = MainHelp.dicProducts();
 
-            if ((ProductType == null) || (ProductType == string.Empty))
+            string buttonValue = Request["button"];
+
+            if (buttonValue == "Переглянути пропозиції")
             {
-                ModelState.AddModelError("ProductType", "Поле [Продукт] не вибрано!");
-                return View(a);
+                if ((ProductType == null) || (ProductType == string.Empty))
+                {
+                    ModelState.AddModelError("ProductType", "Поле [Продукт] не вибрано!");
+                    return View(a);
+                }
+                else
+                {
+                    var banks = _db.Banks.ToList();
+
+                    List<IpotekaData> resView = new List<IpotekaData>();
+
+                    foreach (Bank b in banks)
+                    {
+                        foreach (Product p in b.Products.Where(x => x.Name == ProductType))
+                        {
+                            IpotekaData temp = new IpotekaData();
+                            temp.Bank = b.Name;
+                            temp.Rate = p.Rate.ToString();
+                            temp.Commission = p.Commission.ToString();
+                            Calculation.GetResults(CreditSum, Termin, p.Rate, true, out temp.MMP, out temp.RealRate, out temp.EffectiveRate);
+                            resView.Add(temp);
+                        }
+                    }
+
+                    ViewBag.Res = resView;
+
+                    return View(a);
+                }
+            }
+            else if (buttonValue == "Подати заявку")
+            {
+                TempData["NewApplication"] = a;
+                return RedirectToAction("Index", "Application");
             }
             else
             {
-                var banks = _db.Banks.ToList();
-
-                List<IpotekaData> resView = new List<IpotekaData>();
-
-                foreach (Bank b in banks)
-                {
-                    foreach (Product p in b.Products.Where(x => x.Name == ProductType))
-                    {
-                        IpotekaData temp = new IpotekaData();
-                        temp.Bank = b.Name;
-                        temp.Rate = p.Rate.ToString();
-                        temp.Commission = p.Commission.ToString();
-                        Calculation.GetResults(CreditSum, Termin, p.Rate, true, out temp.MMP, out temp.RealRate, out temp.EffectiveRate);
-                        resView.Add(temp);
-                    }
-                }
-
-                ViewBag.Res = resView;
-
                 return View(a);
             }
         }
-
     }
 }
