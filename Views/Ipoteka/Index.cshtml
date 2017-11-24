@@ -63,7 +63,7 @@
             <tr>
                 <td colspan="2">
                     <div style="text-align:left; margin-left:5%">
-                        <input type="submit" name="button" id="ShowData" value="Переглянути пропозиції" style="display:none" />
+                        <input type="submit" name="button" id="ShowData" value="Переглянути пропозиції" style="display:block" />
                     </div>
                 </td>
             </tr>
@@ -124,7 +124,7 @@
         $('select').on('change', function () { //attach event handler to select's change event.
             //use a more specific selector
             $(this).toggleClass('unselect', $(this).val() === "");
-            ShowData.click();
+            //ShowData.click();
         });
     });
 
@@ -133,25 +133,25 @@
 
     Termin.oninput = function () {
         outputTermin.value = this.value;
-        ShowData.click();
+        //ShowData.click();
     }
 
     CreditSum.oninput = function () {
         outputSuma.value = this.value;
-        ShowData.click();
+        //ShowData.click();
     }
 
     outputTermin.onchange = function () {
         Termin.value = (this).value;
         Termin.oninput();
-        ShowData.click();
+        //ShowData.click();
         //$(this).parents("form").submit();
     }
 
     outputSuma.onchange = function () {
         CreditSum.value = (this).value;
         CreditSum.oninput();
-        ShowData.click();
+        //ShowData.click();
     }
 
 

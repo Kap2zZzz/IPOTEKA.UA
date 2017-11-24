@@ -99,8 +99,6 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:foc
     /*background-color: #2CBBBB;*/
     /*background: #4291CE;
         border: 1px solid #4291CE;*/
-    background: #50945c;
-    border: 1px solid #50945c;
     display: inline-block;
     cursor: pointer;
     color: #FFFFFF;
@@ -111,11 +109,29 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:foc
     text-transform: uppercase;
 }
 
-    .form-style-8 input[type="button"]:hover,
-    .form-style-8 input[type="submit"]:hover {
-        /*background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);*/
-        /*background-color: #34CACA;*/
+/*.form-style-8 input[type="button"]:hover,
+    .form-style-8 input[type="submit"]:hover {*/
+/*background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);*/
+/*background-color: #34CACA;*/
+/*background-color: #3d944c;*/
+/*}*/
+
+.green {
+    background: #50945c;
+    border: 1px solid #50945c;
+}
+
+    .green:hover {
         background-color: #3d944c;
+    }
+
+.grey {
+    background: #e0e0e0;
+    border: 1px solid #c3c3c3;
+}
+
+    .grey:hover {
+        background: #acacac;
     }
 
 /*input::placeholder {

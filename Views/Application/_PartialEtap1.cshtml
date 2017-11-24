@@ -1,6 +1,7 @@
 ﻿@model IPOTEKA.UA.Models.Application
+<link href="~/Content/FormElements.css" rel="stylesheet" />
 <link href="~/Content/test.css" rel="stylesheet" />
-@using (Html.BeginForm("Index", "Application", new { step = @ViewBag.Step }, FormMethod.Post, new { @class = "form-style-8" }))
+@using (Html.BeginForm("Index", "Application", new { step = @ViewBag.Step }, FormMethod.Post, new { @class = "form-style-8 unselect" }))
 {
     <div>
         <div>
@@ -40,7 +41,7 @@
     </div>
 
     <div style="text-align:right;">
-        <input type="submit" value="Продовжити" />
+        <input type="submit" value="Продовжити" class="green" />
     </div>
 }
 
@@ -58,7 +59,7 @@
         $('select').on('change', function () { //attach event handler to select's change event.
             //use a more specific selector
 
-            $(this).toggleClass('unselected', $(this).val() === "");
+            $(this).toggleClass('unselect', $(this).val() === "");
 
             //if ($(this).val() === "") { //checking to see which option has been picked
 

@@ -38,91 +38,102 @@ namespace IPOTEKA.UA.Controllers
         {
             ViewBag.Page = "Application";
             int s = (int)TempData["Step"];
-            ViewBag.dicProducts = MainHelp.dicProducts();
-            ViewBag.dicSchems = MainHelp.dicSchems();
 
-            switch (s)
+            string buttonValue = Request["button"];
+
+            if (buttonValue == "Назад")
             {
-                case 1:
-                    {
-                        if (MainHelp.IsValidEtap1(a).Count == 0)
+                TempData["NewApplication"] = a;
+                return RedirectToAction("Index");
+            }
+            else
+            {
+
+                ViewBag.dicProducts = MainHelp.dicProducts();
+                ViewBag.dicSchems = MainHelp.dicSchems();
+
+                switch (s)
+                {
+                    case 1:
                         {
-                            TempData["Step"] = s + 1;
-                            ModelState.Clear();
-                            try
+                            if (MainHelp.IsValidEtap1(a).Count == 0)
                             {
-                                a.CreateDateTime = DateTime.Now;
-
-                                if (User.Identity.IsAuthenticated)
+                                TempData["Step"] = s + 1;
+                                ModelState.Clear();
+                                try
                                 {
-                                    a.CreateUserId = _db.Users.FirstOrDefault(x => x.Login == User.Identity.Name).UserId;
+                                    a.CreateDateTime = DateTime.Now;
+
+                                    if (User.Identity.IsAuthenticated)
+                                    {
+                                        a.CreateUserId = _db.Users.FirstOrDefault(x => x.Login == User.Identity.Name).UserId;
+                                    }
+                                    else
+                                    {
+                                        a.CreateUserId = -1;
+                                    }
+
+                                    _db.Applications.Add(a);
+                                    _db.SaveChanges();
+                                    _db.Dispose();
+
+                                    return View(a);
                                 }
-                                else
+                                catch (DbEntityValidationException ex)
                                 {
-                                    a.CreateUserId = -1;
+                                    TempData["Step"] = s;
+                                    ModelState.AddModelError("", ex.EntityValidationErrors.ToString());
+                                    return View(a);
                                 }
-
-                                _db.Applications.Add(a);
-                                _db.SaveChanges();
-                                _db.Dispose();
-
-                                return View(a);
                             }
-                            catch (DbEntityValidationException ex)
+                            else
                             {
                                 TempData["Step"] = s;
-                                ModelState.AddModelError("", ex.EntityValidationErrors.ToString());
+                                foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap1(a))
+                                {
+                                    ModelState.AddModelError(k.Key, k.Value);
+                                }
                                 return View(a);
                             }
                         }
-                        else
-                        {
-                            TempData["Step"] = s;
-                            foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap1(a))
-                            {
-                                ModelState.AddModelError(k.Key, k.Value);
-                            }
-                            return View(a);
-                        }
-                    }
 
-                case 2:
-                    {
-                        if (MainHelp.IsValidEtap2(a).Count == 0)
+                    case 2:
+                        {
+                            if (MainHelp.IsValidEtap2(a).Count == 0)
+                            {
+                                TempData["Step"] = s + 1;
+                                a.Xml = MainHelp.CreateXML(a);
+                                a.XmlData = System.Text.Encoding.Default.GetBytes(a.Xml);// MainHelp.CreateXML(lm)
+                                _db.Entry(a).State = System.Data.Entity.EntityState.Modified;
+                                _db.SaveChanges();
+                                _db.Dispose();
+                                SendMail.Send(a);
+                                return View(a);
+                            }
+                            else
+                            {
+                                TempData["Step"] = s;
+                                foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap2(a))
+                                {
+                                    ModelState.AddModelError(k.Key, k.Value);
+                                }
+                                return View(a);
+                            }
+                        }
+
+                    case 3:
                         {
                             TempData["Step"] = s + 1;
-                            a.Xml = MainHelp.CreateXML(a);
-                            a.XmlData = System.Text.Encoding.Default.GetBytes(a.Xml);// MainHelp.CreateXML(lm)
-                            _db.Entry(a).State = System.Data.Entity.EntityState.Modified;
-                            _db.SaveChanges();
-                            _db.Dispose();
-                            SendMail.Send(a);
-                            return View(a);
+                            //_db.Entry(lm).State = System.Data.Entity.EntityState.Modified;
+                            //_db.SaveChanges();
+                            //_db.Dispose();
+                            return View();
+                            //return View(lm);
                         }
-                        else
-                        {
-                            TempData["Step"] = s;
-                            foreach (KeyValuePair<string, string> k in MainHelp.IsValidEtap2(a))
-                            {
-                                ModelState.AddModelError(k.Key, k.Value);
-                            }
-                            return View(a);
-                        }
-                    }
 
-                case 3:
-                    {
-                        TempData["Step"] = s + 1;
-                        //_db.Entry(lm).State = System.Data.Entity.EntityState.Modified;
-                        //_db.SaveChanges();
-                        //_db.Dispose();
-                        return View();
-                        //return View(lm);
-                    }
-
-                default: return View();
+                    default: return View();
+                }
             }
-
         }
     }
 }

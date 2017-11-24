@@ -3,13 +3,19 @@
     src: url('../Font/Circe-Light.ttf') format('truetype');
 }
 
-html {
+html, body {
     height: 100%;
 }
 
-body {
-    height: 100%;
+body, #footer {
     width: 100%;
+}
+
+#body, #header {
+    margin: auto;
+}
+
+body {
     max-width: 1920px;
     margin: 0;
     margin-left: auto;
@@ -23,9 +29,12 @@ body {
     position: relative;
 }
 
+#header, #footer, .dropdown-content {
+    /*background-color: #a0bfcb;*/
+    background-color: #4a4a4a;
+}
+
 #header {
-    background-color: #a0bfcb;
-    margin: auto;
     width: 90%;
     min-height: 70px;
     padding-left: 10%;
@@ -33,7 +42,6 @@ body {
 
 #body {
     width: 80%;
-    margin: auto;
     padding-top: 15px;
     font-family: 'Circe';
     font-size: 0.667em; /*16px / 24px = 0.667*/
@@ -48,9 +56,7 @@ body {
 #footer {
     position: absolute;
     bottom: 0;
-    width: 100%;
     height: 170px;
-    background: #a0bfcb;
     font-family: Calibri;
     font-size: 0.85em;
     /*text-align: center;*/
@@ -58,11 +64,6 @@ body {
 
     #footer li {
         padding: 15px;
-    }
-
-    #footer ul {
-        margin: auto;
-        width: auto;
     }
 
     #footer td {
@@ -78,7 +79,8 @@ body {
     }
 
         #footer a:hover {
-            color: #0088cc;
+            /*color: #0088cc;*/
+            color: #ec6a35;
             padding-bottom: 5px;
             border-bottom: 1px solid;
         }
@@ -102,35 +104,22 @@ body {
     /*border: 1px solid #e5e5e5;*/
 }
 
-    .main-menu a:hover {
-        /*background: #f5f5f5;*/
-        color: white;
-        background: #90b0bd;
-        /*height: 30px;*/
-        /*border-radius:20px;*/
-        /*border-top-left-radius:20px;*/
-    }
-
 .main-menu .active a {
     /*background: white;
     color: white;
     color: #0088cc;*/
-    background: #90b0bd;
+    /*background: #90b0bd;*/
+    background: #656565;
+    /*background: #5a5a5a;*/
     color: white;
     padding-bottom: 13px;
-    border-bottom: 2px solid #006990;
-    /*border-top: 1px solid #e5e5e5;
-    border-left: 1px solid #e5e5e5;
-    border-right: 1px solid #e5e5e5;
-    border-bottom: 1px solid white;
-    height: 40px;*/
+    /*border-bottom: 2px solid #006990;*/
+    border-bottom: 2px solid #ec6a35;
 }
 
 ul {
     padding: 20px;
     list-style: none;
-    /*border: 2px dashed #cccccc;*/
-    /*-webkit-padding-start: 0px;*/
     padding-left: 0;
     margin-top: 0px;
     -webkit-margin-before: 0px;
@@ -588,14 +577,17 @@ li {
     text-decoration: none;*/
     }
 
-        li a:hover, .dropdown:hover .dropbtn {
+        li a:hover, .dropdown:hover .dropbtn, .main-menu a:hover {
             /*background-color: red;*/
-            background: #90b0bd;
+            /*background: #90b0bd;*/
+            background: #ec6a35;
         }
 
     li.dropdown {
         display: inline-block;
     }
+
+
 
 .dropdown-content {
     margin-top: 16px;
@@ -603,7 +595,7 @@ li {
     display: none;
     position: absolute;
     /*background-color: #90b0bd;*/
-    background-color: #a0bfcb;
+    /*background-color: #a0bfcb;*/
     /*min-width: 160px;*/
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 2;
@@ -611,7 +603,7 @@ li {
 
     .dropdown-content a {
         /*color: black;*/
-        background-color: #a0bfcb !important;
+        /*background-color: #a0bfcb !important;*/
         margin-top: -1px;
         margin-left: 0px;
         margin-right: 0px;
@@ -622,17 +614,17 @@ li {
         border-bottom: none !important;
     }
 
-        .dropdown-content a:hover {
+/*.dropdown-content a:hover {
             background-color: #90b0bd !important;
-        }
+        }*/
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-.dropdown-content a:hover {
+/*.dropdown-content a:hover {
     background-color: #90b0bd;
-}
+}*/
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -842,7 +834,7 @@ li {
         /*background: white;*/
     }
 
-        /*#Proposition td:last-child {
+/*#Proposition td:last-child {
             border-bottom: none;
         }*/
 
@@ -916,7 +908,7 @@ li {
     }
 
     .main-menu a {
-        padding-bottom: 17px;
+        padding-bottom: 18px;
     }
 
     .main-menu .active a {
