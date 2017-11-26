@@ -10,10 +10,10 @@
 <div id="ResultID">
     @using (Ajax.BeginForm("Index", "Ipoteka", null, new AjaxOptions { UpdateTargetId = "ResultID", }, new { Id = "IpotekaForm" }))
     {
-        <table border="0" style="margin:auto; width:80%">
+        <table border="0" style="margin: auto; width: 80%; background: white; box-shadow: 0px 0px 15px #b9b9b9;">
             <tr>
                 <td colspan="2">
-                    <div style="width:90%; margin:auto">
+                    <div style="width:90%; margin:auto; margin-top:10px">
                         @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту")  @*new { @class = "unselected" }*@
                         <div>
                             @Html.ValidationMessageFor(model => model.ProductType)
@@ -62,7 +62,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <div style="text-align:left; margin-left:5%">
+                    <div style="text-align: left; margin-left: 5%; margin-bottom: 10px;">
                         <input type="submit" name="button" id="ShowData" value="Переглянути пропозиції" style="display:block" />
                     </div>
                 </td>
@@ -71,7 +71,7 @@
 
         if (ViewBag.Res != null)
         {
-            <table id="Proposition" style="width:72%;" border="0" cellspacing="0" cellpadding="1">
+            <table id="Proposition" style="width:80%;" border="0" cellspacing="0" cellpadding="1">
                 <tr>
                     <th>Банк</th>
                     <th>Ставка, %</th>
@@ -102,7 +102,7 @@
                         </tr>
                     }
                     <tr>
-                        <td colspan="2" style="border:none">
+                        <td colspan="2" style="border:none; padding-bottom:0px;">
                             <div style="text-align:left;">
                                 <input type="submit" value="Подати заявку" name="button" />
                             </div>

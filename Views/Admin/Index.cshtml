@@ -45,6 +45,7 @@
                 <td>@u.Login</td>
                 <td>@u.PIB</td>
                 <td class="tb-td-center">@u.Role</td>
+                @*<td>@Html.ActionLink("Видалити", "Delete", new { key = "User", id = u.UserId })|@Html.ActionLink("Редагувати", "EditUser", new { id = u.UserId })|@Html.ActionLink("Переглянути", "PreviewUser", new { id = u.UserId })</td>*@
                 <td width="50px;" class="tb-td-center">@Html.ActionLink("Видалити", "Delete", new {key = "User", id = u.UserId }) </td>
                 <td width="50px;" class="tb-td-center">@Html.ActionLink("Редагувати", "EditUser", new { id = u.UserId }) </td>
                 <td width="50px;" class="tb-td-center">@Html.ActionLink("Переглянути", "PreviewUser", new { id = u.UserId }) </td>

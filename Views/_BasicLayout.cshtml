@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <link href="@Url.Content("~/Content/new.css")" rel="stylesheet" type="text/css" />
 <link href="~/Content/FAQ.css" rel="stylesheet" />
+<link href="~/Content/Thems.css" rel="stylesheet" />
 
 <html>
 <head>
@@ -38,48 +39,44 @@
             @RenderBody()
         </div>
         <div id="footer">
-            <div style="width:80%; margin:auto">
-                <div style="float:left; padding: 20px;">
-                    @Html.ActionLink("Головна", "Index", "Home")
-                </div>
-                <div style="float:left; padding: 20px;">
-                    @Html.ActionLink("Про нас", "Index", "About")
-                </div>
-                <div style="padding: 20px; float:left;">
-                    @Html.ActionLink("Іпотечне кредитування", "Index", "Ipoteka")
-                    <div style="padding-top:10px">
-                        @Html.ActionLink("Банки", "Index", "Banks")
-                    </div>
-                    <div style ="padding-top:10px">
-                        @Html.ActionLink("Калькулятор", "Index", "Calculator")
-                    </div>
-                    <div style="padding-top:10px">
-                        @Html.ActionLink("Поширені питання", "Index", "FAQ")
-                    </div>
-                </div>
-                <div style="padding: 20px; float:left;">
-                    @Html.ActionLink("Залишити заявку", "Index", "Application")
-                </div>
-                <div style="padding: 20px; float:left;">
-                    @Html.ActionLink("Особистий кабінет", "Index", "Personal")
-                </div>
-            </div>
-
-            @*<div style="margin:15px;">
-                    @Html.ActionLink("Головна", "Index", "Home")
-                    @Html.ActionLink("Про нас", "Index", "About")
-                    @Html.ActionLink("Банки", "Index", "Banks")
-                    @Html.ActionLink("Калькулятор", "Index", "Calculator")
-                    @Html.ActionLink("Поширені питання", "Index", "FAQ")
-                    @Html.ActionLink("Залишити заявку", "Index", "Application")
-                    @Html.ActionLink("Особистий кабінет", "Index", "Personal")
-                </div>*@
-
-            @*<div>
-                    <p>© 2017 IPOTEKA.UA</p>
-                </div>*@
-
-            @*@Html.ActionLink("Усі заявки", "Results", null, new { @class = "Contact" == @ViewBag.Page ? "link-a" : "link-na" })*@
+            <table style="margin:auto">
+                <tr>
+                    <td>
+                        <div style="float:left; padding: 20px;">
+                            @Html.ActionLink("Головна", "Index", "Home")
+                        </div>
+                    </td>
+                    <td>
+                        <div style="float:left; padding: 20px;">
+                            @Html.ActionLink("Про нас", "Index", "About")
+                        </div>
+                    </td>
+                    <td>
+                        <div style="padding: 20px; float:left;">
+                            @Html.ActionLink("Іпотечне кредитування", "Index", "Ipoteka")
+                            <div style="padding-top:10px">
+                                @Html.ActionLink("Банки", "Index", "Banks")
+                            </div>
+                            <div style="padding-top:10px">
+                                @Html.ActionLink("Калькулятор", "Index", "Calculator")
+                            </div>
+                            <div style="padding-top:10px">
+                                @Html.ActionLink("Поширені питання", "Index", "FAQ")
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="padding: 20px; float:left;">
+                            @Html.ActionLink("Залишити заявку", "Index", "Application")
+                        </div>
+                    </td>
+                    <td>
+                        <div style="padding: 20px; float:left;">
+                            @Html.ActionLink("Особистий кабінет", "Index", "Personal")
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>

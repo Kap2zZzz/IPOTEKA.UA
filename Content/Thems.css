@@ -1,0 +1,54 @@
+﻿:root {
+    --main-bg-color: #4a4a4a;
+    --main-border-color: #ec6a35;
+}
+
+#container {
+    background: aliceblue;
+}
+
+#header, #footer, .dropdown-content, .div-param-h, #Proposition th, .slider, #Schedule th {
+    /*background-color: #a0bfcb;*/
+    background-color: var(--main-bg-color);
+}
+
+.calc, #Proposition td {
+    border: none;
+    border-bottom: 2px solid var(--main-border-color);
+}
+
+.slider, .slider::-webkit-slider-thumb {
+    border: 2px solid var(--main-border-color);
+}
+
+    .slider::-webkit-slider-thumb {
+        background: #757575;
+        /*border: 2px solid #6cb1cc;*/
+    }
+
+li a:hover, .dropdown:hover .dropbtn, .main-menu a:hover {
+    /*background: #90b0bd;*/
+    background: var(--main-border-color) !important;
+}
+
+#footer a:hover {
+    color: var(--main-border-color);
+}
+
+.main-menu .active a {
+    /*background: #90b0bd;*/
+    background: #656565;
+    /*color: white;*/
+}
+
+h2, .main-menu a, .div-param-h, .div-param, #footer a, #Proposition th {
+    color: #ffffff;
+}
+
+a {
+    color: #0000ee;
+}
+
+.div-bank-element, #Proposition {
+    background: #ffffff;
+}

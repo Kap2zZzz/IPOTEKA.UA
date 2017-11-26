@@ -7,7 +7,7 @@
 @using (Html.BeginForm("Calculator"))
 {
     <div style="width:100%; margin:auto; margin-bottom:20px;">
-        <table border="0" width="80%" style="margin:auto">
+        <table id="Calculator">
             <tr>
                 <td width="50%">
                     <div id="slidecontainer" style="margin:auto;">
@@ -32,7 +32,6 @@
             <tr>
                 <td colspan="2">
                     <div id="divParam">
-
                         <table>
                             <tr>
                                 <td>
@@ -40,11 +39,6 @@
                                 </td>
                                 <td>
                                     <div>
-                                        @*<label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider1"></span>
-                                            </label>*@
-
                                         <input id="annuity" type="radio" name="scheme" value="annuity" checked="checked"> Ануїтетна
                                         <input id="classic" type="radio" name="scheme" value="classic"> Класична
                                     </div>
@@ -57,24 +51,6 @@
                                 <td>
                                     <span id="SumaPlatezhiv"></span>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Сума процентів:
-                                </td>
-                                <td>
-                                    <span id="SumaProcentiv"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Страховий платіж:
-                                </td>
-                                <td>
-                                    <span id="Strahovka"></span>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>
                                     Комісія за видачу:
                                 </td>
@@ -84,6 +60,12 @@
                             </tr>
                             <tr>
                                 <td>
+                                    Сума процентів:
+                                </td>
+                                <td>
+                                    <span id="SumaProcentiv"></span>
+                                </td>
+                                <td>
                                     Реальна ставка:
                                 </td>
                                 <td>
@@ -91,6 +73,12 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>
+                                    Страховий платіж:
+                                </td>
+                                <td>
+                                    <span id="Strahovka"></span>
+                                </td>
                                 <td>
                                     Переплата (весь період):
                                 </td>
@@ -100,7 +88,6 @@
                             </tr>
                         </table>
                     </div>
-
                 </td>
                 <td></td>
             </tr>
