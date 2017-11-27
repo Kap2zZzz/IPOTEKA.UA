@@ -22,6 +22,10 @@ namespace IPOTEKA.UA.Controllers
             //ViewBag.Preview = false;
             if (User.Identity.IsAuthenticated)
             {
+                if (_db.Users.Count() == 0)
+                {
+                    MainHelp.CreateUserAdmin();
+                }
                 User u = new User();
                 u = _db.Users.FirstOrDefault(x => x.Login == User.Identity.Name);
 
@@ -45,21 +49,25 @@ namespace IPOTEKA.UA.Controllers
 
                 //Tuple<List<IPOTEKA.UA.Models.LoanModel>, List<IPOTEKA.UA.Models.mUser>> t = new Tuple<List<LoanModel>, List<mUser>>(l1, l2);
                 //a = 
+                if (u != null)
+                {
+                    if (u.Role == "Admin")
+                    {
+                        //return RedirectToRoute(new { controller = "Admin", action = "Index" });
+                        //return RedirectToRoute("Admin");
+                        //return RedirectToRoute(new { controller = "Admin", action = "Admin"});
+                        //return RedirectToRoute("Default2");
+                        return RedirectToAction("Index", "Admin");
+                        //return View("Index", "/Admin/Index", t);
+                    }
+                    else if (u.Role == "Agent")
+                    {
+                        return View(_db.Applications);
+                    }
+                    else { return RedirectToAction("Index", "Home"); }
+                }
+                else return RedirectToAction("Index", "Admin");
 
-                if (u.Role == "Admin")
-                {
-                    //return RedirectToRoute(new { controller = "Admin", action = "Index" });
-                    //return RedirectToRoute("Admin");
-                    //return RedirectToRoute(new { controller = "Admin", action = "Admin"});
-                    //return RedirectToRoute("Default2");
-                    return RedirectToAction("Index", "Admin");
-                    //return View("Index", "/Admin/Index", t);
-                }
-                else if (u.Role == "Agent")
-                {
-                    return View(_db.Applications);
-                }
-                else { return RedirectToAction("Index", "Home"); }
 
 
                 //return View(context.Applications);
@@ -67,7 +75,7 @@ namespace IPOTEKA.UA.Controllers
             }
             else
             {
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Login");
             }
 
         }

@@ -20,6 +20,6 @@ namespace IPOTEKA.UA.Models
         [Display(Name = "Назва Банку")]
         public string Name { get; set; }
 
-        public virtual List<Product> Products { get; set; }
+        public virtual List<ProductBank> Products { get; set; }
     }
 }

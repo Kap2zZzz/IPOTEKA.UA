@@ -139,6 +139,13 @@ namespace IPOTEKA.UA.Code
             return true;
         }
 
+        //public static string GetProductName(int id)
+        //{
+        //    MyDbContext _db = new MyDbContext();
+        //    _db.
+        //    return "";
+        //}
+
         //public FileResult DownloadFile(LoanModel lm)
         //{
         //    return File();

@@ -24,11 +24,14 @@
                 <th>Макс. сума кред., грн.</th>
                 <th>Макс. термі кред., міс.</th>
             </tr>
-            @foreach (IPOTEKA.UA.Models.Product b in Model.Products)
+            @foreach (IPOTEKA.UA.Models.ProductBank b in Model.Products)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(model => model.Products[j].Name)
+                        @{
+                            var a = new IPOTEKA.UA.Repostory.MyDbContext();
+                        }
+                        @Html.DisplayFor(model => a.Products.Find(model.Products[j].RelProduc).Name)
                     </td>
                     <td>
                         @Html.DisplayFor(model => model.Products[j].Rate)
@@ -43,13 +46,12 @@
                         @Html.DisplayFor(model => model.Products[j].MaxTermCred)
                     </td>
                 </tr>
-                j++;
-            }
+                                j++;
+                            }
         </table>
-    }
-    <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
-        <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
-        <input id="save" type="submit" name="button" value="Редагувати" class="btn Add" />
-    </div>
-}
-
+                            }
+                            <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
+                                <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
+                                <input id="save" type="submit" name="button" value="Редагувати" class="btn Add" />
+                            </div>
+                            }

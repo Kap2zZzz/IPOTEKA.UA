@@ -1,0 +1,14 @@
+﻿@model IPOTEKA.UA.Models.Product
+@{
+    ViewBag.Title = "CreateProduct";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+
+<h2>CreateProduct</h2>
+
+@using (Html.BeginForm())
+{
+    <p>Назва продукту:</p>
+    @Html.TextBoxFor(model => model.Name);
+    <input type="submit" value="Зберегти" />
+}

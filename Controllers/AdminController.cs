@@ -29,8 +29,9 @@ namespace IPOTEKA.UA.Controllers
                 List<Application> l1 = _db.Applications.ToList();
                 List<User> l2 = _db.Users.ToList();
                 List<Bank> l3 = _db.Banks.ToList();
+                List<Product> l4 = _db.Products.ToList();
 
-                var t = new Tuple<List<Application>, List<User>, List<Bank>>(l1, l2, l3);
+                var t = new Tuple<List<Application>, List<User>, List<Bank>, List<Product>>(l1, l2, l3, l4);
 
                 return View(t);
             }
@@ -149,9 +150,9 @@ namespace IPOTEKA.UA.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateBank(Bank bd)
+        public ActionResult CreateBank(Bank bd, int TempId)
         {
-            ViewBag.dicProducts = MainHelp.dicProducts();
+            ViewBag.dicProducts = _db.Products.ToList();
 
             string buttonValue = Request["button"];
 
@@ -159,9 +160,14 @@ namespace IPOTEKA.UA.Controllers
             {
                 if (bd.Products == null)
                 {
-                    bd.Products = new List<Product>();
+                    bd.Products = new List<ProductBank>();
                 }
-                bd.Products.Add(new Product());
+                bd.Products.Add(new ProductBank());
+                return View(bd);
+            }
+            else if (buttonValue == "-")
+            {
+                bd.Products.Remove(bd.Products[TempId]);
                 return View(bd);
             }
             else if (buttonValue == "Зберегти")
@@ -200,14 +206,14 @@ namespace IPOTEKA.UA.Controllers
         public ActionResult EditBank(int id)
         {
             ViewBag.Page = "Personal";
-            ViewBag.dicProducts = MainHelp.dicProducts();
+            ViewBag.dicProducts = _db.Products.ToList();
             return View(_db.Banks.Find(id));
         }
 
         [HttpPost]
         public ActionResult EditBank(Bank b)
         {
-            ViewBag.dicProducts = MainHelp.dicProducts();
+            ViewBag.dicProducts = _db.Products.ToList();
 
             string buttonValue = Request["button"];
 
@@ -215,9 +221,9 @@ namespace IPOTEKA.UA.Controllers
             {
                 if (b.Products == null)
                 {
-                    b.Products = new List<Product>();
+                    b.Products = new List<ProductBank>();
                 }
-                b.Products.Add(new Product());
+                b.Products.Add(new ProductBank());
                 return View(b);
             }
             else if (buttonValue == "Зберегти")
@@ -259,6 +265,29 @@ namespace IPOTEKA.UA.Controllers
             }
         }
 
+        #endregion
+
+        #endregion
+
+        #region Продукти
+
+        #region Створення продукту
+        [HttpGet]
+        public ActionResult CreateProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateProduct(Product p)
+        {
+            using (_db)
+            {
+                _db.Products.Add(p);
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
         #endregion
 
         #endregion
@@ -307,6 +336,13 @@ namespace IPOTEKA.UA.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        //[HttpPost]
+        public ActionResult DeleteProductBank(Bank b, int TempId)
+        {
+            b.Products.Remove(b.Products[TempId]);
+            return View("CreateBank", b);
         }
 
         private bool Create(User u)
@@ -364,13 +400,13 @@ namespace IPOTEKA.UA.Controllers
                 _db.Entry(b).State = System.Data.Entity.EntityState.Modified;
                 foreach (var p in b.Products)
                 {
-                    if (p.ProductID > 0)
+                    if (p.ProductBankID > 0)
                     {
                         _db.Entry(p).State = System.Data.Entity.EntityState.Modified;
                     }
                     else
                     {
-                        _db.Products.Add(p);
+                        _db.ProductsBank.Add(p);
                     }
                 }
 

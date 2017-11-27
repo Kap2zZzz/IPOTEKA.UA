@@ -1,10 +1,14 @@
 ﻿@model IPOTEKA.UA.Models.Bank
-
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
 @{
     ViewBag.Title = "Банк";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <link href="~/Content/Forms.css" rel="stylesheet" />
+@{
+    int xxx = 150;
+    int j = 0;
+}
 
 @using (Html.BeginForm())
 {
@@ -17,9 +21,9 @@
 
     <p><b>Продукти Банку</b></p>
 
+    @Html.Hidden("TempId", j)
     if (Model.Products != null && Model.Products.Count > 0)
     {
-        int j = 0;
         <table id="tbProduct" border="0">
             <tr>
                 <th>Назва продукту</th>
@@ -28,11 +32,12 @@
                 <th>Макс. сума кредиту, грн.</th>
                 <th>Макс. термі кредитування, міс.</th>
             </tr>
-            @foreach (IPOTEKA.UA.Models.Product b in Model.Products)
+            @foreach (IPOTEKA.UA.Models.ProductBank b in Model.Products)
             {
                 <tr>
+                    @Html.Label(@j.ToString())
                     <td>
-                        @Html.DropDownListFor(model => model.Products[j].Name, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту")
+                        @Html.DropDownListFor(model => model.Products[j].RelProduc, new SelectList(ViewBag.dicProducts, "ProductID", "Name"), "Тип продукту")
                     </td>
                     <td>
                         @Html.TextBoxFor(model => model.Products[j].Rate)
@@ -45,6 +50,12 @@
                     </td>
                     <td>
                         @Html.TextBoxFor(model => model.Products[j].MaxTermCred)
+                    </td>
+                    <td>
+                        @Html.ActionLink("видалити", "CreateBank", new { TempId = j })
+                        <input type="submit" name="button" value="-" style="" id="delete2" />
+                        <input type="button" name="button" value="del" style="" id="delete" />
+
                     </td>
                 </tr>
                 j++;
@@ -61,3 +72,10 @@
     </div>
 }
 
+
+<script>
+
+    $('#delete').click(function () {
+        alert('@j');
+    })
+</script>

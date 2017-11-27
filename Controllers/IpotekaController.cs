@@ -22,23 +22,23 @@ namespace IPOTEKA.UA.Controllers
             var model = new Application();
             model.Termin = 12;
             model.CreditSum = 500000;
-            ViewBag.dicProducts = MainHelp.dicProducts();
+            ViewBag.dicProducts = _db.Products.ToList();
             ViewBag.dicSchems = MainHelp.dicSchems();
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Index(int Termin, decimal CreditSum, string ProductType, string Schema, Application a)
+        public ActionResult Index(int Termin, decimal CreditSum, int? ProductType, string Schema, Application a)
         {
             ViewBag.Page = "Ipoteka";
 
-            ViewBag.dicProducts = MainHelp.dicProducts();
+            ViewBag.dicProducts = _db.Products.ToList();
 
             string buttonValue = Request["button"];
 
             if (buttonValue == "Переглянути пропозиції")
             {
-                if ((ProductType == null) || (ProductType == string.Empty))
+                if ((ProductType == null) || (ProductType <= 0))
                 {
                     ModelState.AddModelError("ProductType", "Поле [Продукт] не вибрано!");
                     return View(a);
@@ -51,7 +51,7 @@ namespace IPOTEKA.UA.Controllers
 
                     foreach (Bank b in banks)
                     {
-                        foreach (Product p in b.Products.Where(x => x.Name == ProductType))
+                        foreach (ProductBank p in b.Products.Where(x => x.RelProduc == ProductType))
                         {
                             IpotekaData temp = new IpotekaData();
                             temp.Bank = b.Name;
