@@ -1,0 +1,30 @@
+﻿@model IPOTEKA.UA.Models.ProductBank
+<tr>
+    @using (Html.BeginCollectionItem("Products"))
+    {
+
+        <td>
+            @{
+        var a = new IPOTEKA.UA.Repostory.MyDbContext();
+            }
+            @*@Html.DisplayFor(model => a.Products.Find(model.Products[j].RelProduc).Name)*@
+            @Html.DropDownListFor(model => model.RelProduc, new SelectList(a.Products.ToList(), "ProductID", "Name"), "Тип продукту")
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Rate)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Commission)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.MaxSumCred)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.MaxTermCred)
+        </td>
+        <td>
+            <input type="button" value="-" style="" id="Remove" />
+        </td>
+    }
+</tr>
+

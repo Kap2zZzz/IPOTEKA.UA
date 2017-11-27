@@ -6,12 +6,12 @@
 }
 <link href="~/Content/Forms.css" rel="stylesheet" />
 @{
-    int xxx = 150;
     int j = 0;
 }
 
 @using (Html.BeginForm())
 {
+
     <div class="editor-field">
         @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name) })
         @Html.ValidationMessageFor(model => model.Name)
@@ -21,61 +21,86 @@
 
     <p><b>Продукти Банку</b></p>
 
-    @Html.Hidden("TempId", j)
-    if (Model.Products != null && Model.Products.Count > 0)
-    {
-        <table id="tbProduct" border="0">
-            <tr>
-                <th>Назва продукту</th>
-                <th width="15%">% ставка</th>
-                <th width="15%">Комісія, %</th>
-                <th>Макс. сума кредиту, грн.</th>
-                <th>Макс. термі кредитування, міс.</th>
-            </tr>
-            @foreach (IPOTEKA.UA.Models.ProductBank b in Model.Products)
+    <table id="tbProduct" border="0">
+        <tr>
+            <th>Назва продукту</th>
+            <th width="15%">% ставка</th>
+            <th width="15%">Комісія, %</th>
+            <th>Макс. сума кредиту, грн.</th>
+            <th>Макс. термі кредитування, міс.</th>
+        </tr>
+        @if (Model.Products != null && Model.Products.Count > 0)
+        {
+            foreach (IPOTEKA.UA.Models.ProductBank b in Model.Products)
             {
-                <tr>
-                    @Html.Label(@j.ToString())
-                    <td>
-                        @Html.DropDownListFor(model => model.Products[j].RelProduc, new SelectList(ViewBag.dicProducts, "ProductID", "Name"), "Тип продукту")
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(model => model.Products[j].Rate)
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(model => model.Products[j].Commission)
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(model => model.Products[j].MaxSumCred)
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(model => model.Products[j].MaxTermCred)
-                    </td>
-                    <td>
-                        @Html.ActionLink("видалити", "CreateBank", new { TempId = j })
-                        <input type="submit" name="button" value="-" style="" id="delete2" />
-                        <input type="button" name="button" value="del" style="" id="delete" />
+                Html.RenderPartial("Products", b);
 
-                    </td>
-                </tr>
+                @*<tr>
+                        @Html.Label(@j.ToString())
+                        <td>
+                            @Html.DropDownListFor(model => model.Products[j].RelProduc, new SelectList(ViewBag.dicProducts, "ProductID", "Name"), "Тип продукту")
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Products[j].Rate)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Products[j].Commission)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Products[j].MaxSumCred)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Products[j].MaxTermCred)
+                        </td>
+                        <td>
+                            @Html.ActionLink("видалити", "CreateBank", new { TempId = j })
+                            <input type="submit" name="button" value="-" style="" id="delete2" />
+                            <input type="button" name="button" value="del" style="" id="delete" />
+
+                        </td>
+                    </tr>*@
                 j++;
             }
-        </table>
-    }
+        }
+    </table>
+
     <p style="margin: 0; margin-top: 10px">
-        <input type="submit" name="button" value="+" style="" />
+        @*@Html.ActionLink("+", "BlankEditorRow", null, new { id = "addItem" })*@
+        <input type="button" value="+" id="addProductBank" />
+        @*<input type="submit" name="button" value="+" @ />*@
     </p>
 
     <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
         <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
         <input id="save" type="submit" name="button" value="Зберегти" class="btn Add" />
     </div>
+
 }
 
 
-<script>
 
-    $('#delete').click(function () {
-        alert('@j');
+<script>
+    $("#addProductBank").click(function () {
+        $.ajax({
+            url: '@Url.Action("AddNewProductBankElement", "Admin")',
+            cache: false,
+            success: function (html) { $("#tbProduct").append(html); }
+        });
+        return false;
+    })
+
+    //$("#addItem").click(function () {
+    //    alert(this.href);
+    //    $.ajax({
+    //        url: this.href,
+    //        cache: false,
+    //        success: function (html) { $("#tbProduct").append(html); }
+    //    });
+    //    return false;
+    //});
+
+    $('#tbProduct').on('click', '#Remove', function () {
+        $(this).parents("tr:first").remove();
+        return false;
     })
 </script>

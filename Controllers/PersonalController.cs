@@ -17,15 +17,15 @@ namespace IPOTEKA.UA.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (_db.Users.Count() == 0)
+            {
+                MainHelp.CreateUserAdmin();
+            }
             //MainHelp.CreateUserAdmin();
             ViewBag.Page = "Personal";
-            //ViewBag.Preview = false;
+
             if (User.Identity.IsAuthenticated)
             {
-                if (_db.Users.Count() == 0)
-                {
-                    MainHelp.CreateUserAdmin();
-                }
                 User u = new User();
                 u = _db.Users.FirstOrDefault(x => x.Login == User.Identity.Name);
 
@@ -67,8 +67,6 @@ namespace IPOTEKA.UA.Controllers
                     else { return RedirectToAction("Index", "Home"); }
                 }
                 else return RedirectToAction("Index", "Admin");
-
-
 
                 //return View(context.Applications);
                 //return View();

@@ -150,27 +150,13 @@ namespace IPOTEKA.UA.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateBank(Bank bd, int TempId)
+        public ActionResult CreateBank(Bank bd)
         {
             ViewBag.dicProducts = _db.Products.ToList();
 
             string buttonValue = Request["button"];
 
-            if (buttonValue == "+")
-            {
-                if (bd.Products == null)
-                {
-                    bd.Products = new List<ProductBank>();
-                }
-                bd.Products.Add(new ProductBank());
-                return View(bd);
-            }
-            else if (buttonValue == "-")
-            {
-                bd.Products.Remove(bd.Products[TempId]);
-                return View(bd);
-            }
-            else if (buttonValue == "Зберегти")
+            if (buttonValue == "Зберегти")
             {
                 _db.Banks.Add(bd);
                 _db.SaveChanges();
@@ -338,13 +324,6 @@ namespace IPOTEKA.UA.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpPost]
-        public ActionResult DeleteProductBank(Bank b, int TempId)
-        {
-            b.Products.Remove(b.Products[TempId]);
-            return View("CreateBank", b);
-        }
-
         private bool Create(User u)
         {
             using (_db)
@@ -414,6 +393,11 @@ namespace IPOTEKA.UA.Controllers
 
                 return true;
             }
+        }
+
+        public ViewResult AddNewProductBankElement()
+        {
+            return View("Products", new ProductBank());
         }
     }
 }
