@@ -16,7 +16,7 @@
     if (Model.Products != null && Model.Products.Count > 0)
     {
         int j = 0;
-        <table id="tbProduct" border="0">
+        <table id="tbElements" border="0">
             <tr>
                 <th>Назва продукту</th>
                 <th>Cтавка, %</th>
@@ -29,7 +29,7 @@
                 <tr>
                     <td>
                         @{
-                            var a = new IPOTEKA.UA.Repostory.MyDbContext();
+                var a = new IPOTEKA.UA.Repostory.MyDbContext();
                         }
                         @Html.DisplayFor(model => a.Products.Find(model.Products[j].RelProduc).Name)
                     </td>
@@ -46,12 +46,12 @@
                         @Html.DisplayFor(model => model.Products[j].MaxTermCred)
                     </td>
                 </tr>
-                                j++;
-                            }
+                j++;
+            }
         </table>
-                            }
-                            <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
-                                <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
-                                <input id="save" type="submit" name="button" value="Редагувати" class="btn Add" />
-                            </div>
-                            }
+    }
+    <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
+        <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
+        <input id="save" type="submit" name="button" value="Редагувати" class="btn Edit" />
+    </div>
+}

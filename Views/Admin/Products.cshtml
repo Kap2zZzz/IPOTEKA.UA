@@ -1,8 +1,9 @@
 ﻿@model IPOTEKA.UA.Models.ProductBank
+
 <tr>
     @using (Html.BeginCollectionItem("Products"))
     {
-
+        @Html.HiddenFor(model => model.ProductBankID)
         <td>
             @{
         var a = new IPOTEKA.UA.Repostory.MyDbContext();
@@ -23,7 +24,7 @@
             @Html.TextBoxFor(model => model.MaxTermCred)
         </td>
         <td>
-            <input type="button" value="-" style="" id="Remove" />
+            <button type="button" id="Remove"><i class="fa fa-remove" style="color:#e43b3b"></i></button>
         </td>
     }
 </tr>

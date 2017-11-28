@@ -4,6 +4,8 @@
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <link href="~/Content/Forms.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 @{
     int j = 0;
 }
@@ -20,7 +22,7 @@
 
     <p><b>Продукти Банку</b></p>
 
-    <table id="tbProduct" border="0">
+    <table id="tbElements" border="0">
         <tr>
             <th>Назва продукту</th>
             <th width="15%">% ставка</th>
@@ -33,45 +35,18 @@
             foreach (IPOTEKA.UA.Models.ProductBank b in Model.Products)
             {
                 Html.RenderPartial("Products", b);
-
-                @*<tr>
-                        @Html.Label(@j.ToString())
-                        <td>
-                            @Html.DropDownListFor(model => model.Products[j].RelProduc, new SelectList(ViewBag.dicProducts, "ProductID", "Name"), "Тип продукту")
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model.Products[j].Rate)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model.Products[j].Commission)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model.Products[j].MaxSumCred)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model.Products[j].MaxTermCred)
-                        </td>
-                        <td>
-                            @Html.ActionLink("видалити", "CreateBank", new { TempId = j })
-                            <input type="submit" name="button" value="-" style="" id="delete2" />
-                            <input type="button" name="button" value="del" style="" id="delete" />
-
-                        </td>
-                    </tr>*@
                 j++;
             }
         }
     </table>
 
     <p style="margin: 0; margin-top: 10px">
-        @*@Html.ActionLink("+", "BlankEditorRow", null, new { id = "addItem" })*@
-        <input type="button" value="+" id="addProductBank" />
-        @*<input type="submit" name="button" value="+" @ />*@
+        <button type="button" id="addProductBank"><i class="fa fa-plus" style="color:#00a569"></i></button>
     </p>
 
     <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
         <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
-        <input id="save" type="submit" name="button" value="Зберегти" class="btn Add" />
+        <input id="save" type="submit" name="button" value="Зберегти" class="btn Ok" />
     </div>
 
 }
@@ -83,12 +58,12 @@
         $.ajax({
             url: '@Url.Action("AddNewProductBankElement", "Admin")',
             cache: false,
-            success: function (html) { $("#tbProduct").append(html); }
+            success: function (html) { $("#tbElements").append(html); }
         });
         return false;
     })
 
-    $('#tbProduct').on('click', '#Remove', function () {
+    $('#tbElements').on('click', '#Remove', function () {
         $(this).parents("tr:first").remove();
         return false;
     })

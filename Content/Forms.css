@@ -4,7 +4,7 @@
     padding: 10px;
 }
 
-#tbProduct {
+#tbElements {
     border-collapse: collapse;
     /*white-space:nowrap;*/
     border-spacing: 0;
@@ -17,48 +17,46 @@
     font-family: Tahoma;
 }
 
-    #tbProduct input[type="text"],
-    #tbProduct select {
+    #tbElements input[type="text"],
+    #tbElements select {
         /*margin: 5px auto;*/
         padding: 8px;
         width: 80%;
     }
 
-    #tbProduct select {
+    #tbElements select {
         width: -webkit-fill-available;
     }
 
-    #tbProduct th {
+    #tbElements th {
         font-family: Tahoma;
         /*font-weight: 300;*/
         padding-top: 11px;
         font-size: 12px;
         padding-bottom: 11px;
-        background-color: #66a6c1;
-        color: white;
         cursor: auto;
         padding-left: 10px;
         text-align: center;
     }
 
-    #tbProduct th, #tbProduct td {
+    #tbElements th, #tbElements td {
         border: 1px solid #ddd;
         padding: 8px;
     }
 
-    #tbProduct tr {
+    #tbElements tr {
         background: #eeeeee;
     }
 
-        #tbProduct tr:nth-child(even) {
+        #tbElements tr:nth-child(even) {
             background-color: #f5f5f5;
         }
 
-    #tbProduct td {
+    #tbElements td {
         text-align: center;
     }
 
-        #tbProduct td:first-child {
+        #tbElements td:first-child {
             /*text-align: left;*/
         }
 
@@ -72,26 +70,88 @@
     font-size: 0.7em;
 }
 
-    .btn.Add {
+    .btn.Ok {
         background-color: #00a569;
     }
 
-        .btn.Add:hover {
+        .btn.Ok:hover {
             background-color: #00c47d;
         }
 
     .btn.Back {
-        background-color: #d5d5d5;
+        background-color: #bfbfbf;
     }
 
         .btn.Back:hover {
-            background-color: #bfbfbf;
+            background-color: #cacaca;
         }
 
     .btn.Delete {
-        background-color: #c23232;
+        background-color: #e43b3b;
     }
 
         .btn.Delete:hover {
-            background-color: #e43b3b;
+            background-color: #e24343;
         }
+
+    .btn.Edit {
+        background-color: #ff8d00;
+    }
+
+        .btn.Edit:hover {
+            background-color: #fe9515;
+        }
+
+/*-------------------- Закладки TABS --------------------*/
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin: 0px 40px;
+    width: 730px;
+}
+
+    /* Style the buttons inside the tab */
+    div.tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+
+.tabcontent {
+    display: none;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-top: none;
+    margin: 0px 40px;
+    width: 700px;
+    margin-bottom: 20px;
+}
+/*-------------------- Закладки TABS --------------------*/
+
+/*-------------------- DIV LoginInfo --------------------*/
+#divLoginInfo {
+    font-family: serif;
+    width: 60%;
+    margin-left: 40px;
+    line-height: 1.5;
+}
+
+    #divLoginInfo label {
+        margin: 0;
+    }
+/*-------------------- DIV LoginInfo --------------------*/

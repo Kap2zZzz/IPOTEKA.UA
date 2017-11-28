@@ -5,6 +5,8 @@
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <link href="~/Content/Forms.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 @{
     int j = 0;
 }
@@ -22,20 +24,19 @@
 
     <p><b>Продукти Банку</b></p>
 
-    <table id="tbProduct" border="0">
+    <table id="tbElements" border="0">
         <tr>
             <th>Назва продукту</th>
             <th width="15%">% ставка</th>
             <th width="15%">Комісія, %</th>
             <th>Макс. сума кредиту, грн.</th>
-            <th>Макс. термі кредитування, міс.</th>
+            <th colspan="2">Макс. термі кредитування, міс.</th>
         </tr>
         @if (Model.Products != null && Model.Products.Count > 0)
         {
 
             foreach (IPOTEKA.UA.Models.ProductBank b in Model.Products)
             {
-                @Html.HiddenFor(model => model.Products[j].ProductBankID)
                 Html.RenderPartial("Products", b);
                 j++;
             }
@@ -43,12 +44,12 @@
     </table>
 
     <p style="margin: 0; margin-top: 10px">
-        <input type="button" value="+" id="addProductBank" />
+        <button type="button" id="addProductBank"><i class="fa fa-plus" style="color:#00a569"></i></button>
     </p>
 
     <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
         <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
-        <input id="save" type="submit" name="button" value="Зберегти" class="btn Add" />
+        <input id="save" type="submit" name="button" value="Зберегти" class="btn Ok" />
     </div>
 }
 
@@ -57,12 +58,12 @@
         $.ajax({
             url: '@Url.Action("AddNewProductBankElement", "Admin")',
             cache: false,
-            success: function (html) { $("#tbProduct").append(html); }
+            success: function (html) { $("#tbElements").append(html); }
         });
         return false;
     })
 
-    $('#tbProduct').on('click', '#Remove', function () {
+    $('#tbElements').on('click', '#Remove', function () {
         $(this).parents("tr:first").remove();
         return false;
     })

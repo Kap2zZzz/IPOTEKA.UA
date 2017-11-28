@@ -3,32 +3,33 @@
     Layout = "~/Views/_BasicLayout.cshtml";
     ViewBag.Title = "Дані користувача";
 }
-<link href="~/Content/Admin.css" rel="stylesheet" />
+@*<link href="~/Content/Admin.css" rel="stylesheet" />*@
+<link href="~/Content/Forms.css" rel="stylesheet" />
 
-<div style="width:60%; margin-left:20px">
-    <p style="margin:0px;">
-        <label>
-            Вітаю: <span>@ViewBag.PIB</span>
-        </label>
-    </p>
-    <p style="margin:0px;">
-        <label>
-            Роль: <span>@ViewBag.Role</span>
-        </label>
-    </p>
-    <p style="margin:0px; margin-left: 20px;">
-        @Html.ActionLink("[Вихід]", "Exit", "Admin", null, new { style = "text-decoration: none;" })
-    </p>
-</div>
+@*<div id="divLoginInfo">
+        <div>
+            <label>
+                Вітаю: <span>@ViewBag.PIB</span>
+            </label>
+        </div>
+        <div>
+            <label>
+                Роль: <span>@ViewBag.Role</span>
+            </label>
+        </div>
+        <div>
+            @Html.ActionLink("[Вихід]", "Exit", "Admin", null, new { style = "text-decoration: none;" })
+        </div>
+    </div>*@
+<div style="width: 350px; margin:auto">
+    @using (Html.BeginForm("PreviewUser", "Admin", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.UserId)
 
-@using (Html.BeginForm("PreviewUser", "Admin", FormMethod.Post))
-{
-    @Html.HiddenFor(model => model.UserId)
-    <div class="form-login" style="min-width:500px;">
-        <table class="tb-result">
+        <table id="tbElements">
             <tr>
-                <th colspan="3">
-                    Створення нового користувача
+                <th colspan="2">
+                    Дані користувача
                 </th>
             </tr>
             <tr>
@@ -52,7 +53,7 @@
                     @Html.DisplayNameFor(model => model.Password)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.Password, new { placeholder = @Html.DisplayNameFor(m => m.Password) })
+                    **********
                 </td>
             </tr>
             <tr>
@@ -74,8 +75,10 @@
         </table>
         <div style="text-align:right; clear:both; margin:auto; margin-bottom:20px;">
             <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
-            <input id="save" type="submit" name="button" value="Редагувати" class="btn Add" />
+            <input id="save" type="submit" name="button" value="Редагувати" class="btn Edit" />
         </div>
-    </div>
+    }
+</div>
 
-}
+
+

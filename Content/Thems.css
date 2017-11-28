@@ -7,7 +7,7 @@
     background: aliceblue;
 }
 
-#header, #footer, .dropdown-content, .div-param-h, #Proposition th, .slider, #Schedule th {
+#header, #footer, .dropdown-content, .div-param-h, #Proposition th, .slider, #Schedule th, #tbElements th {
     /*background-color: #a0bfcb;*/
     background-color: var(--main-bg-color);
 }
@@ -41,7 +41,7 @@ li a:hover, .dropdown:hover .dropbtn, .main-menu a:hover {
     /*color: white;*/
 }
 
-h2, .main-menu a, .div-param-h, .div-param, #footer a, #Proposition th {
+h2, .main-menu a, .div-param-h, .div-param, #footer a, #Proposition th, #tbElements th {
     color: #ffffff;
 }
 
