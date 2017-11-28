@@ -5,7 +5,7 @@
 {
     <div>
         <div>
-            @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Value", "Value"), "Тип продукту"@*, new { @class = "unselected" }*@)
+            @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Name", "Name"), "Тип продукту"@*, new { @class = "unselected" }*@)
             <div>
                 @Html.ValidationMessageFor(model => model.ProductType)
             </div>

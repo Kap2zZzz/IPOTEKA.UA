@@ -25,6 +25,20 @@
         cursor: pointer; /* Cursor on hover */
     }
 
+    .slider::-ms-thumb {
+        width: 25px; /* Set a specific slider handle width */
+        height: 45px; /* Slider handle height */
+        cursor: pointer; /* Cursor on hover */
+    }
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
 .td_schedule {
     /*border: 1px solid #A0BFCB;*/
     /*color: #7BB2DD;*/

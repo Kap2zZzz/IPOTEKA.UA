@@ -28,7 +28,7 @@ namespace IPOTEKA.UA.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int Termin, decimal CreditSum, int? ProductType, string Schema, Application a)
+        public ActionResult Index(int Termin, decimal CreditSum, string ProductType, string Schema, Application a)
         {
             ViewBag.Page = "Ipoteka";
 
@@ -38,7 +38,7 @@ namespace IPOTEKA.UA.Controllers
 
             if (buttonValue == "Переглянути пропозиції")
             {
-                if ((ProductType == null) || (ProductType <= 0))
+                if ((ProductType == null) || (ProductType == string.Empty))
                 {
                     ModelState.AddModelError("ProductType", "Поле [Продукт] не вибрано!");
                     return View(a);
@@ -51,7 +51,7 @@ namespace IPOTEKA.UA.Controllers
 
                     foreach (Bank b in banks)
                     {
-                        foreach (ProductBank p in b.Products.Where(x => x.RelProduc == ProductType))
+                        foreach (ProductBank p in b.Products.Where(x => _db.Products.Find(x.RelProduc).Name == ProductType))
                         {
                             IpotekaData temp = new IpotekaData();
                             temp.Bank = b.Name;

@@ -80,7 +80,7 @@ body {
     text-transform: uppercase;
     padding: 0px 12px;
     padding-top: 20px;
-    padding-bottom: 14px;
+    padding-bottom: 15px;
     text-decoration: none;
 }
 
@@ -595,7 +595,7 @@ span {
     }
 
     .main-menu a {
-        padding-bottom: 20px;
+        padding-bottom: 21px;
     }
 
     .main-menu .active a {

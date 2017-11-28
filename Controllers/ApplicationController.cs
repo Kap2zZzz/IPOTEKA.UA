@@ -27,7 +27,7 @@ namespace IPOTEKA.UA.Controllers
                 model = temp;
             }
             ViewBag.Page = "Application";
-            ViewBag.dicProducts = MainHelp.dicProducts();
+            ViewBag.dicProducts = _db.Products.ToList();
             ViewBag.dicSchems = MainHelp.dicSchems();
             TempData["Step"] = 1;
             return View(model);

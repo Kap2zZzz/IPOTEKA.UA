@@ -13,28 +13,23 @@ namespace IPOTEKA.UA.Code
     {
         public static void Send(Application a)
         {
-            var fromAddress = new MailAddress("yurij.muzyka@gmail.com", "IPOTEKA-UA"); //mail, Опис відправника
+            var fromAddress = new MailAddress("info@ipoteka-ua.com", "IPOTEKA-UA"); //mail, Опис відправника
             var toAddress = new MailAddress("yurij.muzyka@gmail.com", "Юрій Музика");
-            const string fromPassword = "Fatal1ty";
-            const string subject = "Нова заявка з IPOTEKA-UA"; //Тема листа
+            string Login = "u85472";
+            string Password = "58a7cd47";
+            
+            const string subject = "Нова заявка [IPOTEKA-UA]"; //Тема листа
             string body = Body(a); //Тіло листа
             var smtp = new SmtpClient
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                Host = "smtp-5.1gb.ua",
+                Credentials = new NetworkCredential(Login, Password)
             };
 
             var message = new MailMessage(fromAddress, toAddress);
             //message.To.Add(new MailAddress("pilip.volodimir@gmail.com", "Володимир Пилип"));
             //message.To.Add(new MailAddress("krysa.myroslav@gmail.com", "Мирослав Криса"));
             //message.To.Add(new MailAddress("max.fedonyuk @gmail.com", "Max Fedonyuk"));
-
-            //message.To.Add(toAddress);
-            //message.To.Add(toAddress);
 
             using (var ms = new MemoryStream(a.XmlData))
             {

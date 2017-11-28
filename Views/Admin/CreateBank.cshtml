@@ -1,5 +1,4 @@
 ﻿@model IPOTEKA.UA.Models.Bank
-<script src="~/Scripts/jquery-3.2.1.min.js"></script>
 @{
     ViewBag.Title = "Банк";
     Layout = "~/Views/_BasicLayout.cshtml";
@@ -88,16 +87,6 @@
         });
         return false;
     })
-
-    //$("#addItem").click(function () {
-    //    alert(this.href);
-    //    $.ajax({
-    //        url: this.href,
-    //        cache: false,
-    //        success: function (html) { $("#tbProduct").append(html); }
-    //    });
-    //    return false;
-    //});
 
     $('#tbProduct').on('click', '#Remove', function () {
         $(this).parents("tr:first").remove();
