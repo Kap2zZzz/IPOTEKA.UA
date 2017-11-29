@@ -4,6 +4,41 @@
     padding: 10px;
 }
 
+/*-------------------- Форма логування START --------------------*/
+#FormLogin {
+    width: 250px;
+    margin: 20px auto;
+}
+
+    #FormLogin input[type="text"],
+    #FormLogin input[type=password] {
+        width: 92%;
+        padding: 8px;
+    }
+
+    #FormLogin input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        vertical-align: top;
+    }
+
+    #FormLogin a {
+        font-size: 16px;
+        vertical-align: middle;
+    }
+
+    #FormLogin span {
+        font-family: serif;
+    }
+
+#MessageError {
+    margin-left: 10px;
+}
+
+/*-------------------- Форма логування FINISH -------------------*/
+
+
+/*-------------------- Таблиця START ----------------------------*/
 #tbElements {
     border-collapse: collapse;
     /*white-space:nowrap;*/
@@ -59,6 +94,10 @@
         #tbElements td:first-child {
             /*text-align: left;*/
         }
+/*-------------------- Таблиця FINISH -----------------------*/
+
+
+/*-------------------- Кнопки START -------------------------*/
 
 .btn {
     border: none;
@@ -101,8 +140,10 @@
         .btn.Edit:hover {
             background-color: #fe9515;
         }
+/*-------------------- Кнопки FINISH ------------------------*/
 
-/*-------------------- Закладки TABS --------------------*/
+
+/*-------------------- Закладки TABS START ------------------*/
 div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -141,9 +182,10 @@ div.tab {
     width: 700px;
     margin-bottom: 20px;
 }
-/*-------------------- Закладки TABS --------------------*/
+/*-------------------- Закладки TABS FINISH -----------------*/
 
-/*-------------------- DIV LoginInfo --------------------*/
+
+/*-------------------- DIV LoginInfo START ------------------*/
 #divLoginInfo {
     font-family: serif;
     width: 60%;
@@ -154,4 +196,4 @@ div.tab {
     #divLoginInfo label {
         margin: 0;
     }
-/*-------------------- DIV LoginInfo --------------------*/
+/*-------------------- DIV LoginInfo FINISH -----------------*/

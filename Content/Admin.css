@@ -1,44 +1,11 @@
-﻿.form-login {
-    width: 250px;
-    margin: 20px auto;
-}
-
-    .form-login input[type="text"],
-    .form-login input[type=password], select {
-        /*width: -webkit-fill-available;*/
-        width: 92%;
-        /*margin: 5px auto;*/
-        padding: 8px;
-    }
-
-    .form-login input[type="checkbox"] {
-        width: 15px;
-        height: 15px;
-    }
-
-    .form-login input[type=submit] {
-        border: none;
-        padding: 8px 15px 8px 15px;
-        color: #fff;
-        -webkit-border-radius: 3px;
-        cursor: pointer;
-        text-transform: uppercase;
-        font-size: 0.7em;
-        /*margin: 5px;
-        background: #66a6c1;*/
-    }
-
-/*.form-login input[type=submit]:hover {
-            background-color: #0078b5;
-        }*/
-
-#Validation {
+﻿
+/*#Validation {
     font-size: 1.0em;
 }
 
 .field-validation-error {
     margin-left: 5px;
     font-size: 1.0em;
-}
+}*/
 
 /* Style the tab content */

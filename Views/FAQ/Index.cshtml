@@ -1,8 +1,7 @@
 ﻿@{
-    ViewBag.Title = "Поширені питання";
+    ViewBag.Title = "Поширені питання | Ipoteka-ua.com";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
-
 
 <div style="width:90%; margin:auto; padding:10px;">
     <div>
@@ -72,6 +71,11 @@
 
 <script>
     var acc = document.getElementsByClassName("accordion");
+    var p = document.getElementsByClassName("panel");
+    for (i = 0; i < p.length; i++) {
+        p[i].style.border = "none";
+    }
+    
     var i;
     //alert(acc.length);
     for (i = 0; i < acc.length; i++) {
@@ -80,8 +84,10 @@
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
+                panel.style.border = "none";
             } else {
                 panel.style.maxHeight = panel.scrollHeight + "px";
+                panel.style.border = null;
             }
         }
     }

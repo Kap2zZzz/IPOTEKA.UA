@@ -7,7 +7,7 @@
     background: aliceblue;
 }
 
-#header, #footer, .dropdown-content, .div-param-h, #Proposition th, .slider, #Schedule th, #tbElements th {
+#header, #footer, .dropdown-content, .div-param-h, #Proposition th, .slider, #Schedule th, #tbElements th, button.accordion {
     /*background-color: #a0bfcb;*/
     background-color: var(--main-bg-color);
 }
@@ -17,7 +17,7 @@
     border-bottom: 2px solid var(--main-border-color);
 }
 
-.slider, .slider::-webkit-slider-thumb {
+.slider, .slider::-webkit-slider-thumb, div.panel {
     border: 2px solid var(--main-border-color);
 }
 
@@ -26,7 +26,7 @@
         /*border: 2px solid #6cb1cc;*/
     }
 
-li a:hover, .dropdown:hover .dropbtn, .main-menu a:hover {
+li a:hover, .dropdown:hover .dropbtn, .main-menu a:hover, button.accordion.active, button.accordion:hover {
     /*background: #90b0bd;*/
     background: var(--main-border-color) !important;
 }
@@ -41,7 +41,7 @@ li a:hover, .dropdown:hover .dropbtn, .main-menu a:hover {
     /*color: white;*/
 }
 
-h2, .main-menu a, .div-param-h, .div-param, #footer a, #Proposition th, #tbElements th {
+h2, .main-menu a, .div-param-h, .div-param, #footer a, #Proposition th, #tbElements th, button.accordion {
     color: #ffffff;
 }
 

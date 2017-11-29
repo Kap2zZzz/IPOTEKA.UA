@@ -1,47 +1,37 @@
 ﻿@model IPOTEKA.UA.Models.User
 @{
-    ViewBag.Title = "Авторизація";
+    ViewBag.Title = "Авторизація | Ipoteka-ua.com";
     Layout = "~/Views/_BasicLayout.cshtml";
 
 }
-<link href="~/Content/Admin.css" rel="stylesheet" />
 
-@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-login" }))
+<link href="~/Content/Forms.css" rel="stylesheet" />
+
+@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @Id = "FormLogin" }))
 {
     <div>
         <div style="margin: 5px auto;">
             @Html.TextBoxFor(model => model.Login, new { placeholder = @Html.DisplayNameFor(m => m.Login) })
-            <div>
+            <div id="MessageError">
                 @Html.ValidationMessageFor(model => model.Login, null, new {@id = "Validation" })
             </div>
         </div>
 
         <div style="margin: 5px auto;">
             @Html.PasswordFor(model => model.Password, new { placeholder = @Html.DisplayNameFor(m => m.Password) })
-            <div>
+            <div id="MessageError">
                 @Html.ValidationMessageFor(model => model.Password, null, new { @id = "Validation" })
             </div>
         </div>
 
         <div style="margin: 5px auto;">
-            @Html.CheckBoxFor(model => model.Remember) <a>Запамятати мене</a>  @*@Html.DisplayNameFor(model => model.Remember)*@
+            @Html.CheckBoxFor(model => model.Remember) <a>Запам'ятати мене</a>  @*@Html.DisplayNameFor(model => model.Remember)*@
         </div>
     </div>
-
-
+  
     <div style="text-align:right;">
-        <input type="submit" class="btn Add" value="Увійти" />
+        <input type="submit" class="btn Ok" value="Увійти" style="width:100%" />
     </div>
-
-    @*<div>
-            <a>Login: agent</a>
-            <a>Password: agent</a>
-        </div>*@
-
-    @*<div>
-            <a>Login: admin</a>
-            <a>Password: admin</a>
-        </div>*@
 }
 
 

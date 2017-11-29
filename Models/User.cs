@@ -15,23 +15,23 @@ namespace IPOTEKA.UA.Models
         [Display(Name = "Дата реєстрації")]
         public DateTime CreateDateTime { get; set; }
 
-        [Required(ErrorMessage = "Поле обовязкове для заповнення!")]
+        [Required(ErrorMessage = "Поле обов'язкове для заповнення!")]
         [Display(Name = "Прізвище, Імя, По-батькові")]
         public string PIB { get; set; }
 
-        [Required(ErrorMessage = "Поле обовязкове для заповнення!")]
+        [Required(ErrorMessage = "Поле обов'язкове для заповнення!")]
         [Display(Name = "Логін")]
         public string Login { get; set; }
 
-        [Required(ErrorMessage = "Поле обовязкове для заповнення!")]
+        [Required(ErrorMessage = "Поле обов'язкове для заповнення!")]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Поле обовязкове для заповнення!")]
+        [Required(ErrorMessage = "Поле обов'язкове для заповнення!")]
         [Display(Name = "Роль")]
         public string Role { get; set; }
 
-        [Required(ErrorMessage = "Поле обовязкове для заповнення!")]
+        [Required(ErrorMessage = "Поле обов'язкове для заповнення!")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 

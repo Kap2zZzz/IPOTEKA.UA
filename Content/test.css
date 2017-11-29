@@ -58,37 +58,40 @@
     .form-style-8 textarea,
     .form-style-8 select {
         box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        outline: none;
-        display: block;
+        /*-webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;*/
+        /*outline: none;*/
+        /*display: block;*/
         width: 100%;
-        padding: 7px;
+        padding-left: 15px;
         border: none;
         /*border-bottom: 1px solid #ddd;*/
-        border-bottom: 1px solid #a0bfcb;
-        background: transparent;
+        /*border-bottom: 1px solid #a0bfcb;*/
+        background: #4a4a4a;
         margin-bottom: 10px;
         /*font: 18px 'Circe';*/
         /*font: 18px Arial;*/
-        font: 18px Tahoma;
-        height: 45px;
-        color: #2679b9;
+        font: 22px Tahoma;
+        /*border-radius: 8px;*/
+        height: 50px;
+        color: #FFFFFF;
     }
 
 input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
-    border-bottom: 2px solid #004ba9;
+    /*border-bottom: 2px solid #004ba9;*/
+    border: 3px solid #ff5e00;
 }
 
 .form-style-8 textarea {
     resize: none;
     overflow: hidden;
-    color: #2679b9;
+    /*color: #2679b9;*/
 }
 
     .form-style-8 textarea::-webkit-input-placeholder {
         /*color: rgba(38, 121, 185, 0.45);*/
-        color: #808080;
+        /*color: #808080;*/
+        color: #a9a9a9;
     }
 
 .form-style-8 input[type="button"],
@@ -137,30 +140,34 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:foc
 /*input::placeholder {
     color:green;
 }*/
-.form-style-8 input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.form-style-8 input[type="text"]::-webkit-input-placeholder,
+.form-style-8 input[type="number"]::-webkit-input-placeholder,
+.form-style-8 select:valid { /* Chrome/Opera/Safari */
     /*color: rgba(38, 121, 185, 0.45);*/
-    color: #808080;
+    color: #a9a9a9;
+    color: #ff5e00;
     /*color: lightgreen;*/
 }
 
 select {
-    color: #2679b9;
+    color: #FFFFFF;
 }
 
     select.unselected:first-child {
         /*color: rgba(38, 121, 185, 0.45);*/
-        color: #808080;
+        color: #a9a9a9;
     }
 
     select option:first-child {
         /*display: none;*/
         /*color: rgba(38, 121, 185, 0.45);*/
-        color: #808080;
+        color: #a9a9a9;
     }
 
     select option {
         /*display: none;*/
-        color: #2679b9;
+        /*border: 2px solid #ff5e00;*/
+        color: #FFFFFF;
     }
 
 .input-validation-error {
