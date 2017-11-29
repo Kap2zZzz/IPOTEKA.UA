@@ -7,9 +7,10 @@
     background: aliceblue;
 }
 
-#header, #footer, .dropdown-content, .div-param-h, #Proposition th, .slider, #Schedule th, #tbElements th, button.accordion {
+#header, #footer, .dropdown-content, .div-param-h, #Proposition th, .slider, #Schedule th, #tbElements th, button.accordion, 
+div.tab button.active {
     /*background-color: #a0bfcb;*/
-    background-color: var(--main-bg-color);
+    background-color: var(--main-bg-color) !important;
 }
 
 .calc, #Proposition td {
@@ -29,6 +30,7 @@
 li a:hover, .dropdown:hover .dropbtn, .main-menu a:hover, button.accordion.active, button.accordion:hover {
     /*background: #90b0bd;*/
     background: var(--main-border-color) !important;
+    transition: 0.4s;
 }
 
 #footer a:hover {
@@ -41,7 +43,7 @@ li a:hover, .dropdown:hover .dropbtn, .main-menu a:hover, button.accordion.activ
     /*color: white;*/
 }
 
-h2, .main-menu a, .div-param-h, .div-param, #footer a, #Proposition th, #tbElements th, button.accordion {
+h2, .main-menu a, .div-param-h, .div-param, #footer a, #Proposition th, #tbElements th, button.accordion, div.tab button.active {
     color: #ffffff;
 }
 
