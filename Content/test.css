@@ -145,7 +145,7 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:foc
 .form-style-8 select:valid { /* Chrome/Opera/Safari */
     /*color: rgba(38, 121, 185, 0.45);*/
     color: #a9a9a9;
-    color: #ff5e00;
+    /*color: #ff5e00;*/
     /*color: lightgreen;*/
 }
 
