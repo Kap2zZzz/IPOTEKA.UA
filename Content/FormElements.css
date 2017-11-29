@@ -44,7 +44,7 @@ textarea {
 }
 
     textarea::-webkit-input-placeholder {
-        color: #808080;
+        color: #a9a9a9;
     }
 
 input[type="button"],
@@ -68,11 +68,11 @@ input[type="submit"] {
 
 
 input[type="text"]::-webkit-input-placeholder {
-    color: #808080;
+    color: #a9a9a9;
 }
 
 .unselect {
-    color: #808080 !important;
+    color: #a9a9a9 !important;
 }
 
 select {
@@ -80,11 +80,11 @@ select {
 }
 
     select.unselected:first-child {
-        color: #808080;
+        color: #a9a9a9;
     }
 
     select option:first-child {
-        color: #808080;
+        color: #a9a9a9;
     }
 
     select option {

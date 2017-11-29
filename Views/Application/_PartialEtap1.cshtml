@@ -48,11 +48,21 @@
 <script>
 
     if (ProductType.value == "") {
-        ProductType.className = "unselect";
+        if (ProductType.className != "input-validation-error") {
+            ProductType.className = "unselect";
+        }
+        else {
+            ProductType.className = "input-validation-error";
+        }
     }
 
     if (Schema.value == "") {
-        Schema.className = "unselect";
+        if (Schema.className != "input-validation-error") {
+            Schema.className = "unselect";
+        }
+        else {
+            Schema.className = "input-validation-error";
+        }
     }
 
     $(document).ready(function () {
