@@ -1,6 +1,6 @@
 ﻿@model Tuple<List<IPOTEKA.UA.Models.Application>, List<IPOTEKA.UA.Models.User>, List<IPOTEKA.UA.Models.Bank>, List<IPOTEKA.UA.Models.Product>>
 @{
-    ViewBag.Title = "Кабінет Адміністратора | Ipoteka-ua.com";
+    ViewBag.Title = "Кабінет Адміністратора | IPOTEKA-UA";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
@@ -122,7 +122,7 @@
             <tr id="tr-res">
                 <td>@p.ProductID</td>
                 <td>@p.Name</td>
-                <td width="50px;">@Html.ActionLink("Видалити", "Delete", new { key = "Products", id = p.ProductID }) </td>
+                <td width="50px;">@Html.ActionLink("Видалити", "Delete", new { key = "Product", id = p.ProductID }) </td>
                 <td width="50px;">@Html.ActionLink("Редагувати", "EditBank", new { id = p.ProductID }) </td>
                 <td width="50px;">@Html.ActionLink("Переглянути", "PreviewBank", new { id = p.ProductID }) </td>
             </tr>

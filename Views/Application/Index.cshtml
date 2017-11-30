@@ -9,7 +9,6 @@
 <script type="text/javascript">
     jQuery(function ($) {
         $("#PhoneNumber").mask("+380(99)-999-99-99"),
-        //$("#IPN").css("font-family: 'Arial'"),
         $("#SmsCode").mask("999999"),
         $("#IPN").mask("9999999999");
     });
@@ -17,12 +16,8 @@
 <body>
 
     @{
-        ViewBag.Title = "Заявка | Ipoteka-ua.com";
+        ViewBag.Title = "Заявка | IPOTEKA-UA";
     }
-
-    @*<div style="text-align:center">
-            <h2>Заявка на іпотечний кредит в 3 кроки</h2>
-        </div>*@
 
     @Html.HiddenFor(x => Model.ApplicationId)
 
@@ -35,7 +30,7 @@
         {
             <div style="width:650px; margin:auto;">
                 <div id="step1" class="@(s >= 1 ? "step-select" : "step-unselect")">
-                    Крок 1 @*<b>&#10112;</b>*@
+                    Крок 1
                 </div>
                 <div id="step2" class="@(s >= 2 ? "step-select" : "step-unselect")">
                     Крок 2
