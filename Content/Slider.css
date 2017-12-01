@@ -130,6 +130,10 @@ input[type=range]::-ms-track {
         width: 100px;
     }
 
+    .calc.percent {
+        width: 40px;
+    }
+
 .switch {
     position: relative;
     display: inline-block;
