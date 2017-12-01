@@ -120,6 +120,9 @@ fieldTerm.oninput = function () {
 }
 
 fieldCreditSum.oninput = function () {
+    if (this.value.replace(/[ \d]/g, '').length == 1)
+        this.value = this.value.substr(0, this.value.length - 1);
+
     var n;
     if (this.value != '')
         n = parseInt((this.value).replace(/ /g, ''));

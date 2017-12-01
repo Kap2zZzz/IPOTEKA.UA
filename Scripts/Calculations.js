@@ -402,3 +402,8 @@ function CalculateEffectiveRate(SumaKredytu, Wytraty, DataRozrahunku, Schedule) 
     }
     return MaskDecimal(parseFloat((EffectiveRate * 100).toFixed(2)));
 }
+function BlockInt(InputObject, OutputObject) {
+    var AllButNumbers = /[ \d]/g;
+    if (InputObject.value.replace(AllNumbers, '').length == 1)
+        OutputObject.value = OutputObject.value.substr(0, OutputObject.value.length - 1);
+}
