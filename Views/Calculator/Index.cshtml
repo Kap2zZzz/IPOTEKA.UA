@@ -12,7 +12,7 @@
                 <td width="50%">
                     <div id="slidecontainer" style="margin:auto;">
                         <p>
-                            <label style="margin:auto;">Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> @*<span id="outputTermin"></span>*@ місяців</label>
+                            <label style="margin:auto;">Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> місяців</label>
                         </p>
                         <input type="range" min="12" max="240" value="60" step="1" class="slider" id="Termin" name="slider_Termin">
                     </div>
@@ -22,7 +22,7 @@
                     <div id="slidecontainer" style="margin:auto;">
 
                         <p>
-                            <label style="margin:auto;">Бажана сума кредиту: <input type="text" id="outputSuma" class="calc suma"> грн. @*<span class="price" id="outputSuma"></span>*@</label>
+                            <label style="margin:auto;">Бажана сума кредиту: <input type="text" id="outputSuma" class="calc suma"> грн.</label>
                         </p>
                         <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="Suma">
                     </div>
@@ -52,15 +52,15 @@
                                     <span id="SumaPlatezhiv"></span>
                                 </td>
                                 <td>
-                                    Комісія за видачу:
+                                    Номінальна ставка:
                                 </td>
                                 <td>
-                                    <span id="KomisiyaZaVydachu"></span>
+                                    <input type="text" id="NominalRate" class="calc percent" value="18,10"><span style ="margin-left:0px">%</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Сума процентів:
+                                    Переплата:
                                 </td>
                                 <td>
                                     <span id="SumaProcentiv"></span>
@@ -74,16 +74,15 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Страховий платіж:
+                                    Комісія за видачу:
                                 </td>
                                 <td>
-                                    <span id="Strahovka"></span>
+                                    <span style="margin-right:2px" id="KomisiyaZaVydachu"></span><input type="text" id="KomisiyaZaVydachuIn" class="calc percent" value="0,83"><span style="margin-left:2px" id="KomisiyaZaVydachuAfter"></span>
+                                <td>
+                                    Ефективна ставка:
                                 </td>
                                 <td>
-                                    Переплата (весь період):
-                                </td>
-                                <td>
-                                    <span id="RealRateFull"></span>
+                                    <span id="EffectiveRate"></span>
                                 </td>
                             </tr>
                         </table>
@@ -104,3 +103,4 @@
 
 
 <script src="~/Scripts/Calculations.js"></script>
+<script src="~/Scripts/Calculator.js"></script>

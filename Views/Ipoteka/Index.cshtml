@@ -1,5 +1,5 @@
 ﻿@model IPOTEKA.UA.Models.Application
-<link href="~/Content/FormElements.css" rel="stylesheet" />
+@*<link href="~/Content/FormElements.css" rel="stylesheet" />*@
 <link href="~/Content/Slider.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 <script src="~/Scripts/jquery.maskedinput.js"></script>
@@ -14,7 +14,7 @@
             <tr>
                 <td colspan="2">
                     <div style="width:90%; margin:auto; margin-top:10px">
-                        @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Name", "Name"), "Тип продукту")  @*new { @class = "unselected" }*@
+                        @Html.DropDownListFor(model => model.ProductType, new SelectList(ViewBag.dicProducts, "Name", "Name"), "Тип продукту")
                         <div>
                             @Html.ValidationMessageFor(model => model.ProductType)
                         </div>
@@ -26,138 +26,70 @@
                     <div id="slidecontainer" style="margin:auto">
                         <p>
                             <label style=" margin:auto;">
-                                Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> @*<span id="outputTermin"></span>*@ місяців
+                                Термін кредитування: <input type="number" id="fieldTerm" class="calc termin"> місяців
                             </label>
                         </p>
-                        <input type="range" min="12" max="240" value="@Model.Termin" step="1" class="slider" id="Termin" name="Termin">
+                        <input type="range" min="12" max="240" value="@Model.Termin" step="1" class="slider" id="sliderTerm" name="sliderTermin">
                     </div>
                 </td>
                 <td>
                     <div id="slidecontainer" style="margin:auto">
                         <p>
                             <label style=" margin:auto;">
-                                Бажана сума кредиту: <input type="number" id="outputSuma" class="calc suma"> грн. @*<span class="price" id="outputSuma"></span>*@
+                                Бажана сума кредиту: <input type="text" id="fieldCreditSum" class="calc suma"> грн.
                             </label>
                         </p>
-                        <input type="range" min="100000" max="3000000" value="@Model.CreditSum" step="1" class="slider" id="CreditSum" , name="CreditSum">
+                        <input type="range" min="100000" max="3000000" value="@Model.CreditSum" step="1" class="slider" id="sliderCreditSum" name="fieldCreditSum">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <div style="width:90%; margin:auto">
-                        <p style="font-weight: bold; font-size: 1.2em;">
-                            Схема погашення:<label>
-                                @Html.RadioButton("Schema", "Класична", true)
-                                Класична
-                            </label>
-                            <label>
-                                @Html.RadioButton("Schema", "Ануїтетна")
-                                Ануїтетна
-                            </label>
-                        </p>
-
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div style="text-align: left; margin-left: 5%; margin-bottom: 10px;">
-                        <input type="submit" name="button" id="ShowData" value="Переглянути пропозиції" style="display:block" />
+                    <div id="divParam">
+                        <table>
+                            <tr>
+                                <td>
+                                    Схема погашення:
+                                </td>
+                                <td>
+                                    <div>
+                                        <input id="annuity" type="radio" name="scheme" value="annuity" checked="checked"> Ануїтетна
+                                        <input id="classic" type="radio" name="scheme" value="classic"> Класична
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </td>
             </tr>
         </table>
 
-        if (ViewBag.Res != null)
-        {
-            <table id="Proposition" style="width:80%;" border="0" cellspacing="0" cellpadding="1">
-                <tr>
-                    <th>Банк</th>
-                    <th>Ставка, %</th>
-                    <th>Реальна ставка, %</th>
-                    <th>Ефективна ставка, %</th>
-                    <th>Комісія за видачу</th>
-                    <th>Місячний платіж</th>
-                </tr>
-                @if (ViewBag.Res.Count == 0)
-                {
-                    <tr>
-                        <td colspan="6">
-                            Пропозиції за продуктом <b>@Model.ProductType</b> відсутні. Спробуйте змінити продукт.
-                        </td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (IPOTEKA.UA.ViewModel.IpotekaData d in ViewBag.Res)
+        <div id="Result">
+            @{
+        IPOTEKA.UA.Repostory.MyDbContext m = new IPOTEKA.UA.Repostory.MyDbContext();
+        List<IPOTEKA.UA.Models.Bank> BankList = m.Banks.ToList();
+        List<IPOTEKA.UA.Models.Product> ProductList = m.Products.ToList();
+            }
+
+            @foreach (IPOTEKA.UA.Models.Bank b in BankList)
+            {
+                <fieldset hidden>
+                    <legend>@b.Name</legend>
+                    @foreach (IPOTEKA.UA.Models.ProductBank p in b.Products)
                     {
-                        <tr>
-                            <td>@d.Bank</td>
-                            <td>@d.Rate</td>
-                            <td>@d.RealRate</td>
-                            <td>@d.EffectiveRate</td>
-                            <td>@d.Commission</td>
-                            <td>@d.MMP</td>
-                        </tr>
+                        <label class=@b.Name.Replace(" ","")>@ProductList.Find(x => x.ProductID == p.RelProduct).Name</label>
+                        <label class=@b.Name.Replace(" ","")>@Convert.ToString(p.Rate).Replace(",", ".")</label>
+                        <label class=@b.Name.Replace(" ","")>@Convert.ToString(p.Commission).Replace(",", ".")</label>
+                        <label class=@b.Name.Replace(" ","")>@Convert.ToString(p.Commission).Replace(",", ".")</label>
+                        <label class=@b.Name.Replace(" ","")>@Convert.ToString(p.MaxSumCred).Replace(",", ".")</label>
+                        <label class=@b.Name.Replace(" ","")>@p.MinTermCred</label>
+                        <label class=@b.Name.Replace(" ","")>@p.MaxTermCred</label>
                     }
-                    <tr>
-                        <td colspan="2" style="border:none; padding-bottom:0px;">
-                            <div style="text-align:left;">
-                                <input type="submit" value="Подати заявку" name="button" />
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </table>
-        }
+                </fieldset>
+            }
+        </div>
     }
 </div>
 
-<script>
-
-    if (ProductType.value == "") {
-        ProductType.className = "unselect";
-    }
-
-    $(document).ready(function () {
-        $('select').on('change', function () { //attach event handler to select's change event.
-            //use a more specific selector
-            $(this).toggleClass('unselect', $(this).val() === "");
-            //ShowData.click();
-        });
-    });
-
-    outputTermin.value = Termin.value; // Display the default slider value
-    outputSuma.value = CreditSum.value; // Display the default slider value
-
-    Termin.oninput = function () {
-        outputTermin.value = this.value;
-        //ShowData.click();
-    }
-
-    CreditSum.oninput = function () {
-        outputSuma.value = this.value;
-        //ShowData.click();
-    }
-
-    outputTermin.onchange = function () {
-        Termin.value = (this).value;
-        Termin.oninput();
-        //ShowData.click();
-        //$(this).parents("form").submit();
-    }
-
-    outputSuma.onchange = function () {
-        CreditSum.value = (this).value;
-        CreditSum.oninput();
-        //ShowData.click();
-    }
-
-
-
-    //$('#IpotekaForm').submit(function (evt) {
-    //    evt.preventDefault();
-    //});
-
-</script>
+<script src="~/Scripts/Calculations.js"></script>
+<script src="~/Scripts/Ipoteka.js"></script>
