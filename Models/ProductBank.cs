@@ -26,10 +26,13 @@ namespace IPOTEKA.UA.Models
         [Display(Name = "Максимальна сума кредиту, грн")]
         public decimal MaxSumCred { get; set; }
 
+        [Display(Name = "Мінімальний термін кредитування")]
+        public int MinTermCred { get; set; }
+
         [Display(Name = "Максимальний термін кредитування")]
         public int MaxTermCred { get; set; }
 
         public virtual Bank RelBank { get; set; }
-        public Int32 RelProduc { get; set; }
+        public Int32 RelProduct { get; set; }
     }
 }

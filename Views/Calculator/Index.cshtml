@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Калькулятор | Ipoteka-ua.com";
+    ViewBag.Title = "Калькулятор";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <link href="~/Content/Slider.css" rel="stylesheet" />
@@ -12,7 +12,7 @@
                 <td width="50%">
                     <div id="slidecontainer" style="margin:auto;">
                         <p>
-                            <label style="margin:auto;">Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> @*<span id="outputTermin"></span>*@ місяців</label>
+                            <label style="margin:auto;">Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> місяців</label>
                         </p>
                         <input type="range" min="12" max="240" value="60" step="1" class="slider" id="Termin" name="slider_Termin">
                     </div>
@@ -22,7 +22,7 @@
                     <div id="slidecontainer" style="margin:auto;">
 
                         <p>
-                            <label style="margin:auto;">Бажана сума кредиту: <input type="text" id="outputSuma" class="calc suma"> грн. @*<span class="price" id="outputSuma"></span>*@</label>
+                            <label style="margin:auto;">Бажана сума кредиту: <input type="text" id="outputSuma" class="calc suma"> грн.</label>
                         </p>
                         <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="Suma">
                     </div>
@@ -104,3 +104,4 @@
 
 
 <script src="~/Scripts/Calculations.js"></script>
+<script src="~/Scripts/Calculator.js"></script>

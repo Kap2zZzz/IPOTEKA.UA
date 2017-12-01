@@ -125,7 +125,7 @@ function AnnuitySchedule(SumaKredytu, StrokKredytu, ListStawok, Komisiya) {
 
     var StawkaMax = 0;
     for (var k = 0; k < ListStawok.length; k++) {
-        StawkaMax = Math.max(StawkaMax, ListStawok[k].Stawka);
+        StawkaMax = Math.max(StawkaMax, ListStawok[k][0]);
     }
 
     if (IfIncreaseStrokKredytu(DataRozrahunku, DataPershogoPlatezhu))
@@ -154,17 +154,17 @@ function AnnuitySchedule(SumaKredytu, StrokKredytu, ListStawok, Komisiya) {
         var DataZminy = new Date(1900, 0);
         while (true) {
             Schedule.length += 1;
-            Schedule[i] = new Array(5);
-            DataZminy = AddMonths(DataRozrahunku, ListStawok[s].Period);
+            Schedule[i] = new Array(6);
+            DataZminy = AddMonths(DataRozrahunku, ListStawok[s][1]);
             var ChyZminaStawky = DataStart <= DataZminy && DataEnd > DataZminy && ListStawok.length > s + 1;
             //var Proc = 0;
             if (ChyZminaStawky) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataZminy)
-                    + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1].Stawka, DataZminy, DataEnd);
+                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataZminy)
+                    + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1][0], DataZminy, DataEnd);
                 s++;
             }
             else
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataEnd);
+                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataEnd);
 
             if (KinecObrahunku)
                 Schedule[i][2] = parseFloat(Schedule[i][2].toFixed(2));
@@ -184,7 +184,7 @@ function AnnuitySchedule(SumaKredytu, StrokKredytu, ListStawok, Komisiya) {
 
 
             Schedule[i][4] = OstatokKredytu - Schedule[i][3];
-            var OplataDateTime = DataEnd;
+            Schedule[i][5] = DataEnd;
             Schedule[i][0] = FormatDate(DataEnd, 1);
             DataStart = DataEnd;
             if (AddMonths(DataPershogoPlatezhu, (i + 1)) > DataOplatyKredytu)
@@ -287,42 +287,42 @@ function ClassicSchedule(SumaKredytu, StrokKredytu, ListStawok) {
             DataEndTilo = DataEnd;
 
         Schedule.length += 1;
-        Schedule[i] = new Array(5);
+        Schedule[i] = new Array(6);
 
-        DataZminy = AddMonths(DataRozrahunku, ListStawok[s].Period);
+        DataZminy = AddMonths(DataRozrahunku, ListStawok[s][1]);
         var ChyZminaStawky = DataStart < DataZminy && DataEnd > DataZminy && ListStawok.count > s + 1;
 
         if (DataEndTilo != DataEnd) {
 
             if (ChyZminaStawky && DataEndTilo > DataZminy) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataZminy)
-                    + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1].Stawka, DataZminy, DataEndTilo)
-                    + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s + 1].Stawka, DataEndTilo, DataEnd);
+                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataZminy)
+                    + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1][0], DataZminy, DataEndTilo)
+                    + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s + 1][0], DataEndTilo, DataEnd);
                 s++;
             }
             else if (ChyZminaStawky) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataZminy)
-                    + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s + 1].Stawka, DataZminy, DataEnd);
+                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataZminy)
+                    + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s + 1][0], DataZminy, DataEnd);
                 s++;
             }
             else if (ChyTiloZero) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataEnd);
+                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataEnd);
             }
 
             else {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataEndTilo)
-                    + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s].Stawka, DataEndTilo, DataEnd);
+                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataEndTilo)
+                    + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s][0], DataEndTilo, DataEnd);
             }
         }
         else {
 
             if (ChyZminaStawky) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataZminy)
-                    + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1].Stawka, DataZminy, DataEnd);
+                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataZminy)
+                    + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1][0], DataZminy, DataEnd);
                 s++;
             }
             else {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s].Stawka, DataStart, DataEnd);
+                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataEnd);
             }
 
         }
@@ -338,7 +338,7 @@ function ClassicSchedule(SumaKredytu, StrokKredytu, ListStawok) {
             Schedule[i][3] = OstatokKredytu;
 
         Schedule[i][4] = OstatokKredytu - Schedule[i][3];
-        var OplataDateTime = DataEnd;
+        Schedule[i][5] = DataEnd;
         Schedule[i][0] = FormatDate(DataEnd, 1);
         DataStart = DataEnd;
         if (AddMonths(DataPershogoPlatezhu, (i + 1)) > DataOplatyKredytu)
@@ -365,129 +365,40 @@ function ClassicSchedule(SumaKredytu, StrokKredytu, ListStawok) {
     }
     return Schedule;
 }
-function GenerateTable(Schedule) {
-    var result = "<table>";
-    result += "<tr>";
-    result += "<th>№</th>";
-    result += "<th>Дата оплати до</th>";
-    result += "<th>Платіж</th>";
-    result += "<th>Проценти</th>";
-    result += "<th>Погашення тіла</th>";
-    result += "<th>Залишок</th>";
-    result += "</tr>";
+function CalculateEffectiveRate(SumaKredytu, Wytraty, DataRozrahunku, Schedule) {
+    SumaKredytu = -1 * SumaKredytu + Wytraty;
+    var EffectiveRate = 0.15;
+    var Step = EffectiveRate;
+    var AmountFlow = new Array(1);
+    AmountFlow[0] = new Array(2);
+    AmountFlow[0][0] = DataRozrahunku;
+    AmountFlow[0][1] = SumaKredytu;
     for (var i = 0; i < Schedule.length - 1; i++) {
-        result += "<tr>";
-        result += "<td>" + (i + 1) + "</td>";
-        for (var j = 0; j < Schedule[i].length; j++) {
-            if (j >= 1)
-                result += "<td>" + MaskDecimal(Schedule[i][j]) + "</td>";
-            else
-                result += "<td>" + Schedule[i][j] + "</td>";
-        }
-        result += "</tr>";
+        AmountFlow.length += 1;
+        AmountFlow[i + 1] = new Array(2);
+        AmountFlow[i + 1][0] = Schedule[i][5];
+        AmountFlow[i + 1][1] = Schedule[i][1];
     }
-    result += "</table>";
-    return result;
-}
-function CalculateEffectiveRate() {
-
-}
-
-var ListStawok = new Array({ Stawka: 15.9, Period: 12 }, { Stawka: 17, Period: 1000 });
-var a;
-var ProcentStrahowky = 0.6;
-var ProcentKomisiyiZaVydachu = 0.99;
-
-outputTermin.value = MaskInt(Termin.value); // Display the default slider value
-outputSuma.value = MaskInt(Suma.value); // Display the default slider value
-
-var SumaStrahovky = parseFloat((parseFloat(Suma.value) * ProcentStrahowky / 100).toFixed(2));
-var SumaKomisiyiZaVydachu = parseFloat((parseFloat(Suma.value) * ProcentKomisiyiZaVydachu / 100).toFixed(2));
-a = AnnuitySchedule(parseFloat(Suma.value), parseInt(Termin.value), ListStawok, 0);
-SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
-SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
-Strahovka.innerHTML = MaskDecimal(SumaStrahovky);
-KomisiyaZaVydachu.innerHTML = MaskDecimal(SumaKomisiyiZaVydachu);
-Schedule.innerHTML = GenerateTable(a);
-var CalculatedRealRate = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 * 12 / (parseFloat(Suma.value) * parseFloat(Termin.value))).toFixed(2);
-RealRate.innerHTML = MaskDecimal(CalculatedRealRate) + "%";
-var CalculatedRealRateFull = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 / parseFloat(Suma.value)).toFixed(2);
-RealRateFull.innerHTML = MaskDecimal(CalculatedRealRateFull) + "%";
-
-outputTermin.onchange = function () {
-    Termin.value = (this).value;
-    Termin.oninput();
-}
-
-outputSuma.oninput = function () {
-    var n = parseFloat(this.value);
-    outputSuma.value = MaskInt(n);
-}
-
-outputSuma.onchange = function () {
-    Suma.value = (this).value;
-    Suma.oninput();
-}
-
-Termin.oninput = function () {
-    outputTermin.value = MaskInt(this.value);
-    if (classic.checked)
-        a = ClassicSchedule(parseFloat(Suma.value), parseInt(this.value), ListStawok);
-    else
-        a = AnnuitySchedule(parseFloat(Suma.value), parseInt(this.value), ListStawok, 0);
-
-    SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
-    SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
-    Schedule.innerHTML = GenerateTable(a);
-
-    CalculatedRealRate = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 * 12 / (parseFloat(Suma.value) * parseFloat(this.value))).toFixed(2);
-    RealRate.innerHTML = MaskDecimal(CalculatedRealRate) + "%";
-    CalculatedRealRateFull = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 / parseFloat(Suma.value)).toFixed(2);
-    RealRateFull.innerHTML = MaskDecimal(CalculatedRealRateFull) + "%";
-}
-
-Suma.oninput = function () {
-    outputSuma.value = MaskInt(this.value);
-    SumaStrahovky = parseFloat((parseFloat(this.value) * ProcentStrahowky / 100).toFixed(2));
-    SumaKomisiyiZaVydachu = parseFloat((parseFloat(this.value) * ProcentKomisiyiZaVydachu / 100).toFixed(2));
-
-    if (classic.checked)
-        a = ClassicSchedule(parseFloat(this.value), parseInt(Termin.value), ListStawok);
-    else
-        a = AnnuitySchedule(parseFloat(this.value), parseInt(Termin.value), ListStawok, 0);
-    SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
-    SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
-    Strahovka.innerHTML = MaskDecimal(SumaStrahovky);
-    KomisiyaZaVydachu.innerHTML = MaskDecimal(SumaKomisiyiZaVydachu);
-    Schedule.innerHTML = GenerateTable(a);
-
-    CalculatedRealRate = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 * 12 / (parseFloat(this.value) * parseFloat(Termin.value))).toFixed(2);
-    RealRate.innerHTML = MaskDecimal(CalculatedRealRate) + "%";
-    CalculatedRealRateFull = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 / parseFloat(this.value)).toFixed(2);
-    RealRateFull.innerHTML = MaskDecimal(CalculatedRealRateFull) + "%";
-}
-
-annuity.onchange = function () {
-    a = AnnuitySchedule(parseFloat(Suma.value), parseInt(Termin.value), ListStawok, 0);
-    SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
-    SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
-    Schedule.innerHTML = GenerateTable(a);
-
-    CalculatedRealRate = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 * 12 / (parseFloat(Suma.value) * parseFloat(Termin.value))).toFixed(2);
-    RealRate.innerHTML = MaskDecimal(CalculatedRealRate) + "%";
-    CalculatedRealRateFull = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 / parseFloat(Suma.value)).toFixed(2);
-    RealRateFull.innerHTML = MaskDecimal(CalculatedRealRateFull) + "%";
-}
-
-
-classic.onchange = function () {
-    a = ClassicSchedule(parseFloat(Suma.value), parseInt(Termin.value), ListStawok);
-    SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
-    SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]);
-    Schedule.innerHTML = GenerateTable(a);
-
-    CalculatedRealRate = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 * 12 / (parseFloat(Suma.value) * parseFloat(Termin.value))).toFixed(2);
-    RealRate.innerHTML = MaskDecimal(CalculatedRealRate) + "%";
-    CalculatedRealRateFull = parseFloat((a[a.length - 1][2] + SumaStrahovky + SumaKomisiyiZaVydachu) * 100 / parseFloat(Suma.value)).toFixed(2);
-    RealRateFull.innerHTML = MaskDecimal(CalculatedRealRateFull) + "%";
+    
+    while (true) {
+        var Drib = 0;
+        for (var i = 0; i < AmountFlow.length; i++) {
+            
+            var dd = TotalDays(DataRozrahunku, AmountFlow[i][0]);
+            var Platizh = AmountFlow[i][1];
+            Drib += Platizh / Math.pow(1 + EffectiveRate, parseFloat(dd / 365));
+        }
+        if (parseFloat(Drib.toFixed(1)) == 0)
+        {
+            break;
+        }
+        else if (Drib > 0){
+            EffectiveRate += Step;
+        }
+        else {
+            Step = Step / 2;
+            EffectiveRate -= Step;
+        }
+    }
+    return MaskDecimal(parseFloat((EffectiveRate * 100).toFixed(2)));
 }
