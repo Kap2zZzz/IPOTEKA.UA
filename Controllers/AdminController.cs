@@ -267,11 +267,17 @@ namespace IPOTEKA.UA.Controllers
         [HttpPost]
         public ActionResult CreateProduct(Product p)
         {
-            using (_db)
+            string buttonValue = Request["button"];
+
+            if (buttonValue == "Зберегти")
             {
-                _db.Products.Add(p);
-                _db.SaveChanges();
+                using (_db)
+                {
+                    _db.Products.Add(p);
+                    _db.SaveChanges();
+                }
             }
+
             return RedirectToAction("Index");
         }
         #endregion
@@ -316,6 +322,16 @@ namespace IPOTEKA.UA.Controllers
                     if (b != null)
                     {
                         _db.Banks.Remove(b);
+                        _db.SaveChanges();
+                    }
+                }
+
+                if (key == "Product")
+                {
+                    Product p = _db.Products.Find(id);
+                    if (p != null)
+                    {
+                        _db.Products.Remove(p);
                         _db.SaveChanges();
                     }
                 }

@@ -49,7 +49,7 @@ namespace IPOTEKA.UA.Controllers
             else
             {
 
-                ViewBag.dicProducts = MainHelp.dicProducts();
+                ViewBag.dicProducts = _db.Products.ToList();
                 ViewBag.dicSchems = MainHelp.dicSchems();
 
                 switch (s)

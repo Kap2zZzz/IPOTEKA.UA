@@ -28,7 +28,7 @@ select {
 
     input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
         /*dashed*/
-        border-bottom: 2px solid #004ba9;
+        border-bottom: 2px solid #ff6a00;
     }
 
 input[type="checkbox"], input[type="radio"] {
@@ -44,7 +44,7 @@ textarea {
 }
 
     textarea::-webkit-input-placeholder {
-        color: #808080;
+        color: #a9a9a9;
     }
 
 input[type="button"],
@@ -68,25 +68,25 @@ input[type="submit"] {
 
 
 input[type="text"]::-webkit-input-placeholder {
-    color: #808080;
+    color: #a9a9a9;
 }
 
 .unselect {
-    color: #808080 !important;
+    color: #a9a9a9 !important;
 }
 
 select {
-    color: #2679b9;
+    color: #4a4a4a;
 }
 
     select.unselected:first-child {
-        color: #808080;
+        color: #a9a9a9;
     }
 
     select option:first-child {
-        color: #808080;
+        color: #a9a9a9;
     }
 
     select option {
-        color: #2679b9;
+        color: #4a4a4a;
     }

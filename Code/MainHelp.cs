@@ -34,17 +34,17 @@ namespace IPOTEKA.UA.Code
             };
         }
 
-        public static Dictionary<int, string> dicProducts()
-        {
-            return new Dictionary<int, string>()
-            {
-                { 1, "Іпотечне кредитування. Первинний ринок"},
-                { 2, "Іпотечне кредитування. Вторинний ринок"},
-                { 3, "Поточні потреби"},
-                { 4, "Рефінансування"},
-                { 5, "Придбання земельних ділянок"}
-            };
-        }
+        //public static Dictionary<int, string> dicProducts()
+        //{
+        //    return new Dictionary<int, string>()
+        //    {
+        //        { 1, "Іпотечне кредитування. Первинний ринок"},
+        //        { 2, "Іпотечне кредитування. Вторинний ринок"},
+        //        { 3, "Поточні потреби"},
+        //        { 4, "Рефінансування"},
+        //        { 5, "Придбання земельних ділянок"}
+        //    };
+        //}
 
         public static List<KeyValuePair<string, string>> IsValidEtap2(Application lm)
         {
@@ -138,18 +138,5 @@ namespace IPOTEKA.UA.Code
             context.Dispose();
             return true;
         }
-
-        //public static string GetProductName(int id)
-        //{
-        //    MyDbContext _db = new MyDbContext();
-        //    _db.
-        //    return "";
-        //}
-
-        //public FileResult DownloadFile(LoanModel lm)
-        //{
-        //    return File();
-        //    //return File(bytes, contentType, fileName);
-        //}
     }
 }

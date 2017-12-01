@@ -12,7 +12,7 @@ button.accordion {
     text-align: left;
     border: none;
     outline: none;
-    transition: 0.4s;
+    /*transition: 0.4s;*/
     font-size: 1.125em; /*22/16*/
     font-family: Circe;
     /*text-transform:uppercase;*/

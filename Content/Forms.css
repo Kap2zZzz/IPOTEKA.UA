@@ -161,17 +161,21 @@ div.tab {
         cursor: pointer;
         padding: 14px 16px;
         transition: 0.3s;
+        min-width: 115px;
     }
 
         /* Change background color of buttons on hover */
         div.tab button:hover {
-            background-color: #ddd;
+            background-color: #d3d3d3;
+            /*color: white;*/
+            /*font-weight: bold;*/
+            /*border: 1px solid #fff;*/
         }
 
         /* Create an active/current tablink class */
-        div.tab button.active {
-            background-color: #ccc;
-        }
+        /*div.tab button.active {
+            font-weight: bold;
+        }*/
 
 .tabcontent {
     display: none;

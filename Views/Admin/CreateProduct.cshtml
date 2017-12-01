@@ -1,14 +1,20 @@
 ﻿@model IPOTEKA.UA.Models.Product
 @{
-    ViewBag.Title = "Продукт | Ipoteka-ua.com";
+    ViewBag.Title = "Продукт | IPOTEKA-UA";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
+<link href="~/Content/Forms.css" rel="stylesheet" />
 
-<h2>CreateProduct</h2>
-
-@using (Html.BeginForm())
-{
-    <p>Назва продукту:</p>
-    @Html.TextBoxFor(model => model.Name);
-    <input type="submit" value="Зберегти" />
-}
+<div style="width:390px; padding:20px">
+    @using (Html.BeginForm())
+    {
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name, new { placeholder = @Html.DisplayNameFor(m => m.Name) })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div style="text-align: right; margin: auto; margin-bottom: 20px; margin-top: 10px">
+            <input id="back" type="submit" name="button" value="Назад" class="btn Back" />
+            <input id="save" type="submit" name="button" value="Зберегти" class="btn Ok" />
+        </div>
+    }
+</div>

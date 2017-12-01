@@ -1,6 +1,6 @@
 ﻿@model IPOTEKA.UA.Models.Bank
 @{
-    ViewBag.Title = "Банк | Ipoteka-ua.com";
+    ViewBag.Title = "Банк | IPOTEKA-UA";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <link href="~/Content/Forms.css" rel="stylesheet" />
@@ -28,7 +28,7 @@
             <th width="15%">% ставка</th>
             <th width="15%">Комісія, %</th>
             <th>Макс. сума кредиту, грн.</th>
-            <th>Макс. термі кредитування, міс.</th>
+            <th colspan="2">Макс. термі кредитування, міс.</th>
         </tr>
         @if (Model.Products != null && Model.Products.Count > 0)
         {

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Про нас | Ipoteka-ua.com";
+    ViewBag.Title = "Про нас | IPOTEKA-UA";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -7,8 +7,53 @@
 
 <div>
     <div style="font-family:Tahoma" id="Info">
-        <h1><img src="~/Image/img_info.png" /> Інформація</h1>
+        <div id="Info2">
+
+            <h1><img src="~/Image/img_inquiry.png" /> Як це працює ?</h1>
+
+            <table border="0" style="text-align:center;">
+                <tr>
+                    <td width="30%">
+                        <a href="@Url.Action("Index","Ipoteka")">
+                            <div class="circle">1</div>
+                        </a>
+                    </td>
+                    <td width="30%">
+                        <a href="@Url.Action("Index","Application")">
+                            <div class="circle">2</div>
+                        </a>
+                    </td>
+                    <td width="30%">
+                        <div class="circle">3</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px; vertical-align: top">
+                        Оберіть Продукт, термін та суму.
+                        <br />Перегляньте пропозиції та @Html.ActionLink("подайте", "Index", "Application") заявку.
+                    </td>
+                    <td style="padding: 20px; vertical-align: top">
+                        Заповніть мінімум необхідної інформації.
+                    </td>
+                    <td style="padding: 20px; vertical-align: top">
+                        Очікуйте на дзвінок менеджера, який повідомить Вам деталі.
+                    </td>
+                </tr>
+            </table>
+
+            @*<p style="margin-left:-25px;"><b><i class="fa fa-vcard-o"></i> Персональні дані</b></p>*@
+
+            @*<p style="margin-left:-25px;"><b>Передача персональних даних третім сторонам</b></p>*@
+
+            @*<p style="margin-left:-25px;"><b> Мета збору та обробки персональних даних</b></p>*@
+
+        </div>
+
+
         <div id="Info1">
+
+            <h1><img src="~/Image/img_info.png" /> Інформація</h1>
+
             <table>
                 <tr>
                     <td>
@@ -42,8 +87,11 @@
                 </tr>
             </table>
         </div>
-        <h1><img src="~/Image/img_6.png" /> Конфіденційність</h1>
+
         <div id="Info2">
+
+            <h1><img src="~/Image/img_6.png" /> Конфіденційність</h1>
+
             <table>
                 <tr>
                     <td>
