@@ -29,18 +29,20 @@ body {
 }
 
 #header {
-    width: 90%;
+    width: 100%;
     min-height: 70px;
-    padding-left: 10%;
+    /*padding-left: 10%;*/
 }
 
 #body {
     width: 80%;
+    /*margin-left: 0;
+    margin-right: 0;*/
     padding-top: 15px;
     font-family: 'Circe';
     font-size: 0.667em; /*16px / 24px = 0.667*/
     padding-bottom: 170px;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
     #body label {
@@ -169,12 +171,12 @@ h3 {
             background: rgba(255, 148, 0, 0.95);
         }
 
-    .btn.blue {
-        background-color: rgba(0, 107, 255, 0.70);
+    .btn.grey {
+        background-color: #4a4a4a;
     }
 
-        .btn.blue:hover {
-            background: rgba(0, 107, 255, 0.95);
+        .btn.grey:hover {
+            background: gray;
         }
 
 
@@ -222,6 +224,7 @@ span {
 #Elements {
     width: 950px;
     margin: auto;
+    overflow: auto;
 }
 
 #OptionElement {
@@ -358,8 +361,7 @@ span {
     }
 
     #SuccessInfo p {
-        margin: 0px;
-        padding: 10px;
+        color: #4a4a4a;
     }
 
     #SuccessInfo img {
@@ -372,11 +374,12 @@ span {
 
     #SuccessInfo td:first-child {
         text-align: center;
+        width: 100px;
     }
 
-    #SuccessInfo td {
+/*#SuccessInfo td {
         padding-top: 20px;
-    }
+    }*/
 /*-------------------- Інформація після відправки FINISH ------------------------*/
 
 
@@ -451,32 +454,43 @@ span {
     vertical-align: bottom;
 }
 
-#Info1, #Info2 {
+#Info1, #Info2, #Info3 {
     /*margin-left: 50px;*/
-    padding: 20px;
+    /*padding: 20px;*/
     margin: 20px;
     background: white;
     box-shadow: 0px 0px 15px #b9b9b9;
+    padding-bottom: 10px;
 }
 
-    #Info1 img, #Info2 img {
+    #Info2 td:first-child, #Info3 td:first-child {
+        width: 100px;
+        height: 80px;
+        text-align: center;
+    }
+
+/*#Info1 img, #Info2 img {
         width: 30px;
         height: 30px;
-    }
+    }*/
 
-    #Info1 p, #Info2 p {
+/*#Info1 p, #Info2 p {
         margin: 5px;
         margin-left: 15px;
-    }
+    }*/
+
+/*#Info1 h1, #info2 h1, #nfo {
+        padding: 10px;
+    }*/
 
 .circle {
-    width: 180px;
-    height: 180px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     border: 6px solid #ec6a35;
-    font-size: 120px;
+    font-size: 50px;
     color: #fff;
-    line-height: 180px;
+    line-height: 100px;
     text-align: center;
     background: #4a4a4a;
     margin: auto;
@@ -488,8 +502,19 @@ span {
     .circle:hover {
         background: #50945c;
         border: 6px solid #4a4a4a;
+        transition: 0.4s;
         /*color: #4a4a4a;*/
     }
+
+.small {
+    /*margin: 0px 10px 10px 25px;*/
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    background: #50945c;
+    border: 6px solid #4a4a4a;
+}
 
 
 /*#Info2 {

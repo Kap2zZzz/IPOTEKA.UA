@@ -62,7 +62,7 @@ input[type=range]::-ms-track {
         }*/
 
 #divParam {
-    width: 90%;
+    width: 80%;
     margin: auto;
     margin-top: 10px;
 }
@@ -73,7 +73,7 @@ input[type=range]::-ms-track {
     }
 
     #divParam span {
-        margin-left: 10px;
+        margin-left: 5px;
         color: #195686;
     }
 
@@ -117,9 +117,12 @@ input[type=range]::-ms-track {
 .calc {
     font-size: 16px;
     text-align: center;
-    color: #195686;
+    /*color: #195686;*/
     outline: none;
-    background-color: transparent;
+    /*background-color: transparent;*/
+    background: #4a4a4a;
+    color: white;
+    padding: 5px;
 }
 
     .calc.termin {
@@ -127,7 +130,11 @@ input[type=range]::-ms-track {
     }
 
     .calc.suma {
-        width: 100px;
+        width: 90px;
+    }
+
+    .calc.percent {
+        width: 50px;
     }
 
 .switch {
@@ -188,4 +195,17 @@ input:checked + .slider1:before {
     -webkit-transform: translateX(50px);
     -ms-transform: translateX(50px);
     transform: translateX(50px);
+}
+
+select {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid #ec6a35;
+    background: transparent;
+    font: 18px Tahoma;
 }

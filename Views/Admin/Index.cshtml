@@ -123,8 +123,8 @@
                 <td>@p.ProductID</td>
                 <td>@p.Name</td>
                 <td width="50px;">@Html.ActionLink("Видалити", "Delete", new { key = "Product", id = p.ProductID }) </td>
-                <td width="50px;">@Html.ActionLink("Редагувати", "EditBank", new { id = p.ProductID }) </td>
-                <td width="50px;">@Html.ActionLink("Переглянути", "PreviewBank", new { id = p.ProductID }) </td>
+                <td width="50px;">@Html.ActionLink("Редагувати", "EditProduct", new { id = p.ProductID }) </td>
+                <td width="50px;">@Html.ActionLink("Переглянути", "PreviewProduct", new { id = p.ProductID }) </td>
             </tr>
         }
     </table>

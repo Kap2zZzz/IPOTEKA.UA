@@ -3,40 +3,61 @@
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <div>
     <div style="font-family:Tahoma" id="Info">
-        <div id="Info2">
+        <div id="Info1">
+            <div style="background: #4a4a4a; color: #ffffff; ">
+                <h1 style="padding:10px;">Як це працює ?</h1>
+            </div>
+            <div style="height: 40px; width: 70%; margin: auto; background: #4a4a4a; margin-top:70px;">
 
-            <h1><img src="~/Image/img_inquiry.png" /> Як це працює ?</h1>
+            </div>
 
-            <table border="0" style="text-align:center;">
+            @*<div style="background:#00ffff; float:left">
+                    <a href="@Url.Action("Index","Calculator")">
+                        <div class="circle"><i class="fa fa-percent"></i></div>
+                    </a>
+                </div>
+
+                <div style="height:50px; width:200px; background:#808080">
+
+                </div>*@
+
+            @*<div style="background:#00ffff">
+                    <a href="@Url.Action("Index","Calculator")">
+                        <div class="circle"><i class="fa fa-percent"></i></div>
+                    </a>
+                </div>*@
+
+            <table border="0" style="text-align: center; margin-top: -80px">
                 <tr>
                     <td width="30%">
+                        <a href="@Url.Action("Index","Calculator")">
+                            <div class="circle"><i class="fa fa-percent"></i></div>
+                        </a>
+                    </td>
+                    <td width="30%">
                         <a href="@Url.Action("Index","Ipoteka")">
-                            <div class="circle">1</div>
+                            <div class="circle"><i class="fa fa-reorder"></i></div>
                         </a>
                     </td>
                     <td width="30%">
                         <a href="@Url.Action("Index","Application")">
-                            <div class="circle">2</div>
+                            <div class="circle"><i class="fa fa-id-card-o"></i></div>
                         </a>
-                    </td>
-                    <td width="30%">
-                        <div class="circle">3</div>
                     </td>
                 </tr>
                 <tr>
+                    <td style="padding: 20px; vertical-align: top">
+                        Розрахуйте % ставку, платіж, а також перегляньте графік платежів.
+                    </td>
                     <td style="padding: 20px; vertical-align: top">
                         Оберіть Продукт, термін та суму.
                         <br />Перегляньте пропозиції та @Html.ActionLink("подайте", "Index", "Application") заявку.
                     </td>
                     <td style="padding: 20px; vertical-align: top">
-                        Заповніть мінімум необхідної інформації.
-                    </td>
-                    <td style="padding: 20px; vertical-align: top">
-                        Очікуйте на дзвінок менеджера, який повідомить Вам деталі.
+                        Заповніть мінімум необхідної інформації та очікуйте на дзвінок менеджера, який повідомить Вам деталі.
                     </td>
                 </tr>
             </table>
@@ -49,15 +70,16 @@
 
         </div>
 
+        <div id="Info2">
 
-        <div id="Info1">
-
-            <h1><img src="~/Image/img_info.png" /> Інформація</h1>
+            <div style="background: #4a4a4a; color: #ffffff; ">
+                <h1 style="padding:10px;">Інформація</h1>
+            </div>
 
             <table>
                 <tr>
                     <td>
-                        <img src="~/Image/img_search.png" />
+                        <div class="circle small"><i class="fa fa-info"></i></div>
                     </td>
                     <td>
                         <p>
@@ -67,7 +89,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <img src="~/Image/img_star.png" />
+                        <div class="circle small"><i class="fa fa-star"></i></div>
                     </td>
                     <td>
                         <p>
@@ -77,7 +99,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <img src="~/Image/img_no_cash.png" />
+                        <div class="circle small"><i class="fa fa-money"></i></div>
                     </td>
                     <td>
                         <p>
@@ -86,36 +108,28 @@
                     </td>
                 </tr>
             </table>
+
         </div>
 
-        <div id="Info2">
+        <div id="Info3">
 
-            <h1><img src="~/Image/img_6.png" /> Конфіденційність</h1>
-
+            <div style="background: #4a4a4a; color: #ffffff; ">
+                <h1 style="padding:10px;">Конфіденційність</h1>
+            </div>
             <table>
                 <tr>
                     <td>
-                        <img src="~/Image/img_add-property.png" />
+                        <div class="circle small"><i class="fa fa-address-card-o"></i></div>
                     </td>
                     <td>
                         <p>
-                            Ми збираємо лише ті персональні дані, що спеціально та добровільно були надані Вами у процесі заповнення заявки на банківську послугу.
+                            Ми збираємо лише ті персональні дані, що спеціально та добровільно були надані Вами у процесі заповнення заявки на банківську послугу, а також обмежуємся збиранням мінімуму інформації, яка є необхідною для подання Вашої заявки на отримання банківської послуги.
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="~/Image/img_contact.png" />
-                    </td>
-                    <td>
-                        <p>
-                            Ми обмежуємся збиранням мінімуму інформації, яка є необхідною для подання Вашої заявки на отримання банківської послуги.
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="~/Image/img_checkuser.png" />
+                        <div class="circle small"><i class="fa fa-users"></i></div>
                     </td>
                     <td>
                         <p>
@@ -125,7 +139,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <img src="~/Image/img_cash-in-hand.png" />
+                        <div class="circle small"><i class="fa fa-handshake-o"></i></div>
                     </td>
                     <td>
                         <p>

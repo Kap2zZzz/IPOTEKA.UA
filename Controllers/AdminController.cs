@@ -203,16 +203,7 @@ namespace IPOTEKA.UA.Controllers
 
             string buttonValue = Request["button"];
 
-            if (buttonValue == "+")
-            {
-                if (b.Products == null)
-                {
-                    b.Products = new List<ProductBank>();
-                }
-                b.Products.Add(new ProductBank());
-                return View(b);
-            }
-            else if (buttonValue == "Зберегти")
+            if (buttonValue == "Зберегти")
             {
                 if (Save(b))
                 {
@@ -279,6 +270,59 @@ namespace IPOTEKA.UA.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+        #endregion
+
+        #region Редагування продукту
+        [HttpGet]
+        public ActionResult EditProduct(int id)
+        {
+            ViewBag.Page = "Personal";
+            return View(_db.Products.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult EditProduct(Product p)
+        {
+            ViewBag.Page = "Personal";
+            string buttonValue = Request["button"];
+
+            if (buttonValue == "Зберегти")
+            {
+                if (Save(p))
+                {
+                    return RedirectToAction("PreviewProduct", new { id = p.ProductID });
+                }
+                return View(p);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+        #endregion
+
+        #region Перегляд продукту
+        [HttpGet]
+        public ActionResult PreviewProduct(int id)
+        {
+            ViewBag.Page = "Personal";
+            return View(_db.Products.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult PreviewProduct(Product p)
+        {
+            ViewBag.Page = "Personal";
+            string buttonValue = Request["button"];
+            if (buttonValue == "Назад")
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("EditProduct", new { id = p.ProductID });
+            }
         }
         #endregion
 
@@ -407,6 +451,16 @@ namespace IPOTEKA.UA.Controllers
 
                 _db.SaveChanges();
 
+                return true;
+            }
+        }
+
+        private bool Save(Product p)
+        {
+            using (_db)
+            {
+                _db.Entry(p).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
                 return true;
             }
         }

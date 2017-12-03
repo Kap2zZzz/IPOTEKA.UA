@@ -9,7 +9,7 @@
         var a = new IPOTEKA.UA.Repostory.MyDbContext();
             }
             @*@Html.DisplayFor(model => a.Products.Find(model.Products[j].RelProduc).Name)*@
-            @Html.DropDownListFor(model => model.RelProduc, new SelectList(a.Products.ToList(), "ProductID", "Name"), "Тип продукту")
+            @Html.DropDownListFor(model => model.RelProduct, new SelectList(a.Products.ToList(), "ProductID", "Name"), "Тип продукту")
         </td>
         <td>
             @Html.TextBoxFor(model => model.Rate)

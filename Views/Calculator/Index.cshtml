@@ -7,100 +7,173 @@
 @using (Html.BeginForm("Calculator"))
 {
     <div style="width:100%; margin:auto; margin-bottom:20px;">
-        <table id="Calculator">
+        <table id="Calculator" border="0">
             <tr>
-                <td width="50%">
+                <td>
                     <div id="slidecontainer" style="margin:auto;">
                         <p>
-                            <label style="margin:auto;">Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> @*<span id="outputTermin"></span>*@ місяців</label>
+                            <label style="margin:auto;">Термін кредитування: <input type="number" id="outputTermin" class="calc termin"> місяців</label>
                         </p>
                         <input type="range" min="12" max="240" value="60" step="1" class="slider" id="Termin" name="slider_Termin">
                     </div>
-
                 </td>
                 <td>
                     <div id="slidecontainer" style="margin:auto;">
-
                         <p>
-                            <label style="margin:auto;">Бажана сума кредиту: <input type="text" id="outputSuma" class="calc suma"> грн. @*<span class="price" id="outputSuma"></span>*@</label>
+                            <label style="margin:auto;">Бажана сума кредиту: <input type="text" id="outputSuma" class="calc suma"> грн.</label>
                         </p>
                         <input type="range" min="100000" max="3000000" value="500000" step="1" class="slider" id="Suma">
                     </div>
-
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table border="0" id="divParam">
+                        <tr>
+                            <td>
+                                Схема погашення:
+                            </td>
+                            <td>
+                                <div>
+                                    <input id="annuity" type="radio" name="scheme" value="annuity" checked="checked"> Ануїтетна
+                                    <input id="classic" type="radio" name="scheme" value="classic"> Класична
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Сума платежів:
+                            </td>
+                            <td>
+                                <span id="SumaPlatezhiv"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Переплата:
+                            </td>
+                            <td>
+                                <span id="SumaProcentiv"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Комісія за видачу:
+                            </td>
+                            <td>
+                                <span style="margin-right:2px" id="KomisiyaZaVydachu"></span><input type="text" id="KomisiyaZaVydachuIn" class="calc percent" value="0,83"><span style="margin-left:2px" id="KomisiyaZaVydachuAfter"></span>
+                        </tr>
+                    </table>
+                </td>
+                <td style="vertical-align:bottom">
+                    <table border="0" id="divParam">
+                        <tr>
+                            <td>
+                                Реальна ставка:
+                            </td>
+                            <td>
+                                <span id="RealRate"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Ефективна ставка:
+                            </td>
+                            <td>
+                                <span id="EffectiveRate"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="40%">
+                                Номінальна ставка:
+                            </td>
+                            <td>
+                                <input type="text" id="NominalRate" class="calc percent" value="18,10"><span style="margin-left:0px">%</span>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <div id="divParam">
-                        <table>
-                            <tr>
-                                <td>
-                                    Схема погашення:
-                                </td>
-                                <td>
-                                    <div>
-                                        <input id="annuity" type="radio" name="scheme" value="annuity" checked="checked"> Ануїтетна
-                                        <input id="classic" type="radio" name="scheme" value="classic"> Класична
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Сума платежів:
-                                </td>
-                                <td>
-                                    <span id="SumaPlatezhiv"></span>
-                                </td>
-                                <td>
-                                    Комісія за видачу:
-                                </td>
-                                <td>
-                                    <span id="KomisiyaZaVydachu"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Сума процентів:
-                                </td>
-                                <td>
-                                    <span id="SumaProcentiv"></span>
-                                </td>
-                                <td>
-                                    Реальна ставка:
-                                </td>
-                                <td>
-                                    <span id="RealRate"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Страховий платіж:
-                                </td>
-                                <td>
-                                    <span id="Strahovka"></span>
-                                </td>
-                                <td>
-                                    Переплата (весь період):
-                                </td>
-                                <td>
-                                    <span id="RealRateFull"></span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                    <div id="Schedule"></div>
                 </td>
-                <td></td>
             </tr>
-            <tr>
-                <td colspan="2">
-                    <div id="Schedule">
+            @*<tr>
+                    <td>
+                        <div id="divParam">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Сума платежів:
+                                    </td>
+                                    <td>
+                                        <span id="SumaPlatezhiv"></span>
+                                    </td>
 
-                    </div>
-                </td>
-            </tr>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Переплата:
+                                    </td>
+                                    <td>
+                                        <span id="SumaProcentiv"></span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Комісія за видачу:
+                                    </td>
+                                    <td>
+                                        <span style="margin-right:2px" id="KomisiyaZaVydachu"></span><input type="text" id="KomisiyaZaVydachuIn" class="calc percent" value="0,83"><span style="margin-left:2px" id="KomisiyaZaVydachuAfter"></span>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="divParam">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Номінальна ставка:
+                                    </td>
+                                    <td>
+                                        <input type="text" id="NominalRate" class="calc percent" value="18,10"><span style="margin-left:0px">%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Реальна ставка:
+                                    </td>
+                                    <td>
+                                        <span id="RealRate"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Ефективна ставка:
+                                    </td>
+                                    <td>
+                                        <span id="EffectiveRate"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>*@
+            @*<tr>
+                    <td colspan="2">
+                        <div id="Schedule">
+
+                        </div>
+                    </td>
+                </tr>*@
         </table>
     </div>
 }
 
 
 <script src="~/Scripts/Calculations.js"></script>
+<script src="~/Scripts/Calculator.js"></script>

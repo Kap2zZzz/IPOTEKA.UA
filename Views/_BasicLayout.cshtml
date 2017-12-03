@@ -22,29 +22,37 @@
 <body>
     <div id="container">
         <div id="header">
-            <ul class="main-menu">
-                <li>
-                    <img src="~/Image/img_9.png" style="margin-top:-20px;" />
-                </li>
-                <li class="@(@ViewBag.Page == "About" ? "active" : null)">
-                    @Html.ActionLink("Про нас", "Index", "About")
-                </li>
-                <li class="@(@ViewBag.Page == "Ipoteka" ? "active dropdown" : "dropdown")">
-                    @Html.ActionLink("Іпотечне кредитування", "Index", "Ipoteka", null, new { @class = "dropbtn" })
-                    <div class="dropdown-content">
-                        @Html.ActionLink("Банки", "Index", "Banks")
-                        @Html.ActionLink("Калькулятор", "Index", "Calculator")
-                        @Html.ActionLink("Поширені питання", "Index", "FAQ")
-                    </div>
-                </li>
+            <div style="float:left">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/Image/Logo2.png" style="height:70px" alt="Головна"/>
+                </a>
+            </div>
+            <div>
+                <ul class="main-menu">
+                    <li>
+                        @*<img src="~/Image/Logo2.png" style="margin-top:-20px;; height:70px" />*@
+                    </li>
+                    <li class="@(@ViewBag.Page == "About" ? "active" : null)">
+                        @Html.ActionLink("Про нас", "Index", "About")
+                    </li>
+                    <li class="@(@ViewBag.Page == "Ipoteka" ? "active dropdown" : "dropdown")">
+                        @Html.ActionLink("Іпотечне кредитування", "Index", "Ipoteka", null, new { @class = "dropbtn" })
+                        <div class="dropdown-content">
+                            @Html.ActionLink("Банки", "Index", "Banks")
+                            @Html.ActionLink("Калькулятор", "Index", "Calculator")
+                            @Html.ActionLink("Поширені питання", "Index", "FAQ")
+                        </div>
+                    </li>
 
-                <li class="@(@ViewBag.Page == "Application" ? "active" : null)">
-                    @Html.ActionLink("Залишити заявку", "Index", "Application")
-                </li>
-                <li class="@(@ViewBag.Page == "Personal" ? "active" : null)">
-                    @Html.ActionLink("Особистий кабінет", "Index", "Personal")
-                </li>
-            </ul>
+                    <li class="@(@ViewBag.Page == "Application" ? "active" : null)">
+                        @Html.ActionLink("Залишити заявку", "Index", "Application")
+                    </li>
+                    <li class="@(@ViewBag.Page == "Personal" ? "active" : null)">
+                        @Html.ActionLink("Особистий кабінет", "Index", "Personal")
+                    </li>
+                </ul>
+
+            </div>
         </div>
         <div id="body">
             @RenderBody()
