@@ -46,32 +46,6 @@ function Calculate() {
     KomisiyaZaVydachuAfter.innerHTML = ")%"
     EffectiveRate.innerHTML = CalculateEffectiveRate(parseInt(Suma.value), SumaKomisiyiZaVydachu, new Date(), a) + "%";
 }
-function Block(b, ccc) {
-    
-    var AllButComa = /[^,]/g;
-    var AllButDot = /[^.]/g
-    var AllButComaAndNumbers = /[,\d]/g;
-    if (b.value == '00')
-        ccc.value = "0";
-    else if (b.value.replace(AllButComa, '').length == 2 || (b.value.replace(AllButComa, '').length == 1 && b.value.replace(AllButDot, '').length == 1))
-        ccc.value = ccc.value.substr(0, ccc.value.length - 1);
-    else if (b.value.replace(AllButDot, '').length == 1 && b.value.replace(AllButComa, '').length == 0)
-        ccc.value = ccc.value.replace('.', ',');
-    else if (b.value.replace(AllButComaAndNumbers, '').length == 1)
-        ccc.value = ccc.value.substr(0, ccc.value.length - 1);
-
-    var m = b.value.split(",");
-    if (typeof (m[0] != "undefined")) {
-        if (m[0].length == 3)
-            m[0] = m[0].substr(0, m[0].length - 1);
-        ccc.value = m[0] + b.value.replace(/[^,]/g, '');
-    }
-    if (typeof (m[1] != "undefined")) {
-        if (m[1].length == 3)
-            m[1] = m[1].substr(0, m[1].length - 1);
-        ccc.value = ccc.value + m[1];
-    }
-}
 
 var a;
 var ListStawok;
@@ -87,7 +61,7 @@ Schedule.innerHTML = GenerateTable(a);
 
 outputTermin.onchange = function () {
     Termin.value = this.value;
-    Termin.oninput();
+    Calculate();
     Schedule.innerHTML = GenerateTable(a);
 }
 
@@ -103,24 +77,33 @@ outputTermin.oninput = function () {
 }
 
 outputSuma.onchange = function () {
-    
-    Suma.value = this.value.replace(/ /g, '');
-    
+    if (this.value != '') {
+        Suma.value = this.value.replace(/ /g, '');
+        if (parseInt(this.value.replace(/ /g, '')) < parseInt(Suma.min))
+            outputSuma.value = MaskInt(Suma.min);
+        else if (parseInt(this.value.replace(/ /g, '')) > parseInt(Suma.max))
+            outputSuma.value = MaskInt(Suma.max);
+    }
+    else {
+        Suma.value = Suma.min;
+        this.value = MaskInt(Suma.min);
+    }
     Calculate();
     Schedule.innerHTML = GenerateTable(a);
 }
 
 outputSuma.oninput = function () {
-    if (this.value.replace(/[ \d]/g, '').length == 1)
-        this.value = this.value.substr(0, this.value.length - 1);
-    var n;
-    if (this.value != '')
-        n = parseInt((this.value).replace(/ /g, ''));
+    if (this.value != '') {
+        if (this.value.charAt(this.value.length - 1) == ' ' || this.value.match(/[1-9][\d ]*/g) != this.value)
+            this.value = this.value.substr(0, this.value.length - 1);
+        else {
+            this.value = this.value.replace(/ /g, '');
+            Suma.value = this.value;
+            this.value = MaskInt(this.value);
+        }
+    }
     else
-        n = parseInt((Suma.min).replace(/ /g, ''));
-
-    outputSuma.value = MaskInt(n);
-    Suma.value = n;
+        Suma.value = Suma.min;
 }
 
 Termin.oninput = function () {
@@ -131,17 +114,11 @@ Termin.oninput = function () {
 Termin.onchange = function () {
     Calculate();
     Schedule.innerHTML = GenerateTable(a);
-    
+
 }
 
 Suma.oninput = function () {
     outputSuma.value = MaskInt(this.value);
-
-    SumaStrahovky = parseFloat((parseFloat(this.value) * ProcentStrahowky / 100).toFixed(2));
-    SumaKomisiyiZaVydachu = parseFloat((parseFloat(this.value) * ProcentKomisiyiZaVydachu / 100).toFixed(2));
-    Strahovka.innerHTML = MaskDecimal(SumaStrahovky);
-    KomisiyaZaVydachu.innerHTML = MaskDecimal(SumaKomisiyiZaVydachu);
-
     Calculate();
 }
 
@@ -162,20 +139,24 @@ classic.onchange = function () {
 }
 
 KomisiyaZaVydachuIn.oninput = function () {
-    Block(this, KomisiyaZaVydachuIn);
+    this.value = this.value.replace('.', ',');
+    if (this.value != this.value.match(/^(\d|[1-9]\d|[1-9]?\d,\d{0,2})$/g))
+        this.value = this.value.substr(0, this.value.length - 1);
 }
 
 NominalRate.oninput = function () {
-    Block(this, NominalRate);
+    this.value = this.value.replace('.', ',');
+    if (this.value != this.value.match(/^(\d|[1-9]\d|[1-9]?\d,\d{0,2})$/g))
+        this.value = this.value.substr(0, this.value.length - 1);
 }
 
 KomisiyaZaVydachuIn.onchange = function () {
-    KomisiyaZaVydachuIn.value = MaskDecimal(parseFloat(this.value.replace(',', '.')));
+    this.value = MaskDecimal(parseFloat(this.value.replace(',', '.')));
     Calculate();
 }
 
 NominalRate.onchange = function () {
-    NominalRate.value = MaskDecimal(parseFloat(this.value.replace(',', '.')));
+    this.value = MaskDecimal(parseFloat(this.value.replace(',', '.')));
     Calculate();
     Schedule.innerHTML = GenerateTable(a);
 }

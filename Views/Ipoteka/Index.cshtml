@@ -4,6 +4,8 @@
 <link href="~/Content/FormElements.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 <script src="~/Scripts/jquery.maskedinput.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 @{
     ViewBag.Title = "Іпотечне кредитування | IPOTEKA-UA";
     Layout = "~/Views/_BasicLayout.cshtml";
@@ -45,21 +47,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td width="50%">
                     <div id="divParam">
-                        <table>
-                            <tr>
-                                <td>
-                                    Схема погашення:
-                                </td>
-                                <td>
-                                    <div>
-                                        <input id="annuity" type="radio" name="Schema" value="annuity" checked="checked"> Ануїтетна
-                                        <input id="classic" type="radio" name="Schema" value="classic"> Класична
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                        Схема погашення:
+                        <input id="annuity" type="radio" name="Schema" value="Ануїтетна" checked="checked"> Ануїтетна
+                        <input id="classic" type="radio" name="Schema" value="Класична"> Класична
                     </div>
                 </td>
             </tr>
@@ -73,11 +65,11 @@
             }
 
             @foreach (IPOTEKA.UA.Models.Bank b in BankList)
-        {
+            {
                 <fieldset hidden>
                     <legend>@b.Name</legend>
                     @foreach (IPOTEKA.UA.Models.ProductBank p in b.Products)
-                {
+                    {
                         <label class=@b.Name.Replace(" ","")>@ProductList.Find(x => x.ProductID == p.RelProduct).Name</label>
                         <label class=@b.Name.Replace(" ","")>@Convert.ToString(p.Rate).Replace(",", ".")</label>
                         <label class=@b.Name.Replace(" ","")>@Convert.ToString(p.Commission).Replace(",", ".")</label>
@@ -85,11 +77,12 @@
                         <label class=@b.Name.Replace(" ","")>@Convert.ToString(p.MaxSumCred).Replace(",", ".")</label>
                         <label class=@b.Name.Replace(" ","")>@p.MinTermCred</label>
                         <label class=@b.Name.Replace(" ","")>@p.MaxTermCred</label>
-                }
-                </fieldset>
                     }
+                </fieldset>
+            }
         </div>
     }
+
 </div>
 
 <script src="~/Scripts/Calculations.js"></script>

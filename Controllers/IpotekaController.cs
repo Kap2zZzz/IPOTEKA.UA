@@ -12,8 +12,6 @@ namespace IPOTEKA.UA.Controllers
 {
     public class IpotekaController : Controller
     {
-        //
-        // GET: /Ipoteka/
         MyDbContext _db = new MyDbContext();
 
         public ActionResult Index()
@@ -35,38 +33,7 @@ namespace IPOTEKA.UA.Controllers
 
             string buttonValue = Request["button"];
 
-            if (buttonValue == "Переглянути пропозиції")
-            {
-                if ((ProductType == null) || (ProductType <= 0))
-                {
-                    ModelState.AddModelError("ProductType", "Поле [Продукт] не вибрано!");
-                    return View(a);
-                }
-                else
-                {
-                    var banks = _db.Banks.ToList();
-
-                    List<IpotekaData> resView = new List<IpotekaData>();
-
-                    foreach (Bank b in banks)
-                    {
-                        foreach (ProductBank p in b.Products.Where(x => x.RelProduct == ProductType))
-                        {
-                            IpotekaData temp = new IpotekaData();
-                            temp.Bank = b.Name;
-                            temp.Rate = p.Rate.ToString();
-                            temp.Commission = p.Commission.ToString();
-                            Calculation.GetResults(CreditSum, Termin, p.Rate, true, out temp.MMP, out temp.RealRate, out temp.EffectiveRate);
-                            resView.Add(temp);
-                        }
-                    }
-
-                    ViewBag.Res = resView;
-
-                    return View(a);
-                }
-            }
-            else if (buttonValue == "Подати заявку")
+            if (buttonValue == "Подати заявку")
             {
                 TempData["NewApplication"] = a;
                 return RedirectToAction("Index", "Application");

@@ -34,7 +34,8 @@ select {
 input[type="checkbox"], input[type="radio"] {
     width: 20px;
     height: 20px;
-    vertical-align: top;
+    vertical-align: sub;
+    cursor: pointer;
 }
 
 textarea {
@@ -48,7 +49,8 @@ textarea {
     }
 
 input[type="button"],
-input[type="submit"] {
+input[type="submit"],
+button {
     background: #50945c;
     border: 1px solid #50945c;
     display: inline-block;
@@ -62,7 +64,8 @@ input[type="submit"] {
 }
 
     input[type="button"]:hover,
-    input[type="submit"]:hover {
+    input[type="submit"]:hover,
+    button:hover {
         background-color: #3d944c;
     }
 

@@ -53,9 +53,11 @@
     }
     else if (propositions > 0) {
         result += "<tr>" +
-                    "<td colspan='2' style='border:none; padding-bottom:0px;'>" +
-                            "<div style='text-align:left;'>" +
-                                "<input type='submit' value='Подати заявку' name='button'>" +
+                    "<td colspan='5' style='border:none; padding-bottom:0px;'>" +
+                            "<div style='text-align:right;'>" +
+                                    "<button type='submit' name='button' value='Подати заявку'>" +
+                                        "Подати заявку <i class='fa fa-user-circle' style='font-size: 1.5em; margin-left: 5px; vertical-align: bottom;'></i>" +
+                                    "</button>" +
                             "</div>" +
                    "</td>" +
                  "</tr>"
@@ -105,8 +107,8 @@ for (var i = 0; i < Bank.length; i++) {
 
 Result.innerHTML = GeneratePropositions(Bank, Matrix, sliderCreditSum.value, sliderTerm.value, ProductType.value, classic);
 
-fieldTerm.value = sliderTerm.value; // Display the default slider value
-fieldCreditSum.value = MaskInt(sliderCreditSum.value); // Display the default slider value
+fieldTerm.value = sliderTerm.value;
+fieldCreditSum.value = MaskInt(sliderCreditSum.value);
 
 sliderTerm.oninput = function () {
     fieldTerm.value = this.value;
@@ -129,17 +131,17 @@ fieldTerm.oninput = function () {
 }
 
 fieldCreditSum.oninput = function () {
-    if (this.value.replace(/[ \d]/g, '').length == 1)
-        this.value = this.value.substr(0, this.value.length - 1);
-
-    var n;
-    if (this.value != '')
-        n = parseInt((this.value).replace(/ /g, ''));
+    if (this.value != '') {
+        if (this.value.charAt(this.value.length - 1) == ' ' || this.value.match(/[1-9][\d ]*/g) != this.value)
+            this.value = this.value.substr(0, this.value.length - 1);
+        else {
+            this.value = this.value.replace(/ /g, '');
+            sliderCreditSum.value = this.value;
+            this.value = MaskInt(this.value);
+        }
+    }
     else
-        n = parseInt((sliderCreditSum.min).replace(/ /g, ''));
-
-    fieldCreditSum.value = MaskInt(n);
-    sliderCreditSum.value = n;
+        sliderCreditSum.value = sliderCreditSum.min;
 }
 
 fieldTerm.onchange = function () {
@@ -148,8 +150,18 @@ fieldTerm.onchange = function () {
 }
 
 fieldCreditSum.onchange = function () {
-    sliderCreditSum.value = parseInt((this.value).replace(/ /g, ''));
-    sliderCreditSum.oninput();
+    if (this.value != '') {
+        sliderCreditSum.value = this.value.replace(/ /g, '');
+        if (parseInt(this.value.replace(/ /g, '')) < parseInt(sliderCreditSum.min))
+            fieldCreditSum.value = MaskInt(sliderCreditSum.min);
+        else if (parseInt(this.value.replace(/ /g, '')) > parseInt(sliderCreditSum.max))
+            fieldCreditSum.value = MaskInt(sliderCreditSum.max);
+    }
+    else {
+        sliderCreditSum.value = sliderCreditSum.min;
+        this.value = MaskInt(sliderCreditSum.min);
+    }
+    Result.innerHTML = GeneratePropositions(Bank, Matrix, sliderCreditSum.value, sliderTerm.value, ProductType.value, classic);
 }
 
 ProductType.onchange = function () {
