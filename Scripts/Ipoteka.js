@@ -20,10 +20,7 @@
             if (BankArray[i] == MatrixArray[0][j] && Product == MatrixArray[1][j] && parseFloat(CreditSum) <= MatrixArray[5][j] && parseInt(Termin) >= MatrixArray[6][j] && parseInt(Termin) <= MatrixArray[7][j]) {
                 propositions += 1;
 
-                var RateList = new Array(1);
-                RateList[0] = new Array(2);
-                RateList[0][0] = parseFloat(MatrixArray[2][j]);
-                RateList[0][1] = 1000;
+                var RateList = parseFloat(MatrixArray[2][j]);
 
                 var Schedule;
                 if (radioClassic.checked)
@@ -35,10 +32,10 @@
                 result +=
                     "<tr>" +
                         "<td>" + MatrixArray[0][j] + "</th>" +
-                        "<td>" + MatrixArray[2][j] + "</th>" +
+                        "<td>" + MaskDecimal(MatrixArray[2][j]) + "</th>" +
                         "<td>" + CalculateEffectiveRate(parseFloat(CreditSum), Commission, new Date(), Schedule) + "</th>" +
-                        "<td>" + MaskDecimal(Commission) + "</th>" +
-                        "<td>" + MaskDecimal(Schedule[1][1]) + "</th>" +
+                        "<td>" + MaskDecimal(Commission) + " (" + MaskDecimal(MatrixArray[3][j]) + ")" + "</th>" +
+                        "<td>" + MaskDecimal(Schedule[0][0]) + "</th>" +
                     "</tr>";
                 break;
             }

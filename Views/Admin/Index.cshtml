@@ -1,11 +1,22 @@
-﻿@model Tuple<List<IPOTEKA.UA.Models.Application>, List<IPOTEKA.UA.Models.User>, List<IPOTEKA.UA.Models.Bank>, List<IPOTEKA.UA.Models.Product>>
+﻿@model PagedList.IPagedList<IPOTEKA.UA.Models.Application>
+@using PagedList.Mvc;
+
+@{
+    IPOTEKA.UA.Repostory.MyDbContext _db = new IPOTEKA.UA.Repostory.MyDbContext();
+    var Banks = _db.Banks.ToList();
+    var Users = _db.Users.ToList();
+    var Products = _db.Products.ToList();
+    var Applications = _db.Applications.ToList();
+}
+@*@model Tuple<List<IPOTEKA.UA.Models.Application>, List<IPOTEKA.UA.Models.User>, List<IPOTEKA.UA.Models.Bank>, List<IPOTEKA.UA.Models.Product>>*@
+
 @{
     ViewBag.Title = "Кабінет Адміністратора | IPOTEKA-UA";
     Layout = "~/Views/_BasicLayout.cshtml";
 }
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 <link href="~/Content/Forms.css" rel="stylesheet" />
-
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 <div id="divLoginInfo">
     <div>
         <label>
@@ -23,39 +34,10 @@
 </div>
 
 <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'Users')">Користувачі</button>
     <button class="tablinks" onclick="openTab(event, 'Applications')">Усі заявки</button>
+    <button class="tablinks" onclick="openTab(event, 'Users')">Користувачі</button>
     <button class="tablinks" onclick="openTab(event, 'Banks')">Банки</button>
     <button class="tablinks" onclick="openTab(event, 'Products')">Продукти</button>
-</div>
-
-<div id="Users" style="clear:both;" class="tabcontent">
-    <table id="tbElements" align="center" border="0">
-        <tr>
-            <th>ID</th>
-            <th>Login</th>
-            <th>ПІБ</th>
-            <th>Роль</th>
-            <th colspan="3">Операція</th>
-        </tr>
-
-        @foreach (IPOTEKA.UA.Models.User u in Model.Item2)
-        {
-            <tr>
-                <td>@u.UserId</td>
-                <td>@u.Login</td>
-                <td>@u.PIB</td>
-                <td>@u.Role</td>
-                @*<td>@Html.ActionLink("Видалити", "Delete", new { key = "User", id = u.UserId })|@Html.ActionLink("Редагувати", "EditUser", new { id = u.UserId })|@Html.ActionLink("Переглянути", "PreviewUser", new { id = u.UserId })</td>*@
-                <td width="50px;">@Html.ActionLink("Видалити", "Delete", new { key = "User", id = u.UserId }) </td>
-                <td width="50px;">@Html.ActionLink("Редагувати", "EditUser", new { id = u.UserId }) </td>
-                <td width="50px;">@Html.ActionLink("Переглянути", "PreviewUser", new { id = u.UserId }) </td>
-            </tr>
-        }
-    </table>
-    <div style="text-align:right;">
-        <input type="button" value="Додати" class="btn Ok" onclick="location.href='@Url.Action("CreateUser")'" />
-    </div>
 </div>
 
 <div id="Applications" style="clear:both;" class="tabcontent">
@@ -69,7 +51,7 @@
             <th colspan="3">Операція</th>
         </tr>
 
-        @foreach (IPOTEKA.UA.Models.Application m in Model.Item1)
+        @foreach (IPOTEKA.UA.Models.Application m in Model)
         {
             <tr>
                 <td>@m.ApplicationId</td>
@@ -82,7 +64,44 @@
                 <td width="50px;">@Html.ActionLink("Переглянути", "Preview", new { id = m.ApplicationId }) </td>
             </tr>
         }
+        <tr>
+            <td colspan="8">
+                Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </td>
+        </tr>
     </table>
+</div>
+
+<div id="Users" style="clear:both;" class="tabcontent">
+    <table id="tbElements" align="center" border="0">
+        <tr>
+            <th>ID</th>
+            <th>Login</th>
+            <th>ПІБ</th>
+            <th>Роль</th>
+            <th colspan="3">Операція</th>
+        </tr>
+
+        @foreach (IPOTEKA.UA.Models.User u in Users)
+        {
+            <tr>
+                <td>@u.UserId</td>
+                <td>@u.Login</td>
+                <td>@u.PIB</td>
+                <td>@u.Role</td>
+                @*<td>@Html.ActionLink("Видалити", "Delete", new { key = "User", id = u.UserId })|@Html.ActionLink("Редагувати", "EditUser", new { id = u.UserId })|@Html.ActionLink("Переглянути", "PreviewUser", new { id = u.UserId })</td>*@
+                <td width="50px;">@Html.ActionLink("Видалити", "Delete", new { key = "User", id = u.UserId }) </td>
+                <td width="50px;">@Html.ActionLink("Редагувати", "EditUser", new { id = u.UserId }) </td>
+                <td width="50px;">@Html.ActionLink("Переглянути", "PreviewUser", new { id = u.UserId }) </td>
+            </tr>
+        }
+    </table>
+
+    <div style="text-align:right;">
+        <input type="button" value="Додати" class="btn Ok" onclick="location.href='@Url.Action("CreateUser")'" />
+    </div>
 </div>
 
 <div id="Banks" style="clear:both;" class="tabcontent">
@@ -93,7 +112,7 @@
             <th colspan="3">Операція</th>
         </tr>
 
-        @foreach (IPOTEKA.UA.Models.Bank b in Model.Item3)
+        @foreach (IPOTEKA.UA.Models.Bank b in Banks)
         {
             <tr>
                 <td>@b.BankID</td>
@@ -117,7 +136,7 @@
             <th colspan="3">Операція</th>
         </tr>
 
-        @foreach (IPOTEKA.UA.Models.Product p in Model.Item4)
+        @foreach (IPOTEKA.UA.Models.Product p in Products)
         {
             <tr id="tr-res">
                 <td>@p.ProductID</td>
@@ -132,7 +151,6 @@
         <input type="button" value="Додати" class="btn Ok" onclick="location.href='@Url.Action("CreateProduct")'" />
     </div>
 </div>
-
 
 @*<script>
         var AppId = null;
@@ -182,7 +200,7 @@
         //alert("reload");
         var tablinks = document.getElementsByClassName("tablinks");
         tablinks[0].className += " active";
-        document.getElementById("Users").style.display = "block";
+        document.getElementById("Applications").style.display = "block";
     });
 
     function openTab(evt, Tab) {

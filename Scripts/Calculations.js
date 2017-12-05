@@ -112,260 +112,82 @@ function SumaProcWPeriodi(OstatokKredytu, Stawka, DataStart, DataEnd) {
     var k = Math.floor(TotalDays(DataStart, DataEnd));
     return (k * OstatokKredytu * Stawka) / 36000;
 }
-function AnnuitySchedule(SumaKredytu, StrokKredytu, ListStawok, Komisiya) {
-    var DataRozrahunku = new Date();
-    var DataPo4atkuProc = DataRozrahunku;
-    var DataPershogoPlatezhu = AddDays(DataRozrahunku, TotalDays(DataRozrahunku, AddMonths(DataRozrahunku, 1)) - DataRozrahunku.getDate() + 1);
-    var DataOplatyKredytu = AddDays(AddMonths(DataRozrahunku, StrokKredytu), -1);
-    //var Platizh = [];
+function AnnuitySchedule(SumaKredytu, StrokKredytu, Stawka, Komisiya) {
     var Schedule = new Array();
-    var i = 0;
     var SumaKomisiyi = parseFloat((SumaKredytu * Komisiya / 100).toFixed(2));
-
-
-    var StawkaMax = 0;
-    for (var k = 0; k < ListStawok.length; k++) {
-        StawkaMax = Math.max(StawkaMax, ListStawok[k][0]);
-    }
-
-    if (IfIncreaseStrokKredytu(DataRozrahunku, DataPershogoPlatezhu))
-        StrokKredytu++;
-
-    var MinSumaAnuiteta = SumaKredytu / StrokKredytu + SumaKomisiyi;
-    var MaxSumaProcZaMisyac = SumaKredytu * 31 * StawkaMax / 36000;
-
-    var MaxSumaAnuiteta = MinSumaAnuiteta + MaxSumaProcZaMisyac;
-
-    var KinecObrahunku = false; var ChyTiloZero = false;
-    var count = 1;
+    var TiloFull = 0; var ProcentFull = 0; var WnesokFull = 0;
+    var OstatokKredytu = SumaKredytu;
+    var SumaAnuiteta = parseFloat(Anuitet(SumaKredytu, StrokKredytu, Stawka, Komisiya).toFixed(2));
+    var i = 0;
     while (true) {
-        //Platizh.length = 0;
-        Schedule.length = 0;
-        ChyTiloZero = IfBodyIsZero(DataPo4atkuProc, DataPershogoPlatezhu);
-        var DataStart = DataPo4atkuProc;
-        var DataEnd = DataPershogoPlatezhu;
+        Schedule.length += 1;
+        Schedule[i] = new Array(4);
 
-        var TiloFull = 0; var ProcentFull = 0; var WnesokFull = 0;
-        OstatokKredytu = SumaKredytu;
-        SumaAnuiteta = (MinSumaAnuiteta + MaxSumaAnuiteta) / 2;
+        Schedule[i][1] = parseFloat(Procent(OstatokKredytu, Stawka).toFixed(2));
+        if (i == StrokKredytu - 1)
+            Schedule[i][2] = Schedule[i - 1][3];
+        else
+            Schedule[i][2] = Math.min(OstatokKredytu, Math.max(SumaAnuiteta - Schedule[i][1] - SumaKomisiyi, 0));
+        Schedule[i][3] = OstatokKredytu - Schedule[i][2];
+        OstatokKredytu = OstatokKredytu - Schedule[i][2];
+        if (OstatokKredytu == 0)
+            Schedule[i][0] = parseFloat((Schedule[i][1] + Schedule[i][2] + SumaKomisiyi).toFixed(2));
+        else
+            Schedule[i][0] = SumaAnuiteta;
 
-        i = 0; var s = 0;
+        TiloFull = TiloFull + Schedule[i][2];
+        ProcentFull = ProcentFull + Schedule[i][1];
+        WnesokFull = WnesokFull + Schedule[i][0];
 
-        var DataZminy = new Date(1900, 0);
-        while (true) {
+        i++;
+        if (OstatokKredytu <= 0 || i == StrokKredytu) {
             Schedule.length += 1;
-            Schedule[i] = new Array(6);
-            DataZminy = AddMonths(DataRozrahunku, ListStawok[s][1]);
-            var ChyZminaStawky = DataStart <= DataZminy && DataEnd > DataZminy && ListStawok.length > s + 1;
-            //var Proc = 0;
-            if (ChyZminaStawky) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataZminy)
-                    + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1][0], DataZminy, DataEnd);
-                s++;
-            }
-            else
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataEnd);
-
-            if (KinecObrahunku)
-                Schedule[i][2] = parseFloat(Schedule[i][2].toFixed(2));
-
-
-            if (SumaAnuiteta - SumaKomisiyi >= OstatokKredytu - (SumaAnuiteta - SumaKomisiyi) / 2 && (i + 1) == StrokKredytu) {
-                Schedule[i][3] = OstatokKredytu;
-
-            }
-            else if (ChyTiloZero) {
-                Schedule[i][3] = 0;
-
-            }
-            else {
-                Schedule[i][3] = Math.min(OstatokKredytu, Math.max(SumaAnuiteta - Schedule[i][2] - SumaKomisiyi, 0));
-            }
-
-
-            Schedule[i][4] = OstatokKredytu - Schedule[i][3];
-            Schedule[i][5] = DataEnd;
-            Schedule[i][0] = FormatDate(DataEnd, 1);
-            DataStart = DataEnd;
-            if (AddMonths(DataPershogoPlatezhu, (i + 1)) > DataOplatyKredytu)
-                DataEnd = DataOplatyKredytu;
-            else
-                DataEnd = AddMonths(DataPershogoPlatezhu, (i + 1));
-            OstatokKredytu = OstatokKredytu - Schedule[i][3];
-            if (OstatokKredytu == 0)
-                Schedule[i][1] = Schedule[i][2] + Schedule[i][3] + SumaKomisiyi;
-            else if (ChyTiloZero) {
-                Schedule[i][1] = parseFloat(Schedule[i][2].toFixed(2));
-                ChyTiloZero = false;
-            }
-            else {
-                Schedule[i][1] = SumaAnuiteta;
-            }
-            TiloFull = TiloFull + Schedule[i][3];
-            ProcentFull = ProcentFull + Schedule[i][2];
-            WnesokFull = WnesokFull + Schedule[i][1];
-
-            i++;
-
-            if (OstatokKredytu <= 0 || i > StrokKredytu) {
-                if (KinecObrahunku) {
-                    Schedule.length += 1;
-                    Schedule[i] = new Array(5);
-                    Schedule[i][0] = "";
-                    Schedule[i][1] = WnesokFull;
-                    Schedule[i][2] = ProcentFull;
-                    Schedule[i][3] = TiloFull;
-                    Schedule[i][4] = "";
-                }
-                break;
-            }
-        }
-
-        if (KinecObrahunku) {
+            Schedule[i] = new Array(4);
+            Schedule[i][0] = WnesokFull;
+            Schedule[i][1] = ProcentFull;
+            Schedule[i][2] = TiloFull;
+            Schedule[i][3] = "";
             break;
         }
-        else if ((MaxSumaAnuiteta - MinSumaAnuiteta) <= 0.001) {
-            MinSumaAnuiteta = parseFloat(SumaAnuiteta.toFixed(0));
-            MaxSumaAnuiteta = parseFloat(SumaAnuiteta.toFixed(0));
-            KinecObrahunku = true;
-
-        }
-        else if (i > StrokKredytu) {
-            MinSumaAnuiteta = SumaAnuiteta;
-        }
-        else if (i < StrokKredytu) {
-            MaxSumaAnuiteta = SumaAnuiteta;
-        }
-        else if (Schedule[i - 1][1] < SumaAnuiteta) {
-            MaxSumaAnuiteta = SumaAnuiteta;
-        }
-        else {
-            MinSumaAnuiteta = SumaAnuiteta;
-        }
-        count++;
     }
 
     return Schedule;
 }
-function ClassicSchedule(SumaKredytu, StrokKredytu, ListStawok) {
-    var DataRozrahunku = new Date();
-    var DataPo4atkuProc = DataRozrahunku;
-    var DataPershogoPlatezhu = AddDays(DataRozrahunku, TotalDays(DataRozrahunku, AddMonths(DataRozrahunku, 1)) - DataRozrahunku.getDate() + 1);
-    var DataOplatyKredytu = AddDays(AddMonths(DataRozrahunku, StrokKredytu), -1);
+function ClassicSchedule(SumaKredytu, StrokKredytu, Stawka) {
     var Schedule = new Array();
-    //var Platizh = [];
-    var i = 0; var Tilo = 0;
-    var ChyTiloZero = false;
-    if (IfBodyIsZero(DataPo4atkuProc, DataPershogoPlatezhu)) {
-        ChyTiloZero = true;
-        Tilo = (SumaKredytu / StrokKredytu);
-    }
-    else if (IfIncreaseStrokKredytu(DataRozrahunku, DataPershogoPlatezhu)) {
-        Tilo = (SumaKredytu / (StrokKredytu + 1));
-    }
-    else {
-        Tilo = (SumaKredytu / StrokKredytu);
-    }
-    Tilo = parseFloat(Tilo.toFixed(2));
-    if (IfIncreaseStrokKredytu(DataRozrahunku, DataPershogoPlatezhu))
-        StrokKredytu = StrokKredytu + 1;
-
-    var DataStart = DataPo4atkuProc;
-    var DataEnd = DataPershogoPlatezhu;
-    var DataEndTilo = new Date(1900, 0);
-
+    var i = 0;
+    var Tilo = parseFloat((SumaKredytu / StrokKredytu).toFixed(2));
     var OstatokKredytu = SumaKredytu;
     var TiloFull = 0; var ProcentFull = 0; var WnesokFull = 0;
-    var s = 0;
-    var DataZminy = new Date(1900, 0);
-
     while (true) {
-
-        if (DataEnd.getDate() == 1)
-            DataEndTilo = AddDays(DataEnd, (-1));
-        else
-            DataEndTilo = DataEnd;
-
         Schedule.length += 1;
-        Schedule[i] = new Array(6);
-
-        DataZminy = AddMonths(DataRozrahunku, ListStawok[s][1]);
-        var ChyZminaStawky = DataStart < DataZminy && DataEnd > DataZminy && ListStawok.count > s + 1;
-
-        if (DataEndTilo != DataEnd) {
-
-            if (ChyZminaStawky && DataEndTilo > DataZminy) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataZminy)
-                    + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1][0], DataZminy, DataEndTilo)
-                    + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s + 1][0], DataEndTilo, DataEnd);
-                s++;
-            }
-            else if (ChyZminaStawky) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataZminy)
-                    + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s + 1][0], DataZminy, DataEnd);
-                s++;
-            }
-            else if (ChyTiloZero) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataEnd);
-            }
-
-            else {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataEndTilo)
-                    + SumaProcWPeriodi(Math.max(OstatokKredytu - Tilo, 0), ListStawok[s][0], DataEndTilo, DataEnd);
-            }
-        }
-        else {
-
-            if (ChyZminaStawky) {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataZminy)
-                    + SumaProcWPeriodi(OstatokKredytu, ListStawok[s + 1][0], DataZminy, DataEnd);
-                s++;
-            }
-            else {
-                Schedule[i][2] = SumaProcWPeriodi(OstatokKredytu, ListStawok[s][0], DataStart, DataEnd);
-            }
-
-        }
-        Schedule[i][2] = parseFloat(Schedule[i][2].toFixed(2));
-
-        if (ChyTiloZero) {
-            Schedule[i][3] = 0;
-            ChyTiloZero = false;
-        }
-        else if (Tilo < OstatokKredytu - Tilo / 2)
-            Schedule[i][3] = Tilo;
+        Schedule[i] = new Array(4);
+        Schedule[i][1] = parseFloat(Procent(OstatokKredytu, Stawka).toFixed(2));
+        if (Tilo < OstatokKredytu - Tilo / 2)
+            Schedule[i][2] = Tilo;
         else
-            Schedule[i][3] = OstatokKredytu;
-
-        Schedule[i][4] = OstatokKredytu - Schedule[i][3];
-        Schedule[i][5] = DataEnd;
-        Schedule[i][0] = FormatDate(DataEnd, 1);
-        DataStart = DataEnd;
-        if (AddMonths(DataPershogoPlatezhu, (i + 1)) > DataOplatyKredytu)
-            DataEnd = DataOplatyKredytu;
-        else
-            DataEnd = AddMonths(DataPershogoPlatezhu, (i + 1));
-
-        OstatokKredytu = OstatokKredytu - Schedule[i][3];
-        Schedule[i][1] = parseFloat((Schedule[i][2] + Schedule[i][3]).toFixed(2));
-        TiloFull = TiloFull + Schedule[i][3];
-        ProcentFull = ProcentFull + Schedule[i][2];
-        WnesokFull = WnesokFull + Schedule[i][1];
+            Schedule[i][2] = OstatokKredytu;
+        Schedule[i][3] = OstatokKredytu - Schedule[i][2];
+        OstatokKredytu = OstatokKredytu - Schedule[i][2];
+        Schedule[i][0] = parseFloat((Schedule[i][1] + Schedule[i][2]).toFixed(2));
+        TiloFull = TiloFull + Schedule[i][2];
+        ProcentFull = ProcentFull + Schedule[i][1];
+        WnesokFull = WnesokFull + Schedule[i][0];
         i++;
-        if (OstatokKredytu <= 0 || i > StrokKredytu) {
+        if (OstatokKredytu <= 0 || i == StrokKredytu) {
             Schedule.length += 1;
-            Schedule[i] = new Array(5);
-            Schedule[i][0] = "";
-            Schedule[i][1] = WnesokFull;
-            Schedule[i][2] = ProcentFull;
-            Schedule[i][3] = TiloFull;
-            Schedule[i][4] = "";
+            Schedule[i] = new Array(4);
+            Schedule[i][0] = WnesokFull;
+            Schedule[i][1] = ProcentFull;
+            Schedule[i][2] = TiloFull;
+            Schedule[i][3] = "";
             break;
         }
     }
     return Schedule;
 }
 function CalculateEffectiveRate(SumaKredytu, Wytraty, DataRozrahunku, Schedule) {
+    DataRozrahunku = new Date();
     SumaKredytu = -1 * SumaKredytu + Wytraty;
     var EffectiveRate = 0.15;
     var Step = EffectiveRate;
@@ -376,23 +198,22 @@ function CalculateEffectiveRate(SumaKredytu, Wytraty, DataRozrahunku, Schedule) 
     for (var i = 0; i < Schedule.length - 1; i++) {
         AmountFlow.length += 1;
         AmountFlow[i + 1] = new Array(2);
-        AmountFlow[i + 1][0] = Schedule[i][5];
-        AmountFlow[i + 1][1] = Schedule[i][1];
+        AmountFlow[i + 1][0] = AddMonths(DataRozrahunku, i + 1);
+        AmountFlow[i + 1][1] = Schedule[i][0];
     }
-    
+
     while (true) {
         var Drib = 0;
         for (var i = 0; i < AmountFlow.length; i++) {
-            
+
             var dd = TotalDays(DataRozrahunku, AmountFlow[i][0]);
             var Platizh = AmountFlow[i][1];
             Drib += Platizh / Math.pow(1 + EffectiveRate, parseFloat(dd / 365));
         }
-        if (parseFloat(Drib.toFixed(1)) == 0)
-        {
+        if (parseFloat(Drib.toFixed(1)) == 0) {
             break;
         }
-        else if (Drib > 0){
+        else if (Drib > 0) {
             EffectiveRate += Step;
         }
         else {
@@ -402,8 +223,23 @@ function CalculateEffectiveRate(SumaKredytu, Wytraty, DataRozrahunku, Schedule) 
     }
     return MaskDecimal(parseFloat((EffectiveRate * 100).toFixed(2)));
 }
-function BlockInt(InputObject, OutputObject) {
-    var AllButNumbers = /[ \d]/g;
-    if (InputObject.value.replace(AllNumbers, '').length == 1)
-        OutputObject.value = OutputObject.value.substr(0, OutputObject.value.length - 1);
+function Anuitet(CK, T, stawka, komisiya) {
+    if (typeof (CK) != "number")
+        CK = parseFloat(CK.replace(',', '.'));
+    if (typeof (T) != "number")
+        T = parseInt(T);
+    if (typeof (stawka) != "number")
+        stawka = parseFloat(stawka.replace(',', '.'));
+    if (typeof (komisiya) != "number")
+        komisiya = parseFloat(komisiya.replace(',', '.'));
+    var stepin = Math.pow(1 + stawka / 1200, T);
+    var drib = stawka * stepin / 1200 / (stepin - 1);
+    return CK * (drib + komisiya / 100);
+}
+function Procent(CK, stawka) {
+    if (typeof (CK) != "number")
+        CK = parseFloat(CK.replace(',', '.'));
+    if (typeof (stawka) != "number")
+        stawka = parseFloat(stawka.replace(',', '.'));
+    return CK * stawka * 30 / 36000;
 }

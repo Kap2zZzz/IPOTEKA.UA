@@ -7,6 +7,8 @@ using IPOTEKA.UA.Models;
 using IPOTEKA.UA.Repostory;
 using IPOTEKA.UA.Code;
 using System.Web.Security;
+using PagedList.Mvc;
+using PagedList;
 
 namespace IPOTEKA.UA.Controllers
 {
@@ -16,7 +18,7 @@ namespace IPOTEKA.UA.Controllers
         MyDbContext _db = new MyDbContext();
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             using (_db)
             {
@@ -26,14 +28,11 @@ namespace IPOTEKA.UA.Controllers
 
                 ViewBag.Role = u.Role;
                 ViewBag.PIB = u.PIB;
-                List<Application> l1 = _db.Applications.ToList();
-                List<User> l2 = _db.Users.ToList();
-                List<Bank> l3 = _db.Banks.ToList();
-                List<Product> l4 = _db.Products.ToList();
 
-                var t = new Tuple<List<Application>, List<User>, List<Bank>, List<Product>>(l1, l2, l3, l4);
+                int pageSize = 5;
+                int pageNumber = (page ?? 1);
 
-                return View(t);
+                return View(_db.Applications.ToList().ToPagedList(pageNumber, pageSize));
             }
 
         }

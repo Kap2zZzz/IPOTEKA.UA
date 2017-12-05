@@ -1,8 +1,7 @@
 ﻿function GenerateTable(Schedule) {
     var result = "<table>";
     result += "<tr>";
-    result += "<th>№</th>";
-    result += "<th>Дата оплати до</th>";
+    result += "<th>Місяць</th>";
     result += "<th>Платіж</th>";
     result += "<th>Проценти</th>";
     result += "<th>Погашення тіла</th>";
@@ -11,11 +10,8 @@
     for (var i = 0; i < Schedule.length - 1; i++) {
         result += "<tr>";
         result += "<td>" + (i + 1) + "</td>";
-        for (var j = 0; j < Schedule[i].length - 1; j++) {
-            if (j >= 1)
-                result += "<td>" + MaskDecimal(Schedule[i][j]) + "</td>";
-            else
-                result += "<td>" + Schedule[i][j] + "</td>";
+        for (var j = 0; j < Schedule[i].length; j++) {
+            result += "<td>" + MaskDecimal(Schedule[i][j]) + "</td>";
         }
         result += "</tr>";
     }
@@ -23,10 +19,7 @@
     return result;
 }
 function Calculate() {
-    ListStawok = new Array(1);
-    ListStawok[0] = new Array(2);
-    ListStawok[0][0] = parseFloat(NominalRate.value.replace(",", "."));
-    ListStawok[0][1] = 1000;
+    ListStawok = parseFloat(NominalRate.value.replace(",", "."));
 
     ProcentKomisiyiZaVydachu = parseFloat(KomisiyaZaVydachuIn.value.replace(",", "."));
 
@@ -36,12 +29,12 @@ function Calculate() {
         a = AnnuitySchedule(parseFloat(Suma.value), parseInt(Termin.value), ListStawok, 0);
 
     SumaKomisiyiZaVydachu = parseFloat((parseFloat(Suma.value) * ProcentKomisiyiZaVydachu / 100).toFixed(2));
-    CalculatedRealRate = parseFloat((a[a.length - 1][2] + SumaKomisiyiZaVydachu) * 100 * 12 / (parseFloat(Suma.value) * parseFloat(Termin.value))).toFixed(2);
+    CalculatedRealRate = parseFloat((a[a.length - 1][1] + SumaKomisiyiZaVydachu) * 100 * 12 / (parseFloat(Suma.value) * parseFloat(Termin.value))).toFixed(2);
     RealRate.innerHTML = MaskDecimal(CalculatedRealRate) + "%";
-    CalculatedRealRateFull = parseFloat((a[a.length - 1][2] + SumaKomisiyiZaVydachu) * 100 / parseFloat(Suma.value)).toFixed(2);
+    CalculatedRealRateFull = parseFloat((a[a.length - 1][1] + SumaKomisiyiZaVydachu) * 100 / parseFloat(Suma.value)).toFixed(2);
 
-    SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][1]);
-    SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][2]) + " (" + MaskDecimal(CalculatedRealRateFull) + "%)";
+    SumaPlatezhiv.innerHTML = MaskDecimal(a[a.length - 1][0]);
+    SumaProcentiv.innerHTML = MaskDecimal(a[a.length - 1][1]) + " (" + MaskDecimal(CalculatedRealRateFull) + "%)";
     KomisiyaZaVydachu.innerHTML = MaskDecimal(SumaKomisiyiZaVydachu) + " (";
     KomisiyaZaVydachuAfter.innerHTML = ")%"
     EffectiveRate.innerHTML = CalculateEffectiveRate(parseInt(Suma.value), SumaKomisiyiZaVydachu, new Date(), a) + "%";
@@ -52,6 +45,8 @@ var ListStawok;
 var ProcentKomisiyiZaVydachu;
 var CalculatedRealRate;
 var CalculatedRealRateFull;
+var KomisiyaZaWydachuTemp = KomisiyaZaVydachuIn.value;
+var NominalRateTemp = NominalRate.value;
 
 outputTermin.value = Termin.value;
 outputSuma.value = MaskInt(Suma.value);
@@ -140,23 +135,35 @@ classic.onchange = function () {
 
 KomisiyaZaVydachuIn.oninput = function () {
     this.value = this.value.replace('.', ',');
-    if (this.value != this.value.match(/^(\d|[1-9]\d|[1-9]?\d,\d{0,2})$/g))
-        this.value = this.value.substr(0, this.value.length - 1);
+    if (this.value != this.value.match(/^(\d?|[1-9]\d|[1-9]?\d,\d{0,2})$/g))
+        this.value = KomisiyaZaWydachuTemp;
+    KomisiyaZaWydachuTemp = this.value;
 }
 
 NominalRate.oninput = function () {
     this.value = this.value.replace('.', ',');
-    if (this.value != this.value.match(/^(\d|[1-9]\d|[1-9]?\d,\d{0,2})$/g))
-        this.value = this.value.substr(0, this.value.length - 1);
+    if (this.value != this.value.match(/^(\d?|[1-9]\d|[1-9]?\d,\d{0,2})$/g))
+        this.value = NominalRateTemp;
+    NominalRateTemp = this.value;
 }
 
 KomisiyaZaVydachuIn.onchange = function () {
-    this.value = MaskDecimal(parseFloat(this.value.replace(',', '.')));
+    if (this.value == '')
+        this.value = MaskDecimal(0);
+    else
+        this.value = MaskDecimal(parseFloat(this.value.replace(',', '.')));
+    if (parseFloat(this.value.replace(',', '.')) > 50)
+        this.value = MaskDecimal(50);
     Calculate();
+    KomisiyaZaWydachuTemp = this.value;
 }
 
 NominalRate.onchange = function () {
-    this.value = MaskDecimal(parseFloat(this.value.replace(',', '.')));
+    if (this.value == '' || parseFloat(this.value.replace(',', '.')) == 0)
+        this.value = MaskDecimal(0.01);
+    else
+        this.value = MaskDecimal(parseFloat(this.value.replace(',', '.')));
+    NominalRateTemp = this.value;
     Calculate();
     Schedule.innerHTML = GenerateTable(a);
 }
