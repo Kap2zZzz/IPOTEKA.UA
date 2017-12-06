@@ -144,6 +144,7 @@ namespace IPOTEKA.UA.Controllers
         [HttpGet]
         public ActionResult CreateBank()
         {
+            ViewBag.Page = "Personal";
             var ViewModel = new Bank();
             return View(ViewModel);
         }

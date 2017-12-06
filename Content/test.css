@@ -34,13 +34,12 @@
     }
 
     .form-style-8 a {
-        color: #4291CE;
+        color: #3d944c;
         text-decoration: none;
     }
 
         .form-style-8 a:hover {
-            color: #0064ff;
-            /* margin-top: 10px; */
+            color: #ff5e00;
             border-bottom: 1px solid;
         }
 
